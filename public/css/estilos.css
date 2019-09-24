@@ -1,0 +1,449 @@
+
+
+/*CSS - HEADER.PHP*/
+
+/*###############################################################################*/
+
+.barra_inicial {
+	width: 100%;
+	height: 30px;
+	background: rgb(6,3,108);
+	background: linear-gradient(90deg, rgba(6,3,108,1) 47%, rgba(9,10,236,1) 84%, rgba(0,155,255,1) 100%);
+	padding: 20px;
+	/*position: fixed;*/
+	position: absolute;
+	top: 0;
+	right: 0;
+	/*z-index: 1000;*/
+}
+
+.versao {
+	color: white;
+	margin-left: 25%;
+	margin-top: 60%;
+	/*position: fixed;*/
+}
+
+#img_versao {
+	width: 20%;
+	float: left;
+	margin-top: -10px;
+}
+
+#txt_versao {
+	float: left;
+	margin-top: -8px;
+	font-size: 15px;
+}
+
+.usuario_info {
+	color: white;
+	float: right;
+	font-weight: bold;
+}
+
+#image_logo {
+	width: 35%;
+	margin-left: 27%;
+	float: left;
+	margin-top: 10%;
+}
+
+.menu_sistema {
+	width: 250px;
+	height: 100vh;
+	background: rgb(6,3,108);
+	background: linear-gradient(180deg, rgba(6,3,108,1) 47%, rgba(9,10,236,1) 84%, rgba(0,155,255,1) 100%);
+	/*padding: 10px;*/
+	float: left;
+	padding: 10px;
+	position: fixed;
+}
+
+.menu_sistema_opcoes {
+	font-family: Verdana;
+	color: white;
+	display: inline-block;
+	text-decoration: none;
+	margin-top: 20%;
+	list-style-type: none;
+
+}
+
+.menu_sistema_opcoes li {
+	margin-bottom: 30px;
+	font-size: 12px;
+	transition: 0.5s ease-out;
+	display: block;
+    height: 30px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.menu_sistema_opcoes a {
+	text-decoration: none;
+	color: white;
+}
+
+.menu_sistema_opcoes li:hover {
+	background-color: black;
+	transition: 0.5s ease-in;
+}
+
+/*##############################################################################*/
+
+/*CSS - LOGIN.PHP*/
+
+/*##############################################################################*/
+
+.background_login {
+	background: rgb(6,3,108);
+	background: linear-gradient(90deg, rgba(6,3,108,1) 47%, rgba(9,10,236,1) 84%, rgba(0,155,255,1) 100%);
+	width: 100%;
+	height: 90vh;
+}
+
+.login_esquerdo {
+	float: left;
+	width: 50%;
+	height: 100%;
+	margin-top: 40px;
+
+}
+
+#logo_login {
+	float: left;
+	margin-left: 50%;
+	margin-top: 40%;
+}
+
+.linha_vertical {
+  height: 600px;/*Altura da linha*/
+  border-left: 3px solid;/* Adiciona borda esquerda na div como ser fosse uma linha.*/
+  float: left;
+  margin-top: 60px;
+}
+
+.login_direito {
+	width: 50%;
+	height: 100%;
+	float: right;
+	margin-right: -2%;
+	margin-top: 8%;
+}
+
+#formulario_login {
+	width: 70%;
+	margin-left: 10%;
+	margin-top: 23%;
+}
+
+#titulo_login {
+	margin-bottom: 20px;
+	color: white;
+	font-family: Verdana;
+	text-align: center;
+}
+
+#botao_login {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+
+/*##############################################################################*/
+
+/*##############################################################################*/
+
+/*CSS - principal.PHP*/
+
+/*##############################################################################*/
+
+.posicao_conteudo {
+	float: right;
+	margin-top: 2%;
+	height: 95vh;
+	width: 78%;
+}
+
+.image_empresa {
+	width: 30%;
+	margin-left: 55%;
+}
+
+.logo_empresa {
+	width: 78.61%;
+}
+
+.os_pendentes {
+	width: 30%;
+	border: 1px solid;
+	border-radius: 10px;
+	margin-left: 10%;
+	margin-top: 0.01%;
+	text-align: center;
+	padding: 10px;
+	box-shadow:-2px 2px #888888;
+	background: rgb(247,247,247);
+
+}
+
+.os_pendentes:hover {
+	box-shadow: -4px 4px 2px 4px #4b64ed;
+	transition: 0.1s ease-in;
+	opacity: 30%;
+}
+
+.alertas {
+	margin-left: 9%;
+	margin-top: 3%;
+	width: 84.4%;
+}
+
+.lista_botoes_iniciais {
+	margin-left: 10%;
+}
+
+.lista_botoes_iniciais li {
+	display: inline-block;
+}
+
+.alertas_2 {
+	background: radial-gradient(circle, rgba(247,247,247,1) 21%, rgba(235,234,234,1) 48%, rgba(179,179,179,1) 83%);
+	text-align: center;
+	margin-left: 2%;
+}
+
+#link_os_aberta {
+	text-decoration: none;
+	width: 80%;
+	margin-left: 10%;
+	margin-top: 0.01%;
+	text-align: center;
+	padding: 10px;
+	color: black;
+}
+
+#num_os_abertas {
+	color: red;
+	margin-left: 30%;
+}
+
+#num_os_fechadas {
+	margin-left: 30%;
+}
+
+.tabela_prazos {
+	width: 80%;
+	margin-top: 1%;
+	margin-left: 8%;
+	font-size: 12px;
+}
+
+#titulo_prazos {
+	margin-left: 38%;
+	margin-top: 2%;
+}
+
+
+/*##############################################################################*/
+
+/*##############################################################################*/
+
+/*CSS - Ordem_servico.PHP*/
+
+/*##############################################################################*/
+
+.botao_ordem {
+	margin-top: 1%;
+	margin-left: 2%;
+	list-style-type: none;
+	font-size: 40px;
+	transition: 0.5s ease-out;
+}
+
+.botao_ordem {
+	margin-bottom: 1%;
+	display: block;
+}
+
+
+.ordem_link {
+	text-decoration: none;
+	color: black;
+	transition: 0.3s ease-out;
+	font-size: 30px;
+}
+
+.ordem_link:hover {
+	text-decoration: none;
+	color: white;
+	background-color: #0f0f0f;
+	padding: 10px;
+	transition: 0.3s ease-in;
+}
+
+.botao_ordem li:hover {
+	width: 60%;
+	transition: 0.5s ease-in;
+}
+
+.ordem_aberta {
+	float: right;
+}
+
+.linha_menu {
+	width: 50%;
+	background-color: #0f0f0f;
+	margin-right: 50%;
+}
+
+.titulo_opcoes {
+	margin-top: 2%;
+	margin-left: 0.5%;
+}
+/*##############################################################################*/
+
+/*##############################################################################*/
+/* NOVA OS .PHP*/
+/*##############################################################################*/
+
+.linha_nova_ordem {
+	width: 90%;
+	background: black;
+	margin-left: -1%;
+}
+
+.campo_tamanho1 {
+	width: 95%;
+}
+
+.campo_data {
+	width: 15%;
+}
+
+.campo_data2 {
+	width: 53%;
+}
+
+.campo_tamanho2 {
+	width: 95%;
+}
+
+.campo_tamanho3 {
+	width: 35%;
+}
+
+.campo_tamanho4 {
+	width: 78.6%;
+}
+
+label {
+	font-size: 15px;
+}
+
+.row {
+	width: 95%;
+}
+
+.cliente_selecao {
+	margin-left: 1.5%;
+}
+
+.botao_acao {
+	margin-left: 2%;
+	width: 15%;
+	height: 5%;
+	font-size: 12px;
+}
+
+#AddCliente {
+	margin-left: 1%;
+	font-size: 12px;
+	color: white;
+	height: 32px;
+}
+
+#InfoCliente {
+	color: white;
+	font-size: 12px;
+	padding: 5px;
+	height: 32px;
+	margin-left: 2%;
+	text-align: center;
+}
+/*##############################################################################*/
+
+/* MODAL INFO CLIENTE.PHP */
+
+/*##############################################################################*/
+
+.coluna_1_info {
+	margin-left: 2%;
+}
+
+.coluna_1_info input {
+	margin-right: 5%;
+}
+
+/*##############################################################################*/
+
+/* OS ABERTAS.PHP */
+
+/*##############################################################################*/
+
+.barra_pesquisa {
+	margin-top: 4%;
+	margin-left: 10%;
+	width: 80%;
+
+}
+
+#botaoFiltro {
+	margin-bottom: 1%;
+	width: 20%;
+}
+
+#collapseFiltro div {
+	background: #d6d8d9;
+
+}
+
+#collapseFiltro label {
+	font-size: 14px;
+}
+
+#collapseFiltro input {
+	margin-right: 3%;
+}
+
+#collapseFiltro card {
+	padding: 4%;
+}
+
+.linha_filtro {
+	margin-left: 0.01%;
+}
+
+.tabela_os_abertas {
+	width: 100%;
+	font-size: 14px;
+	margin-top: 2%;
+}
+
+#botaoFiltro {
+	height: 32px;
+	width: 60px;
+	font-size: 12px;
+}
+
+/*##############################################################################*/
+
+/* NOVO CLIENTE.PHP */
+
+/*##############################################################################*/
+
+.titulo_cliente {
+	margin-top: 4%;
+	font-size: 20px;
+}
