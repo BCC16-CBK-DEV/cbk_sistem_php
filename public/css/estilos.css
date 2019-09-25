@@ -392,16 +392,20 @@ label {
 
 /*##############################################################################*/
 
+.centraliza {
+	margin-left: 8%;
+}
+
 .barra_pesquisa {
 	margin-top: 4%;
-	margin-left: 10%;
-	width: 80%;
+	margin-left: -1.5%;
+	width: 70%;
 
 }
 
-#botaoFiltro {
-	margin-bottom: 1%;
-	width: 20%;
+#collapseFiltro {
+	width: 85%;
+
 }
 
 #collapseFiltro div {
@@ -426,15 +430,30 @@ label {
 }
 
 .tabela_os_abertas {
-	width: 100%;
+	width: 90%;
 	font-size: 14px;
 	margin-top: 2%;
 }
 
-#botaoFiltro {
+.botoesBarra {
 	height: 32px;
-	width: 60px;
+	width: 80px;
 	font-size: 12px;
+	margin-bottom: 1%;
+	margin-right: 1%;
+}
+
+.botaoAcoesTabela {
+	text-decoration: none;
+	font-size: 20px;
+}
+
+.botaoAcoesTabela:hover {
+	color: black;
+}
+
+.botaoExcluir {
+	color: red;
 }
 
 /*##############################################################################*/

@@ -99,6 +99,16 @@ class OrdemServico extends CI_Controller {
 
 		$this->load->view('os_abertas',$data);
 	}
+
+	public function os_fechadas () {
+
+		$this->load->model('ordem_servico');
+		$data = array(
+			'os_fechadas'=>$this->ordem_servico->os_fechadas()
+		);
+
+		$this->load->view('os_fechadas',$data);
+	}
 }
 
 ?>

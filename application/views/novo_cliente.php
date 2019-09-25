@@ -4,7 +4,7 @@
 	include ('scripts.php');
 
 ?>
-<script src="<?php echo base_url(); ?>public/js/addCliente.js"></script>
+<script src="<?php echo base_url(); ?>public/js/Cliente.js"></script>
 <script src="<?php echo base_url(); ?>public/js/util.js"></script>
 
 

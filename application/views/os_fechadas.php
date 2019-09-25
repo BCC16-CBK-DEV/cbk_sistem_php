@@ -1,21 +1,23 @@
 <?php
-	include ('header.php');
-	include ('scripts.php');
+
+include ('header.php');
+include ("scripts.php");
 
 ?>
 
-<script src="<?php echo base_url(); ?>public/js/Cliente.js"></script>
+<script src="<?php echo base_url(); ?>public/js/ordemServico.js"></script>
 <script src="<?php echo base_url(); ?>public/js/util.js"></script>
 
 <div class="posicao_conteudo">
-	<h4 class="titulo_opcoes"><span class="fa fa-users"></span> Consultar Clientes</h4>
+
+	<h4 class="titulo_opcoes"><span class="fa fa-archive"></span> Consultar OS Fechadas</h4>
 	<hr class="linha_nova_ordem">
 	<div class="centraliza">
 		<div class="barra_pesquisa row">
 			<button class="btn btn-dark botoesBarra" id="botaoFiltro" type="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseFiltro">
 				Filtros
 			</button>
-			<a class="btn btn-dark botoesBarra" id="botaoInicio" href="<?php echo base_url();?>Clientes/index">
+			<a class="btn btn-dark botoesBarra" id="botaoInicio" href="<?php echo base_url();?>OrdemServico/index">
 				Voltar
 			</a>
 			<button class="btn btn-dark botoesBarra" id="botaoFiltro" type="button">
@@ -73,26 +75,25 @@
 			</div>
 		</div>
 
-
 		<div class="row">
 			<table class="table tabela_os_abertas">
 				<thead class="thead-dark">
 				<tr>
-					<th scope="col">ID</th>
-					<th scope="col">Nome</th>
-					<th scope="col">CPF</th>
-					<th scope="col">e-Mail</th>
-					<th scope="col">Celular</th>
+					<th scope="col">Nº Ordem</th>
+					<th scope="col">Data de Abertura</th>
+					<th scope="col">Descrição</th>
+					<th scope="col">Nota Fiscal</th>
+					<th scope="col">Código Produto</th>
 					<th scope="col">Ações</th>
 				</tr>
 				</thead>
 				<tbody>
-				<?php foreach ($clientes as $cliente):
-					echo '<tr><th scope="row">'.$cliente['id_cliente'].'</th>';
-					echo '<td>'.$cliente['nome_cliente'].'</td>';
-					echo '<td>'.$cliente['cpf'].'</td>';
-					echo '<td>'.$cliente['email'].'</td>';
-					echo '<td>'.$cliente['celular'].'</td>';
+				<?php foreach ($os_fechadas as $os):
+					echo '<tr><th scope="row">'.$os['numero_ordem'].'</th>';
+					echo '<td>'.date("d/m/Y", strtotime($os['data_abertura'])).'</td>';
+					echo '<td>'.$os['descricao_produto'].'</td>';
+					echo '<td>'.$os['nota_fiscal'].'</td>';
+					echo '<td>'.$os['codigo_produto'].'</td>';
 					echo '<td><a class="botaoAcoesTabela botaoEditar" href=""><span class="fa fa-pencil-square-o"></span></a>
 					<a class="botaoAcoesTabela botaoExcluir" href=""><span class="fa fa-trash-o"></span></a></td></tr>';
 				endforeach;?>
@@ -100,5 +101,5 @@
 			</table>
 		</div>
 	</div>
-
 </div>
+

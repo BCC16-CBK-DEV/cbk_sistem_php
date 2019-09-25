@@ -15,7 +15,7 @@
 		<a class="ordem_link" href="<?php echo base_url(); ?>OrdemServico/os_abertas"><span class="fa fa-inbox"></span>
 		Consultar OS</a>
 		<hr class="linha_menu">
-		<a class="ordem_link" href="<?php echo base_url(); ?>OrdemServico/nova_ordem"><span class="fa fa-archive"></span>
+		<a class="ordem_link" href="<?php echo base_url(); ?>OrdemServico/os_fechadas"><span class="fa fa-archive"></span>
 			OS Finalizadas</a>
 		<hr class="linha_menu">
 		<a class="ordem_link" href="<?php echo base_url(); ?>Inicio"><span class="fa fa-home"></span>

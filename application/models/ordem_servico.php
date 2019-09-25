@@ -45,5 +45,14 @@ class Ordem_Servico extends CI_Model
 		return $this->db->get()->result_array();
 	}
 
+	public function os_fechadas() {
+		$this->db
+			->select('*')
+			->from('ordem_servico')
+			->where('id_status', 2);
+
+		return $this->db->get()->result_array();
+	}
+
 }
 ?>
