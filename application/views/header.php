@@ -26,6 +26,7 @@
 		<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<script src="https://kit.fontawesome.com/f2266e159a.js" crossorigin="anonymous"></script>
 		<![endif]-->
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -38,6 +39,13 @@
 				$href = base_url()."public/css/".$styles_name; ?>
 				<link rel="stylesheet" type="text/css" href="<?php echo $href; ?>">
 		<?php }
+		}
+
+		if (isset($styles2)){
+			foreach ($styles2 as $styles_name) {
+				$href2 = base_url()."public/css/fontawesome-free-5.11.2-web/css/".$styles_name; ?>
+				<link rel="stylesheet" type="text/css" href="<?php echo $href2; ?>">
+		<?php }
 		} ?>
 </head>
 <body>
@@ -46,11 +54,11 @@
 		
 
 		<div class="usuario_info">
-			<!-- <i class="fa fa-user"></i> -->
-			<!-- <p id="txt_usuario"><?php 
-				 // foreach ($usuario_session as $usuarios):
-					// echo $usuarios;
-				 // endforeach;?></p> -->
+			<i class="fa fa-user"></i>
+			<!--<p id="txt_usuario"><?php
+				// foreach ($usuario_session as $usuarios):
+				 //	echo $usuarios['nome_completo'];
+				 //endforeach;?></p>-->
 		</div>
 	</div>
 
@@ -62,14 +70,15 @@
 			<li><a href=""><i class="fa fa-file-text-o" aria-hidden="true"></i> Pedido de Peça</a></li>
 			<li><a href="<?php echo base_url();?>Clientes/index"><i class="fa fa-users" aria-hidden="true"></i> Clientes</a></li>
 			<li><a href=""><i class="fa fa-book" aria-hidden="true"></i> Fornecedores</a></li>
+			<li><a href="<?php echo base_url(); ?>Estatisticas/index"><i class="fa fa-line-chart"></i> Estatísticas</a></li>
 			<li><a href=""><i class="fa fa-cog" aria-hidden="true"></i> Configurações</a></li>
 		</ul>
 
 		<div class="versao">
-			<!-- <img id="img_versao" src="<?php echo base_url(); ?>public/images/ic_memory_white_48dp.png"> -->
-			<!-- <p id="txt_versao"><?php foreach ($versao_sistema as $versao1):
-				echo $versao1;
-			 endforeach;?></p> -->
+			<!--<img id="img_versao" src="<?php echo base_url(); ?>public/images/ic_memory_white_48dp.png">
+			<p id="txt_versao"><?php // foreach ($versao_sistema as $versao1):
+				//echo $versao1['versao_num'];
+			 //endforeach;?></p>-->
 		</div>
 	</div>
 
