@@ -17,23 +17,17 @@ class OrdemServico extends CI_Controller {
 	public function nova_ordem() {
 
 		$this->load->model('ordem_servico');
-
-		//$valor = $this->input->post('clientes_select');
-
 		$data = array(
 			'clientes'=>$this->ordem_servico->carregarCliente()
 		);
-
-		$this->load->view('nova_ordem', $data);
+		$this->load->view('nova_ordem',$data);
 	}
 
-	public function clientesAtualizados(){
-		$this->load->model('ordem_servico');
-		$data = array(
-			'clientes'=>$this->ordem_servico->carregarCliente()
-		);
+	public function carregarClientes() {
 
-		return $data;
+
+
+
 	}
 
 	public function novoCliente() {

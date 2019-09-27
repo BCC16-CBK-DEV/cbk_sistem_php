@@ -76,19 +76,14 @@
 
 			<h5>Informações do Cliente</h5>
 			<div class="row">
+				<input type="hidden" id="id_cliente_os" name="id_cliente_os">
 				<div class="input-group-sm mb-3 campo_tamanho3 cliente_selecao">
-					<select class="custom-select" id="clientes_select" name="clientes_select">
-						<option value="0" selected>Selecione o Cliente</option>
-						<?php
-						foreach ($clientes as $cliente):?>
-						<?php echo '<option value="'.$cliente['id_cliente'].'">
-							'.$cliente['nome_cliente'].'
-						</option>';
-						endforeach;?>
-					</select>
+					<input type="text" readonly=“true” name="nome_cliente_os" id="nome_cliente_os" class="form-control"
+						   aria-label="Nome do Cliente" aria-describedby="inputGroup-sizing-sm">
 				</div>
 				<a id="InfoCliente" class="btn btn-primary">Informações do Cliente</a>
-				<a id="AddCliente" class="btn btn-primary botao_cliente">Adicionar Cliente</a>
+				<a id="SelecionarCliente" class="btn btn-primary botao_cliente">Selecionar Cliente
+					<a id="AddCliente" class="btn btn-primary botao_cliente">Adicionar Novo Cliente</a>
 			</div>
 
 			<div class="row">
@@ -161,10 +156,10 @@
 
 		</script>
 
-		<!-- FIM MODAL ADICONADR CLIENTE-->
 
-	<!-- FIM MODAL INFO CLIENTE-->
-		<?php include('modal_info_cliente.php'); ?>
+		<?php include('modal_info_cliente.php');
+		include('modal_selecionar_cliente.php');
+		?>
 
 
 </div>

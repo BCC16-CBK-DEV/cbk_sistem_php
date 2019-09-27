@@ -56,8 +56,28 @@ $(function() {
 	});
 
 	$('#InfoCliente').click(function () {
-		$('#informacoesCliente').modal('show');
-		//window.location = BASE_URL + 'OrdemServico/dadosCliente';
+		if($('#nome_cliente_os').empty()) {
+			alert('Favor Selecionar um cliente antes');
+		}else {
+			$('#informacoesCliente').modal('show');
+		}
+			//window.location = BASE_URL + 'OrdemServico/dadosCliente';
+	});
+
+	$('#SelecionarCliente').click(function () {
+
+		$.ajax({
+			url: BASE_URL+"OrdemServico/carregarClientes",
+			type: 'post',
+			dataType: 'html',
+			success: function (data) {
+
+			}
+		});
+
+		$('#Selecionar-Cliente').modal('show');
+
+		//window.location = BASE_URL + 'OrdemServico/carregarClientes';
 	});
 
 });
