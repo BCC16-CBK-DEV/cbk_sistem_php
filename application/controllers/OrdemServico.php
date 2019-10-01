@@ -84,6 +84,36 @@ class OrdemServico extends CI_Controller {
 		echo json_encode($json);
 	}
 
+	public function selecionarCliente() {
+
+		$json = array();
+		$json["status"] = 1;
+		$json["error_list"] = array();
+
+		$id_cliente = $this->input->post('idCliente');
+
+		$this->load->model("ordem_servico");
+		$result = $this->ordem_servico->carregarNomeCliente($id_cliente)->result_array()[0];
+		$json['input']['os_cliente_id'] = $result['id_cliente'];
+		$json['input']['os_cliente_nome'] = $result['nome_cliente'];
+
+		echo json_encode($json);
+	}
+
+	public function selecionarUltimoCliente() {
+
+		$json = array();
+		$json["status"] = 1;
+		$json["error_list"] = array();
+
+		$this->load->model("ordem_servico");
+		$result = $this->ordem_servico->carregarNomeUltimoCliente()->result_array()[0];
+		$json['input']['os_cliente_id'] = $result['id_cliente'];
+		$json['input']['os_cliente_nome'] = $result['nome_cliente'];
+
+		echo json_encode($json);
+	}
+
 	public function os_abertas () {
 
 		$this->load->model('ordem_servico');

@@ -76,14 +76,14 @@
 
 			<h5>Informações do Cliente</h5>
 			<div class="row">
-				<input type="hidden" id="id_cliente_os" name="id_cliente_os">
+				<input type="hidden" id="os_cliente_id" name="os_cliente_id">
 				<div class="input-group-sm mb-3 campo_tamanho3 cliente_selecao">
-					<input type="text" readonly=“true” name="nome_cliente_os" id="nome_cliente_os" class="form-control"
+					<input type="text" readonly=“true” name="os_cliente_nome" id="os_cliente_nome" class="form-control"
 						   aria-label="Nome do Cliente" aria-describedby="inputGroup-sizing-sm">
 				</div>
 				<a id="InfoCliente" class="btn btn-primary">Informações do Cliente</a>
-				<a id="SelecionarCliente" class="btn btn-primary botao_cliente">Selecionar Cliente
-					<a id="AddCliente" class="btn btn-primary botao_cliente">Adicionar Novo Cliente</a>
+				<a id="SelecionarCliente" class="btn btn-primary botao_cliente">Selecionar Cliente</a>
+				<a id="AddCliente" class="btn btn-primary botao_cliente">Adicionar Novo Cliente</a>
 			</div>
 
 			<div class="row">

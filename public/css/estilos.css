@@ -371,6 +371,23 @@ label {
 	height: 32px;
 }
 
+#botaoAdicionar:hover {
+	color: #00CC00;
+	cursor: pointer;
+}
+
+.tabela_os_abertas {
+	/*margin-left: 15%;*/
+	width: 100%;
+}
+
+.tabela {
+	height: 470px;
+	width: 700px;
+	overflow:auto;
+	margin-left: 15%;
+}
+
 #InfoCliente {
 	color: white;
 	font-size: 12px;

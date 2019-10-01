@@ -16,11 +16,20 @@ class Ordem_Servico extends CI_Model
 		return $this->db->get()->result_array();
 	}
 
-	public function carregarClienteS(){
+	public function carregarNomeCliente($idcliente){
 		$this->db
 			->select("id_cliente, nome_cliente")
 			->from("cliente")
-			->order_by('id_cliente DESC')
+			->where("id_cliente", $idcliente);
+
+		return $this->db->get();
+	}
+
+	public function carregarNomeUltimoCliente(){
+		$this->db
+			->select("id_cliente, nome_cliente")
+			->from("cliente")
+			->order_by("id_cliente DESC")
 			->limit(1);
 
 		return $this->db->get();

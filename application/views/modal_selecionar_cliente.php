@@ -14,25 +14,32 @@
 			</div>
 			<div class="modal-body">
 				<div class="row">
-					<table class="table tabela_os_abertas">
-						<thead class="thead-dark">
-						<tr>
-							<th scope="col">Id Cliente</th>
-							<th scope="col">Nome Cliente</th>
-							<th scope="col">CPF</th>
-							<th scope="col">Ação</th>
-						</tr>
-						</thead>
-						<tbody>
-						<?php foreach ($clientes as $cl):
-							echo '<tr><th scope="row">'.$cl['id_cliente'].'</th>';
-							echo '<td>'.$cl['nome_cliente'].'</td>';
-							echo '<td>'.$cl['cpf'].'</td>';
-							echo '<td><a class="botaoAcoesTabela botaoEditar" href=""><span class="fa fa-pencil-square-o"></span></a>
-					<a class="botaoAcoesTabela botaoExcluir" href=""><span class="fa fa-trash-o"></span></a></td></tr>';
-						endforeach;?>
-						</tbody>
-					</table>
+					<div class="tabela">
+						<table class="table tabela_os_abertas">
+							<thead class="thead-light topo_tabela">
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">Nome Cliente</th>
+								<th scope="col">CPF</th>
+								<th scope="col">Ação</th>
+							</tr>
+							</thead>
+							<tbody>
+							<?php
+							$cont = 1;
+
+							foreach ($clientes as $cl):
+								echo '<tr><th scope="row">'.$cont.'</th>';
+								echo '<td>'.$cl['nome_cliente'].'</td>';
+								echo '<td>'.$cl['cpf'].'</td>';
+								echo '<td><a class="botaoAcoesTabela botaoAdicionar" id="botaoAdicionar" onclick="enviaID('.$cl['id_cliente'].');">
+								<span class="fa fa-plus-circle"></span></a></td></tr>';
+
+								$cont++;
+							endforeach;?>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>

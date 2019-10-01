@@ -32,10 +32,27 @@ $(function() {
 		$('#nome_cliente').val('');
 		$('#cpf_cliente').val('');
 		$('#celular_cliente').val('');
+
+		$.ajax({
+			type: "post",
+			url: BASE_URL + "OrdemServico/selecionarUltimoCliente",
+			dataType: "json",
+			success: function(response) {
+				$.each(response['input'], function (id, value) {
+					$('#'+id).val(value);
+				});
+
+			},
+			error: function(response) {
+				console.log(response);
+			}
+		})
+
 	});
 
 	$('#InfoCliente').click(function () {
-		var selecao = $('#clientes_select').val();
+		var selecao = $('#os_cliente_id').val();
+		console.log(selecao);
 
 		$.ajax({
 			type: "post",
@@ -56,7 +73,7 @@ $(function() {
 	});
 
 	$('#InfoCliente').click(function () {
-		if($('#nome_cliente_os').empty()) {
+		if($('#os_cliente_id').val() == '') {
 			alert('Favor Selecionar um cliente antes');
 		}else {
 			$('#informacoesCliente').modal('show');
@@ -66,19 +83,31 @@ $(function() {
 
 	$('#SelecionarCliente').click(function () {
 
-		$.ajax({
-			url: BASE_URL+"OrdemServico/carregarClientes",
-			type: 'post',
-			dataType: 'html',
-			success: function (data) {
-
-			}
-		});
-
 		$('#Selecionar-Cliente').modal('show');
-
 		//window.location = BASE_URL + 'OrdemServico/carregarClientes';
 	});
 
+
 });
+
+function enviaID(id_cliente) {
+
+	$.ajax({
+		type: "post",
+		url: BASE_URL + "OrdemServico/selecionarCliente",
+		dataType: "json",
+		data: {idCliente: id_cliente},
+		success: function(response) {
+			$.each(response['input'], function (id, value) {
+				$('#'+id).val(value);
+			});
+
+			$('#Selecionar-Cliente').modal('hide');
+		},
+		error: function(response) {
+			console.log(response);
+		}
+	})
+}
+
 
