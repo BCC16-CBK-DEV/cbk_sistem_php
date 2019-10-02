@@ -69,7 +69,7 @@
 			<li><a href="<?php echo base_url();?>OrdemServico/index"><i class="fa fa-tasks" aria-hidden="true"></i> Ordem de Serviço</a></li>
 			<li><a href=""><i class="fa fa-file-text-o" aria-hidden="true"></i> Pedido de Peça</a></li>
 			<li><a href="<?php echo base_url();?>Clientes/index"><i class="fa fa-users" aria-hidden="true"></i> Clientes</a></li>
-			<li><a href=""><i class="fa fa-book" aria-hidden="true"></i> Fornecedores</a></li>
+			<li><a href="<?php echo base_url();?>Fornecedores/index"><i class="fa fa-book" aria-hidden="true"></i> Fornecedores</a></li>
 			<li><a href="<?php echo base_url(); ?>Estatisticas/index"><i class="fa fa-line-chart"></i> Estatísticas</a></li>
 			<li><a href=""><i class="fa fa-cog" aria-hidden="true"></i> Configurações</a></li>
 		</ul>

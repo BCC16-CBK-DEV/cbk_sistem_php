@@ -6,6 +6,7 @@
 
 <script src="<?php echo base_url(); ?>public/js/addClienteOrdemServico.js"></script>
 <script src="<?php echo base_url(); ?>public/js/util.js"></script>
+<script src="<?php echo base_url(); ?>public/js/ordemServico.js"></script>
 
 <div class="posicao_conteudo">
 
@@ -17,7 +18,8 @@
 			<div class="col">
 				<label>Data de Abertura</label>
 				<div class="input-group input-group-sm mb-3 campo_data">
-					<input type="date" class="form-control" aria-label="Data de Abertura" aria-describedby="inputGroup-sizing-sm">
+					<input type="date" class="form-control" aria-label="Data de Abertura"  aria-describedby="inputGroup-sizing-sm"
+					id="data_abertura_os" name="data_abertura_os">
 				</div>
 			</div>
 		</div>
@@ -27,21 +29,24 @@
 				<div class="col-sm-4">
 					<label>Nota Fiscal</label>
 					<div class="input-group input-group-sm mb-3 campo_tamanho1">
-						<input type="text" class="form-control" aria-label="Nota Fiscal" aria-describedby="inputGroup-sizing-sm">
+						<input type="text" class="form-control" aria-label="Nota Fiscal" aria-describedby="inputGroup-sizing-sm"
+							   id="nota_fiscal_os" name="nota_fiscal_os">
 					</div>
 				</div>
 
 				<div class="col-sm-4">
 					<label>Código do Produto</label>
 					<div class="input-group input-group-sm mb-3 campo_tamanho1">
-						<input type="text" class="form-control" aria-label="Código do Produto" aria-describedby="inputGroup-sizing-sm">
+						<input type="text" class="form-control" aria-label="Código do Produto" aria-describedby="inputGroup-sizing-sm"
+							   id="codigo_produto_os" name="codigo_produto_os">
 					</div>
 				</div>
 
 				<div class="col-sm-4">
 					<label>Data de Compra</label>
 					<div class="input-group input-group-sm mb-3 campo_data2">
-						<input type="date" class="form-control" aria-label="Data de Compra do Produto" aria-describedby="inputGroup-sizing-sm">
+						<input type="date" class="form-control" aria-label="Data de Compra do Produto" aria-describedby="inputGroup-sizing-sm"
+							   id="data_compra_os" name="data_compra_os">
 					</div>
 				</div>
 			</div>
@@ -50,27 +55,31 @@
 				<div class="col-5">
 					<label>Descrição do Produto</label>
 					<div class="input-group input-group-sm mb-3 campo_tamanho2">
-						<input type="text" class="form-control" aria-label="Descrição do Produto" aria-describedby="inputGroup-sizing-sm">
+						<input type="text" class="form-control" aria-label="Descrição do Produto" aria-describedby="inputGroup-sizing-sm"
+							   id="descricao_produto_os" name="descricao_produto_os">
 					</div>
 				</div>
 
 				<div class="col-4">
 					<label>Número de Série</label>
 					<div class="input-group input-group-sm mb-3 campo_tamanho1">
-						<input type="text" class="form-control" aria-label="Número de Série" aria-describedby="inputGroup-sizing-sm">
+						<input type="text" class="form-control" aria-label="Número de Série" aria-describedby="inputGroup-sizing-sm"
+							   id="numero_serie_os" name="numero_serie_os">
 					</div>
 				</div>
 
 				<div class="col-3">
 					<label>Voltagem</label>
 					<div class="input-group input-group-sm mb-3 campo_tamanho3">
-						<input type="number" class="form-control" aria-label="Voltagem" aria-describedby="inputGroup-sizing-sm">
+						<input type="number" class="form-control" aria-label="Voltagem" aria-describedby="inputGroup-sizing-sm"
+							   id="voltagem_os" name="voltagem_os">
 					</div>
 				</div>
 			</div>
 				<label>Defeito Reclamado</label>
 				<div class="input-group input-group-sm mb-3 campo_tamanho4">
-					<input type="text" class="form-control" aria-label="Defeito Apresentado" aria-describedby="inputGroup-sizing-sm">
+					<input type="text" class="form-control" aria-label="Defeito Apresentado" aria-describedby="inputGroup-sizing-sm"
+						   id="defeito_reclamado_os" name="defeito_reclamado_os">
 				</div>
 			<hr class="linha_nova_ordem">
 
@@ -151,6 +160,26 @@
 				</div>
 			</div>
 		</div>
+
+	<!-- MENSAGEM DE ORDEM SERVICO -->
+	<div class="modal" tabindex="-1" role="dialog" id="msgOrdemCadastro">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Ordem de Servico</h5>
+					<!--<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+						<span aria-hidden="true">&times;</span>
+					</button>-->
+				</div>
+				<div class="modal-body">
+					<p id="msgOrdem"></p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="msgOKOrdem" class="btn btn-primary" data-dismiss="modal">OK</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 		<script type="javascript">
 

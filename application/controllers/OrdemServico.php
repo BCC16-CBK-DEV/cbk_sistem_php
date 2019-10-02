@@ -133,6 +133,41 @@ class OrdemServico extends CI_Controller {
 
 		$this->load->view('os_fechadas',$data);
 	}
+
+	public function novaOrdem() {
+
+		$json = array();
+		$json["status"] = 1;
+		$json["error_list"] = array();
+
+		$data_abertura = $this->input->post('data_abertura_os');
+		$nota_fiscal = $this->input->post('nota_fiscal_os');
+		$codigo_produto = $this->input->post('codigo_produto_os');
+		$data_compra = $this->input->post('data_compra_os');
+		$descricao_produto = $this->input->post('descricao_produto_os');
+		$numero_serie = $this->input->post('numero_serie_os');
+		$voltagem = $this->input->post('voltagem_os');
+		$defeito_reclamado = $this->input->post('defeito_reclamado_os');
+		$idcliente = $this->input->post('os_cliente_id');
+
+		if (empty($data_abertura)) {
+			$json["status"] = 0;
+			$json["error_list"]["#nome_cliente"] = "Nome está vazio!";
+		} else {
+			$this->load->model("ordem_servico");
+			$result = $this->ordem_servico->novaOrdem($data_abertura,$nota_fiscal,$codigo_produto,$data_compra,$descricao_produto,$numero_serie,
+				$voltagem,$defeito_reclamado,$idcliente);
+			if ($result) {
+				//echo '<script type="javascript">alert("Cadastrado com sucesso!!");</script>';
+			} else {
+				$json["status"] = 0;
+			}
+		}
+
+		echo json_encode($json);
+	}
+
+
 }
 
 ?>

@@ -40,7 +40,7 @@ class Pagina_Inicial extends CI_Model
 		}
 	}
 
-	public function get_prazos() {
+	/*public function get_prazos() {
 		$this->db
 			->select('prazo_os.id_prazo, prazo_os.data_prazo, ordem_servico.descricao_produto,ordem_servico.data_abertura,
 			cliente.nome_cliente')
@@ -54,7 +54,7 @@ class Pagina_Inicial extends CI_Model
 
 		return $this->db->get()->result_array();
 
-	}
+	}*/
 }
 
 ?>

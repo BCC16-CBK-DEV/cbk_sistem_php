@@ -73,5 +73,43 @@ class Ordem_Servico extends CI_Model
 		return $this->db->get()->result_array();
 	}
 
+	public function UltimaOrdem(){
+		$this->db
+			->select("numero_ordem")
+			->from("ordem_servico")
+			->order_by("numero_ordem DESC")
+			->limit(1);
+
+		$query = $this->db->get();
+
+		if ($query->num_rows() > 0) {
+			return $query->row()->numero_ordem;
+		}
+		return false;
+	}
+
+	public function novaOrdem($data_abertura,$nota_fiscal,$codigo_produto,$data_compra,$descricao_produto,$numero_serie,
+					$voltagem,$defeito_reclamado,$idcliente){
+
+		$numero_ordem = (int)$this->UltimaOrdem();
+
+		$numero_ordem++;
+
+		$data = array(
+			'numero_ordem'=>$numero_ordem,
+			'nota_fiscal' => $nota_fiscal,
+			'data_compra' => $data_compra,
+			'defeito_reclamado' => $defeito_reclamado,
+			'codigo_produto' => $codigo_produto,
+			'descricao_produto' => $descricao_produto,
+			'voltagem' => $voltagem,
+			'numero_serie_produto' => $numero_serie,
+			'data_abertura' => $data_abertura,
+			'id_cliente' => $idcliente);
+
+		$this->db->insert('ordem_servico',$data);
+
+	}
+
 }
 ?>

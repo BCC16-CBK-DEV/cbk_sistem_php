@@ -16,8 +16,8 @@ class Inicio extends CI_Controller {
 		$this->load->model('pagina_inicial');
 		$data = array(
 			'os_aberta'=>$this->pagina_inicial->get_os_abertas(),
-			'os_fechadas_ano'=>$this->pagina_inicial->get_os_fechadas_ano(),
-			'prazos'=>$this->pagina_inicial->get_prazos()
+			'os_fechadas_ano'=>$this->pagina_inicial->get_os_fechadas_ano()
+			//'prazos'=>$this->pagina_inicial->get_prazos()
 		);
 
 		$this->load->view('principal', $data);

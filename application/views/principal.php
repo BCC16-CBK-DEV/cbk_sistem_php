@@ -41,12 +41,12 @@
   </thead>
   <tbody>
     <?php
-   	foreach ($prazos as $prazos_os):
+   	/*foreach ($prazos as $prazos_os):
 		echo '<tr><th scope="row">'.$prazos_os['descricao_produto'].'</th>';
 		echo '<td>'.$prazos_os['nome_cliente'].'</td>';
 		echo '<td>'.date("d/m/Y", strtotime($prazos_os['data_abertura'])).'</td>';
 		echo '<td>'.date("d/m/Y", strtotime($prazos_os['data_prazo'])).'</td></tr>';
-	endforeach;?>
+	endforeach;*/?>
   </tbody>
 </table>
 
