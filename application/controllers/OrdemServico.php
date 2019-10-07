@@ -168,6 +168,21 @@ class OrdemServico extends CI_Controller {
 	}
 
 
+	public function filtroOrdem () {
+
+		$numero_inicial = $this->input->post('numero_inicial');
+
+		$this->load->model('ordem_servico');
+
+		$data = array(
+			'os_abertas'=>$this->ordem_servico->filtro_ordem($numero_inicial)
+		);
+
+		$this->load->view('os_abertas',$data);
+
+	}
+
+
 }
 
 ?>

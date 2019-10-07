@@ -18,57 +18,74 @@
 				Voltar
 			</a>
 			<button class="btn btn-dark botoesBarra" id="botaoFiltro" type="button">
-				Relatório
+				<span class="fa fa-file-excel-o"></span>
 			</button>
 			</div>
-			<div class="collapse row" id="collapseFiltro">
+		<!-- COLLAPSE DO FILTRO -->
+		<div class="collapse row" id="collapseFiltro">
 				<div class="card card-body">
+					<form id="form_filtro_ordem" method="post">
+						<div class="linha_filtro row">
+								<div class="col-mb-2">
+									<label>Nº Ordem Inicial</label>
+									<div class="input-group input-group-sm mb-3 ">
+										<input type="number" class="form-control" aria-label="Nº Ordem Inicial" aria-describedby="inputGroup-sizing-sm"
+										name="filtro_numero_inicial" id="filtro_numero_inicial">
+									</div>
+								</div>
+								<div class="col-mb-3">
+									<label>Nº Ordem Final</label>
+									<div class="input-group input-group-sm mb-3 ">
+										<input type="number" class="form-control" aria-label="Nº Ordem Final" aria-describedby="inputGroup-sizing-sm"
+											   name="filtro_numero_final" id="filtro_numero_final">
+									</div>
+								</div>
+								<div class="col-mb-2">
+									<label>Data Inicial</label>
+									<div class="input-group input-group-sm mb-3">
+										<input type="date" class="form-control" aria-label="Data Inicio" aria-describedby="inputGroup-sizing-sm"
+											   name="filtro_data_inicial" id="filtro_data_inicial">
+									</div>
+								</div>
+								<div class="col-mb-2">
+									<label>Data Final</label>
+									<div class="input-group input-group-sm mb-3">
+										<input type="date" class="form-control" aria-label="Data Fim" aria-describedby="inputGroup-sizing-sm"
+											   name="filtro_data_final" id="filtro_data_final">
+									</div>
+								</div>
+					</div>
 					<div class="linha_filtro row">
-							<div class="col-mb-2">
-								<label>Nº Ordem Inicial</label>
-								<div class="input-group input-group-sm mb-3 ">
-									<input type="number" class="form-control" aria-label="Nº Ordem Inicial" aria-describedby="inputGroup-sizing-sm">
-								</div>
+						<div class="col-mb-5">
+							<label>Descrição do Produto</label>
+							<div class="input-group input-group-sm">
+								<input type="text" class="form-control" aria-label="Descrição Produto" aria-describedby="inputGroup-sizing-sm"
+									   name="filtro_descricao" id="filtro_descricao">
 							</div>
-							<div class="col-mb-3">
-								<label>Nº Ordem Final</label>
-								<div class="input-group input-group-sm mb-3 ">
-									<input type="number" class="form-control" aria-label="Nº Ordem Final" aria-describedby="inputGroup-sizing-sm">
-								</div>
+						</div>
+						<div class="col-mb-7">
+							<label>Nota Fiscal</label>
+							<div class="input-group input-group-sm">
+								<input type="text" class="form-control" aria-label="Nota Fiscal" aria-describedby="inputGroup-sizing-sm"
+									   name="filtro_nota_fiscal" id="filtro_nota_fiscal">
 							</div>
-							<div class="col-mb-2">
-								<label>Data Inicial</label>
-								<div class="input-group input-group-sm mb-3">
-									<input type="date" class="form-control" aria-label="Data Inicio" aria-describedby="inputGroup-sizing-sm">
-								</div>
+						</div>
+						<div class="col-mb-7">
+							<label>Código do Produto</label>
+							<div class="input-group input-group-sm">
+								<input type="text" class="form-control" aria-label="Código do Produto" aria-describedby="inputGroup-sizing-sm"
+									   name="filtro_codigo_produto" id="filtro_codigo_produto">
 							</div>
-							<div class="col-mb-2">
-								<label>Data Final</label>
-								<div class="input-group input-group-sm mb-3">
-									<input type="date" class="form-control" aria-label="Data Fim" aria-describedby="inputGroup-sizing-sm">
-								</div>
-							</div>
-				</div>
-				<div class="linha_filtro row">
-					<div class="col-mb-5">
-						<label>Descrição do Produto</label>
-						<div class="input-group input-group-sm">
-							<input type="text" class="form-control" aria-label="Descrição Produto" aria-describedby="inputGroup-sizing-sm">
+						</div>
+
+						<div class="col-mb-3">
+							<label></label>
+							<button class="btn btn-dark" id="botaoFiltro_buscar" type="submit">
+								<span class="fa fa-search"></span> Buscar
+							</button>
 						</div>
 					</div>
-					<div class="col-mb-7">
-						<label>Nota Fiscal</label>
-						<div class="input-group input-group-sm">
-							<input type="text" class="form-control" aria-label="Nota Fiscal" aria-describedby="inputGroup-sizing-sm">
-						</div>
-					</div>
-					<div class="col-mb-7">
-						<label>Código do Produto</label>
-						<div class="input-group input-group-sm">
-							<input type="text" class="form-control" aria-label="Código do Produto" aria-describedby="inputGroup-sizing-sm">
-						</div>
-					</div>
-				</div>
+				</form>
 			</div>
 		</div>
 

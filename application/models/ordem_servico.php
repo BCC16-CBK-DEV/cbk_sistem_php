@@ -111,5 +111,18 @@ class Ordem_Servico extends CI_Model
 
 	}
 
+	public function filtro_ordem ($numero_inicial) {
+
+		$this->db
+			->select("numero_ordem")
+			->from("ordem_servico")
+			->where("numero_ordem", $numero_inicial);
+
+		//print_r($this->db->get()->result_array());
+
+		return $this->db->get()->result_array();
+
+	}
+
 }
 ?>
