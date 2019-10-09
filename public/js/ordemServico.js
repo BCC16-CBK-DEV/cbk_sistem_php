@@ -43,38 +43,23 @@ $(function () {
 
 $(function () {
 
-	$('#form_filtro_ordem').submit(function () {
-		var option = 0;
-
-		if ($('#filtro_numero_final').val() != '' || $('#filtro_numero_inicial').val() != '') {
-			option = 1;
-		}  else if ($('#filtro_data_inicial').val() != '' || $('#filtro_data_final').val() != '') {
-			option = 2;
-		} else {
-			option = 3;
-		}
-
-		//var data = $('#form_filtro_ordem').serializeArray();
-		//data.push({name: "option", value: option});
+	function altera_ordem(id_ordem) {
 
 		$.ajax({
 			type: "post",
-			url: BASE_URL + "OrdemServico/filtroOrdem",
+			url: BASE_URL + "OrdemServico/alteraOrdem",
 			dataType: "json",
-			data: {numero_inicial: $('#filtro_numero_inicial').val()},
-			success: function(json) {
-				window.location = BASE_URL + 'OrdemServico/filtroOrdem';
-				console.log(dados);
+			data: {idOrdem: id_ordem},
+			success: function(response) {
+				$.each(response['input'], function (id, value) {
+					$('#'+id).val(value);
+				});
+
 			},
 			error: function(response) {
 				console.log(response);
 			}
 		})
-
-
-		return false;
-
-
-	})
+	}
 
 })

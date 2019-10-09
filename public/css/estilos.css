@@ -417,7 +417,7 @@ label {
 /*##############################################################################*/
 
 .centraliza {
-	margin-left: 8%;
+
 }
 
 .barra_pesquisa {
@@ -455,7 +455,7 @@ label {
 
 .tabela_os_abertas {
 	width: 90%;
-	font-size: 14px;
+	font-size: 12px;
 	margin-top: 2%;
 }
 
@@ -467,9 +467,15 @@ label {
 	margin-right: 1%;
 }
 
+.botao_filtro {
+	margin-top: 21%;
+	font-size: 12px;
+}
+
 .botaoAcoesTabela {
 	text-decoration: none;
 	font-size: 20px;
+	align-content: center;
 }
 
 .botaoAcoesTabela:hover {
@@ -489,4 +495,12 @@ label {
 .titulo_cliente {
 	margin-top: 4%;
 	font-size: 20px;
+}
+
+/* ALTERAR ORDEM.PHP */
+
+/*##############################################################################*/
+
+#data_abertura_os {
+	margin-right: 8%;
 }

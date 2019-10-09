@@ -14,6 +14,14 @@ class Header_Controller extends CI_Controller {
 		//$this->load->model("login_model");
 
 		$data = array(
+			"styles"=>array(
+
+			),
+			"scripts"=>array(
+				"util.js"
+
+			)
+
 			//'versao_sistema' => $this->header_model->get_versao_sistema()
 			//'usuario_session' => $this->login_model->get_nome_completo($this->session->userdata('user_id'))
 		);
