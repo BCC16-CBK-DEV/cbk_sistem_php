@@ -504,3 +504,21 @@ label {
 #data_abertura_os {
 	margin-right: 8%;
 }
+
+#textAreaObservacao {
+	margin-top: 1.5%;
+}
+
+.botoesAcaoAlterar {
+	margin-bottom: 2%;
+}
+
+#botaoAlterarOrdem:hover {
+	color: #2e8ece;
+	cursor: pointer;
+}
+
+#botaoExcluirOrdem:hover {
+	color: #a71d2a;
+	cursor: pointer;
+}

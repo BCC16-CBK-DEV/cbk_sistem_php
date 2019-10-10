@@ -1,4 +1,29 @@
+function alterar_ordem(id_ordem,status) {
+	location.href = BASE_URL + "OrdemServico/editarOrdem?id="+id_ordem+'&status='+status;
+
+}
+
+
+function excluir_ordem(id_ordem,status) {
+
+	$("#msgOkExclusao").click(function() {
+		$.ajax({
+			type: "post",
+			url: BASE_URL + "OrdemServico/excluirOrdem",
+			data: {idOrdem: id_ordem},
+			done: (window.location.href=window.location.href),
+			error: function(response) {
+				console.log(response);
+			}
+		})
+
+		return false;
+	});
+
+}
+
 $(function () {
+
 	$('#botaoFiltro').click(function () {
 		if($('#collapseFiltro').hasClass('show')){
 			$('#collapseFiltro').collapse('hide');
@@ -43,23 +68,31 @@ $(function () {
 
 $(function () {
 
-	function altera_ordem(id_ordem) {
+		$("#form_alterar_ordem").submit(function() {
+			$.ajax({
+				type: "post",
+				url: BASE_URL + "OrdemServico/atualizarOrdem",
+				dataType: "json",
+				data: $(this).serialize(),
+				success: function(json) {
+					if (json["status"] == 1) {
+						$('#msgOrdem').html('Ocorreu erro ao alterar ordem de serviço!');
+					} else {
+						$('#msgOrdemCadastro').modal('show');
+						$('#msgOrdem').html('Ordem de Serviço Alterada com Sucesso!');
 
-		$.ajax({
-			type: "post",
-			url: BASE_URL + "OrdemServico/alteraOrdem",
-			dataType: "json",
-			data: {idOrdem: id_ordem},
-			success: function(response) {
-				$.each(response['input'], function (id, value) {
-					$('#'+id).val(value);
-				});
+					}
+				},
+				error: function(response) {
+					console.log(response);
+				}
+			})
 
-			},
-			error: function(response) {
-				console.log(response);
-			}
-		})
-	}
+
+			return false;
+		});
 
 })
+
+
+

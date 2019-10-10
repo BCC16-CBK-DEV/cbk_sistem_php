@@ -23,13 +23,6 @@ class OrdemServico extends CI_Controller {
 		$this->load->view('nova_ordem',$data);
 	}
 
-	public function carregarClientes() {
-
-
-
-
-	}
-
 	public function novoCliente() {
 
 		$json = array();
@@ -284,6 +277,118 @@ class OrdemServico extends CI_Controller {
 
 	}
 
+	public function filtroOrdemFechada () {
+
+		$numero_inicial = $this->input->post('filtro_numero_inicial');
+		$numero_final = $this->input->post('filtro_numero_final');
+		$data_inicial = $this->input->post('filtro_data_inicial');
+		$data_final = $this->input->post('filtro_data_final');
+		$descricao = $this->input->post('filtro_descricao');
+		$nota_fiscal = $this->input->post('filtro_nota_fiscal');
+		$codigo_produto = $this->input->post('filtro_codigo_produto');
+
+		if(empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial) && !empty($data_final)
+			&& !empty($descricao) && !empty($nota_fiscal) && !empty($codigo_produto)){
+			$option = 1;
+		} else if(!empty($numero_inicial) && empty($numero_final) && !empty($data_inicial) && !empty($data_final)
+			&& !empty($descricao) && !empty($nota_fiscal) && !empty($codigo_produto)){
+			$option = 2;
+		} else if (empty($numero_inicial) && !empty($numero_final) && empty($data_inicial)
+			&& !empty($data_final) && !empty($descricao) && !empty($nota_fiscal) && !empty($codigo_produto)){
+			$option = 3;
+		} else if (!empty($numero_inicial) && empty($numero_final) && !empty($data_inicial)
+			&& empty($data_final) && !empty($descricao) && !empty($nota_fiscal) && !empty($codigo_produto)){
+			$option = 4;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && empty($data_inicial)
+			&& !empty($data_final) && !empty($descricao) && !empty($nota_fiscal) && !empty($codigo_produto)) {
+			$option = 5;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial)
+			&& empty($data_final) && !empty($descricao) && !empty($nota_fiscal) && !empty($codigo_produto)){
+			$option = 6;
+		} else if (empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && !empty($descricao) && !empty($nota_fiscal) && !empty($codigo_produto)) {
+			$option = 7;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial)
+			&& !empty($data_final) && empty($descricao) && !empty($nota_fiscal) && !empty($codigo_produto)) {
+			$option = 8;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial)
+			&& !empty($data_final) && empty($descricao) && empty($nota_fiscal) && !empty($codigo_produto)) {
+			$option = 9;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial)
+			&& !empty($data_final) && empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 10;
+		} else if (!empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && !empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 11;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && !empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 12;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial)
+			&& empty($data_final) && !empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 13;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial)
+			&& !empty($data_final) && !empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 14;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial)
+			&& !empty($data_final) && !empty($descricao) && !empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 15;
+		} else if (!empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && !empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 16;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && !empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 17;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && !empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 18;
+		} else if (!empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && empty($nota_fiscal) && !empty($codigo_produto)) {
+			$option = 19;
+		} else if (!empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && !empty($descricao) && empty($nota_fiscal) && !empty($codigo_produto)) {
+			$option = 20;
+		} else if (empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && !empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 21;
+		} else if (empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && !empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 22;
+		} else if (empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && empty($nota_fiscal) && !empty($codigo_produto)) {
+			$option = 23;
+		} else if (!empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 24;
+		} else if (empty($numero_inicial) && !empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 25;
+		} else if (empty($numero_inicial) && empty($numero_final) && !empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 26;
+		} else if (empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& !empty($data_final) && empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 27;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 28;
+		} else if (empty($numero_inicial) && empty($numero_final) && !empty($data_inicial)
+			&& !empty($data_final) && empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 29;
+		} else {
+			$option = 30;
+		}
+
+		$this->load->model('ordem_servico');
+
+		$data = array(
+			'os_abertas'=>$this->ordem_servico->filtro_ordem_fechada($option,$numero_inicial,$numero_final,$data_inicial,$data_final,$descricao,
+				$nota_fiscal,$codigo_produto)
+		);
+
+		$this->load->view('os_fechadas',$data);
+
+	}
+
 	public function alteraOrdem() {
 
 		$json = array();
@@ -304,7 +409,7 @@ class OrdemServico extends CI_Controller {
 		$json['input']['codigo_produto_os'] = $result['codigo_produto'];
 		$json['input']['data_compra_os'] = $result['data_compra'];
 		$json['input']['descricao_produto_os'] = $result['descricao_produto'];
-		$json['input']['numero_serie_os'] = $result['numero_serie'];
+		$json['input']['numero_serie_os'] = $result['numero_serie_produto'];
 		$json['input']['voltagem_os'] = $result['voltagem'];
 		$json['input']['defeito_reclamado_os'] = $result['defeito_reclamado'];
 		$json['input']['os_cliente_id'] = $result['id_cliente'];
@@ -313,14 +418,68 @@ class OrdemServico extends CI_Controller {
 
 	}
 
-	public function editarOrdem() {
+	public function excluirOrdem() {
+
+		$id_ordem = $this->input->post('idOrdem');
 		$this->load->model('ordem_servico');
-		$data = array(
-			"tecnicos"=>$this->ordem_servico->carregarTecnicos()
-		);
-		$this->load->view('alterar_ordem',$data);
+		$this->ordem_servico->excluir_ordem($id_ordem);
+
 	}
 
+	public function editarOrdem() {
+		$this->load->model('ordem_servico');
+		$id_ordem = $this->input->get("id");
+		$data = array(
+			"os"=>$this->ordem_servico->carregarOrdem($id_ordem)->result_array()[0],
+			"clientes"=>$this->ordem_servico->carregarCliente(),
+			"status"=>$this->ordem_servico->carregarStatus(),
+			"tecnicos"=>$this->ordem_servico->carregarTecnicos()
+		);
+
+		$this->load->view('alterar_ordem',$data);
+
+	}
+
+
+	public function atualizarOrdem() {
+
+		$json = array();
+		$json["status"] = 1;
+		$json["error_list"] = array();
+
+		$id_ordem = $this->input->post('id_ordem');
+		$data_abertura = $this->input->post('data_abertura_os');
+		$nota_fiscal = $this->input->post('nota_fiscal_os');
+		$codigo_produto = $this->input->post('codigo_produto_os');
+		$data_compra = $this->input->post('data_compra_os');
+		$descricao_produto = $this->input->post('descricao_produto_os');
+		$numero_serie = $this->input->post('numero_serie_os');
+		$voltagem = $this->input->post('voltagem_os');
+		$defeito_reclamado = $this->input->post('defeito_reclamado_os');
+		$idcliente = $this->input->post('os_cliente_id');
+		$observacao = $this->input->post('observacaoTecnico');
+		$tecnico= $this->input->post('tecnico_os');
+		$id_status = $this->input->post('status_os');
+		$data_prazo = $this->input->post('data_prazo_os');
+		$valor_os = $this->input->post('valor_os');
+		$numero_ordem = $this->input->post('numero_ordem_os');
+
+		if (empty($id_ordem)) {
+			$json["status"] = 0;
+			$json["error_list"]["#id_ordem"] = "Id Vazio!";
+		} else {
+			$this->load->model("ordem_servico");
+			$result = $this->ordem_servico->updateOrdem($id_ordem,$numero_ordem,$data_abertura,$nota_fiscal,$codigo_produto,$data_compra,$descricao_produto,$numero_serie,
+				$voltagem,$defeito_reclamado,$idcliente,$valor_os,$data_prazo,$tecnico,$id_status,$observacao);
+			if ($result) {
+				//echo '<script type="javascript">alert("Cadastrado com sucesso!!");</script>';
+			} else {
+				$json["status"] = 0;
+			}
+		}
+
+		echo json_encode($json);
+	}
 
 }
 

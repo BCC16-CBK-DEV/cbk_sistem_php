@@ -3,7 +3,7 @@ include ('header.php');
 include ('scripts.php');
 ?>
 <script src="<?php echo base_url(); ?>public/js/ordemServico.js"></script>
-<script src="<?php echo base_url(); ?>public/js/util.js"></script>
+<<!--script src="<?php// echo base_url(); ?>public/js/util.js"></script>-->
 
 <div class="posicao_conteudo">
 
@@ -105,17 +105,41 @@ include ('scripts.php');
 				</tr>
 				</thead>
 				<tbody>
-				<?php foreach ($os_abertas as $os):
+				<?php
+				$status = 'aberta';
+				foreach ($os_abertas as $os):
 					echo '<tr><th scope="row">'.$os['numero_ordem'].'</th>';
 					echo '<td>'.date("d/m/Y", strtotime($os['data_abertura'])).'</td>';
 					echo '<td>'.$os['descricao_produto'].'</td>';
 					echo '<td>'.$os['nota_fiscal'].'</td>';
 					echo '<td>'.$os['codigo_produto'].'</td>';
-					echo '<td><a class="botaoAcoesTabela botaoEditar" onclick="alterar_ordem('.$os['id_ordem'].');"><span class="fa fa-pencil-square-o"></span></a>
-					<a class="botaoAcoesTabela botaoExcluir" href="excluir_ordem('.$os['id_ordem'].');"><span class="fa fa-trash-o"></span></a></td></tr>';
+					echo '<td><a class="botaoAcoesTabela botaoEditar" id="botaoAlterarOrdem" onclick="alterar_ordem('.$os['id_ordem'].',\''.$status.'\');"><span class="fa fa-pencil-square-o"></span></a>
+					<a class="botaoAcoesTabela botaoEditar" id="botaoExcluirOrdem" data-toggle="modal" data-target="#msgOrdemExclusao" onclick="excluir_ordem('.$os['id_ordem'].',\''.$status.'\');"><span class="fa fa-trash-o"></span></a></td></tr>';
 				endforeach;?>
 				</tbody>
 			</table>
 		</div>
 	</div>
+
+	<!-- MENSAGEM EXCLUIR ORDEM -->
+	<div class="modal" tabindex="-1" role="dialog" id="msgOrdemExclusao">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Excluir Ordem de Serviço</h5>
+					<!--<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+						<span aria-hidden="true">&times;</span>
+					</button>-->
+				</div>
+				<div class="modal-body">
+					<p>Deseja realmente excluir a Ordem de Serviço Selecionada?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="msgOkExclusao" class="btn btn-danger" >SIM</button>
+					<button type="button" id="" class="btn btn-primary" data-dismiss="modal">NÃO</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </div>
