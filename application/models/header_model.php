@@ -10,18 +10,12 @@ class Header_model extends CI_Model {
 	public function get_versao_sistema() {
 
 		$this->db
-			->select("versao_num")
+			->select("*")
 			->from("versao")
 			->order_by("id_versao DESC")
 			->limit(1);
 
-		$result = $this->db->get();
-
-		if ($result->num_rows() > 0) {
-			return $result->row();
-		} else {
-			return NULL;
-		}
+		return $this->db->get();
 	}
 }
 

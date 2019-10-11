@@ -1,4 +1,4 @@
- $(function() {
+$(function() {
 
 	$("#formulario_login").submit(function() {
 
@@ -29,3 +29,8 @@
 	})
 
 })
+
+function logout_usuario() {
+	location.href = BASE_URL + "Login_Controller/logout";
+}
+

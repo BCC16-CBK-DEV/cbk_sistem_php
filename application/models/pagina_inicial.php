@@ -40,21 +40,21 @@ class Pagina_Inicial extends CI_Model
 		}
 	}
 
-	/*public function get_prazos() {
+	public function get_prazos() {
 		$this->db
-			->select('prazo_os.id_prazo, prazo_os.data_prazo, ordem_servico.descricao_produto,ordem_servico.data_abertura,
-			cliente.nome_cliente')
-			->from('prazo_os')
-			->join('ordem_servico','prazo_os.id_os = ordem_servico.id_ordem')
+			->select('*')
+			->from('ordem_servico')
 			->join('cliente','ordem_servico.id_cliente = cliente.id_cliente')
-			->where('prazo_os.data_prazo > NOW()')
+			->where('ordem_servico.prazo_ordem > NOW()')
+			->where('ordem_servico.prazo_ordem <> "0000-00-00"')
+			->where('ordem_servico.prazo_ordem <> ""')
 			->where('ordem_servico.id_status', 1)
-			->order_by('data_prazo DESC')
+			->order_by('prazo_ordem ASC')
 			->limit(5);
 
 		return $this->db->get()->result_array();
 
-	}*/
+	}
 }
 
 ?>

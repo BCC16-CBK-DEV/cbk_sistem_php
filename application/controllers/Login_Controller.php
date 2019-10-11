@@ -10,32 +10,25 @@ class Login_Controller extends CI_Controller {
 
 	public function index()
 	{
-		// if ($this->session->userdata("user_id")) {
-		// 	$data = array(
-		// 		"styles" => array(
-		// 			"dataTables.bootstrap.min.css",
-		// 			"datatables.min.css"
-		// 		),
-		// 		"scripts" => array(
-		// 			"sweetalert2.all.min.js",
-		// 			"dataTables.bootstrap.min.js",
-		// 			"datatables.min.js",
-		// 			"util.js",
-		// 			"restrict.js" 
-		// 		),
-		// 		"user_id" => $this->session->userdata("user_id")
-		// 	);
-		// 	$this->load->view("principal.php", $data);
-		// } else {
+		if ($this->session->userdata("user_id")) {
+		 	$data = array(
+				"scripts" => array(
+		 			"util.js",
+					"login.js"
+		 		),
+		 		"user_id" => $this->session->userdata("user_id")
+		 	);
+		 	$this->load->view("principal.php", $data);
+		} else {
 			$data = array(
 				"scripts" => array(
 					"util.js",
 					"login.js" 
-				)
+				),
 			);
 			$this->load->view("login.php", $data);
-		// }
-
+		}
+		//$this->load->view("login.php", $data);
 	}
 
 	public function acesso(){
@@ -71,6 +64,12 @@ class Login_Controller extends CI_Controller {
 
 		echo json_encode($json);
 
+	}
+
+	public function logout(){
+
+		$this->session->unset_userdata("user_id");
+		$this->index();
 	}
 
 }

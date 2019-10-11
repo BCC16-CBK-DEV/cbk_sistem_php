@@ -20,4 +20,8 @@ class Estatisticas extends CI_Controller
 	public function qtdOs_ano() {
 		$this->load->view('est_qtdosano');
 	}
+
+	public function lucroAnualOS() {
+		$this->load->view('est_lucroAnualOs');
+	}
 }?>

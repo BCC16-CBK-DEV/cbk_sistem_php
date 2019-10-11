@@ -26,18 +26,11 @@ class Login_model extends CI_Model {
 	public function get_nome_completo($user_id){
 
 		$this->db
-			->select("nome_completo")
+			->select("*")
 			->from("usuario")
 			->where("nome_usuario", $user_id);
 
-		$result = $this->db->get();
-
-		if ($result->num_rows() > 0) {
-			return $result->row();
-		} else {
-			return NULL;
-		}
-
+		return $this->db->get();
 	}
 
 }

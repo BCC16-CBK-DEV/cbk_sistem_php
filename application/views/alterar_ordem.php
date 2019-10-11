@@ -11,7 +11,7 @@ include ('scripts.php');
 <div class="posicao_conteudo">
 
 	<h4 class="titulo_opcoes"><span class="fa fa-cog"></span> Alterar Ordem</h4>
-
+	<hr class="linha_nova_ordem">
 	<form id="form_alterar_ordem" method="post">
 		<h5>Informações sobre a O.S.</h5>
 		<div class="row">

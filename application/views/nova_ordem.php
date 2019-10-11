@@ -10,8 +10,8 @@
 
 <div class="posicao_conteudo">
 
-	<h4 class="titulo_opcoes"><span class="fa fa-plus-square"></span> Nova OS</h4>
-
+	<h4 class="titulo_opcoes"><span class="fa fa-plus-circle"></span> Nova OS</h4>
+	<hr class="linha_nova_ordem">
 	<form id="form_nova_ordem" method="post">
 		<h5>Informações sobre a O.S.</h5>
 		<div class="row">

@@ -45,16 +45,14 @@
 	<?php endforeach; }?>
 </head>
 <body>
-
+<script src="<?php echo base_url(); ?>public/js/login.js"></script>
+<script src="<?php echo base_url(); ?>public/js/util.js"></script>
 	<div class="barra_inicial">
-		
-
 		<div class="usuario_info">
-			<i class="fa fa-user"></i>
-			<!--<p id="txt_usuario"><?php
-				// foreach ($usuario_session as $usuarios):
-				 //	echo $usuarios['nome_completo'];
-				 //endforeach;?></p>-->
+			<a id="logout_user" onclick="logout_usuario();"><span class="fa fa-power-off"> </span> Logout</a>
+		</div>
+		<div class="usuario_info">
+			<p id="txt_usuario"><i class="fa fa-user"> </i> <?php echo $this->session->userdata('user_id'); ?></p>
 		</div>
 	</div>
 
@@ -62,8 +60,8 @@
 		<a href="<?php echo base_url(); ?>Inicio" ><img id="image_logo" src="<?php echo base_url(); ?>public/images/CBK.png"></a>
 
 		<ul class="menu_sistema_opcoes">
-			<li><a href="<?php echo base_url();?>OrdemServico/index"><i class="fa fa-tasks" aria-hidden="true"></i> Ordem de Serviço</a></li>
-			<li><a href=""><i class="fa fa-file-text-o" aria-hidden="true"></i> Pedido de Peça</a></li>
+			<li><a href="<?php echo base_url();?>OrdemServico/index"><i class="fa fa-gears" aria-hidden="true"></i> Ordem de Serviço</a></li>
+			<li><a href="<?php echo base_url();?>PedidoPeca/index"><i class="fa fa-file-text-o" aria-hidden="true"></i> Pedido de Peça</a></li>
 			<li><a href="<?php echo base_url();?>Clientes/index"><i class="fa fa-users" aria-hidden="true"></i> Clientes</a></li>
 			<li><a href="<?php echo base_url();?>Fornecedores/index"><i class="fa fa-book" aria-hidden="true"></i> Fornecedores</a></li>
 			<li><a href="<?php echo base_url(); ?>Estatisticas/index"><i class="fa fa-line-chart"></i> Estatísticas</a></li>
@@ -71,10 +69,7 @@
 		</ul>
 
 		<div class="versao">
-			<!--<img id="img_versao" src="<?php echo base_url(); ?>public/images/ic_memory_white_48dp.png">
-			<p id="txt_versao"><?php // foreach ($versao_sistema as $versao1):
-				//echo $versao1['versao_num'];
-			 //endforeach;?></p>-->
+			<p id="txt_versao"><span class="fa fa-microchip"></span> <?php echo $versao_sistema['versao_num']; ?></p>
 		</div>
 	</div>
 

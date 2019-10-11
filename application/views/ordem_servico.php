@@ -10,7 +10,7 @@
 
 	<div class="botao_ordem">
 		<hr class="linha_menu">
-		<a class="ordem_link nova_ordem" href="<?php echo base_url(); ?>OrdemServico/nova_ordem"><span class="fa fa-plus-square"></span> Nova OS</a>
+		<a class="ordem_link nova_ordem" href="<?php echo base_url(); ?>OrdemServico/nova_ordem"><span class="fa fa-plus-circle"></span> Nova OS</a>
 		<hr class="linha_menu">
 		<a class="ordem_link" href="<?php echo base_url(); ?>OrdemServico/os_abertas"><span class="fa fa-inbox"></span>
 		Consultar OS</a>
