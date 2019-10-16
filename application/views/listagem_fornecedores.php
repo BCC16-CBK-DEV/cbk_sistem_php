@@ -1,6 +1,6 @@
 <?php
-	include ('header.php');
-	include ('scripts.php');
+include ('header.php');
+include ('scripts.php');
 
 ?>
 
@@ -79,20 +79,20 @@
 				<thead class="thead-dark">
 				<tr>
 					<th scope="col">ID</th>
-					<th scope="col">Nome</th>
-					<th scope="col">CPF</th>
+					<th scope="col">Fornecedores</th>
+					<th scope="col">CNPJ</th>
 					<th scope="col">e-Mail</th>
-					<th scope="col">Celular</th>
+					<th scope="col">Telefone</th>
 					<th scope="col">Ações</th>
 				</tr>
 				</thead>
 				<tbody>
-				<?php foreach ($clientes as $cliente):
-					echo '<tr><th scope="row">'.$cliente['id_cliente'].'</th>';
-					echo '<td>'.$cliente['nome_cliente'].'</td>';
-					echo '<td>'.$cliente['cpf'].'</td>';
-					echo '<td>'.$cliente['email'].'</td>';
-					echo '<td>'.$cliente['celular'].'</td>';
+				<?php foreach ($fornecedores as $forn):
+					echo '<tr><th scope="row">'.$forn['id_fornecedor'].'</th>';
+					echo '<td>'.$forn['nome_fornecedor'].'</td>';
+					echo '<td>'.$forn['cnpj_fornecedor'].'</td>';
+					echo '<td>'.$forn['email_fornecedor'].'</td>';
+					echo '<td>'.$forn['telefone_fornecedor'].'</td>';
 					echo '<td><a class="botaoAcoesTabela botaoEditar" href=""><span class="fa fa-pencil-square-o"></span></a>
 					<a class="botaoAcoesTabela botaoExcluir" href=""><span class="fa fa-trash-o"></span></a></td></tr>';
 				endforeach;?>

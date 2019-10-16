@@ -4,22 +4,18 @@ include ('scripts.php');
 
 ?>
 
-<script src="<?php echo base_url(); ?>public/js/Cliente.js"></script>
-<script src="<?php echo base_url(); ?>public/js/util.js"></script>
-
-
 <div class="posicao_conteudo">
 
 	<h5 class="titulo_cliente"><span class="fa fa-user-plus"></span>Novo Fornecedor</h5>
 
 	<hr class="linha_nova_ordem">
 
-	<form id="formulario_cliente">
+	<form id="formulario_fornecedor" method="post">
 		<div class="row">
 			<div class="col-lg-6">
 				<label>Nome *</label>
 				<div class="input-group input-group-sm mb-3">
-					<input type="text" name="" id="" class="form-control"
+					<input type="text" name="nome_fornecedor" id="nome_fornecedor" class="form-control"
 						   aria-label="Nome do Fornecedor" aria-describedby="inputGroup-sizing-sm" required>
 				</div>
 			</div>
@@ -27,7 +23,7 @@ include ('scripts.php');
 			<div class="col-lg-3">
 				<label>CNPJ *</label>
 				<div class="input-group input-group-sm mb-3">
-					<input type="text"  name="" id="" class="form-control"
+					<input type="text"  name="cnpj_fornecedor" id="cnpj_fornecedor" class="form-control"
 						   aria-label="CNPJ do Fornecedor" aria-describedby="inputGroup-sizing-sm" required>
 				</div>
 			</div>
@@ -38,7 +34,7 @@ include ('scripts.php');
 			<div class="col-lg-5">
 				<label>E-mail</label>
 				<div class="input-group input-group-sm mb-3">
-					<input type="text"  name="" id="" class="form-control"
+					<input type="text"  name="email_fornecedor" id="email_fornecedor" class="form-control"
 						   aria-label="E-mail do Fornecedor" aria-describedby="inputGroup-sizing-sm">
 				</div>
 			</div>
@@ -46,7 +42,7 @@ include ('scripts.php');
 			<div class="col-lg-3">
 				<label>Telefone</label>
 				<div class="input-group input-group-sm mb-3">
-					<input type="text"  name="" id="" class="form-control"
+					<input type="text"  name="telefone_fornecedor" id="telefone_fornecedor" class="form-control"
 						   aria-label="Telefone" aria-describedby="inputGroup-sizing-sm">
 				</div>
 			</div>
@@ -60,7 +56,7 @@ include ('scripts.php');
 	</form>
 
 	<!-- MENSAGEM DE FORNECEDOR CADASTRADO -->
-	<div class="modal" tabindex="-1" role="dialog" id="msgClienteCadastro">
+	<div class="modal" tabindex="-1" role="dialog" id="msgFornecedorCadastro">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">

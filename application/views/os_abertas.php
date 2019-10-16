@@ -12,10 +12,10 @@ include ('scripts.php');
 	<div class="centraliza">
 		<div class="barra_pesquisa row">
 			<button class="btn btn-dark botoesBarra" id="botaoFiltro" type="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseFiltro">
-				Filtros
+				<span class="fa fa-search"></span> Filtros
 			</button>
 			<a class="btn btn-dark botoesBarra" id="botaoInicio" href="<?php echo base_url();?>OrdemServico/index">
-				Voltar
+				<span class="fa fa-chevron-circle-left"></span> Voltar
 			</a>
 			<button class="btn btn-dark botoesBarra" id="botaoFiltro" type="button">
 				<span class="fa fa-file-excel-o"></span>

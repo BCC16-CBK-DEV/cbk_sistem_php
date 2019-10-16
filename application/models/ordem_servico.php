@@ -51,7 +51,7 @@ class Ordem_Servico extends CI_Model
 			->from('cliente')
 			->where('id_cliente',$valor);
 
-		return $this->db->get();;
+		return $this->db->get();
 
 	}
 

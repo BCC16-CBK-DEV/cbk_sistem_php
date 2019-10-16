@@ -14,7 +14,7 @@ include "scripts.php";
 		<hr class="linha_menu">
 		<a class="ordem_link nova_ordem" href="<?php echo base_url(); ?>Estatisticas/"><span class="fa fa-cart-plus"></span> Pedidos de Peça</a>
 		<hr class="linha_menu">
-		<a class="ordem_link nova_ordem" href="<?php echo base_url(); ?>Estatisticas/"><span class="fa fa-tasks"></span> Estoque</a>
+		<a class="ordem_link nova_ordem" href="<?php echo base_url(); ?>PedidoPeca/estoque"><span class="fa fa-tasks"></span> Estoque</a>
 		<hr class="linha_menu">
 
 	</diV>

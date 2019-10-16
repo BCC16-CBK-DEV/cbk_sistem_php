@@ -11,12 +11,17 @@ class Login_Controller extends CI_Controller {
 	public function index()
 	{
 		if ($this->session->userdata("user_id")) {
+
+			$this->load->model('pagina_inicial');
 		 	$data = array(
 				"scripts" => array(
 		 			"util.js",
 					"login.js"
 		 		),
-		 		"user_id" => $this->session->userdata("user_id")
+		 		"user_id" => $this->session->userdata("user_id"),
+				'os_aberta'=>$this->pagina_inicial->get_os_abertas(),
+				'os_fechadas_ano'=>$this->pagina_inicial->get_os_fechadas_ano(),
+				'prazos'=>$this->pagina_inicial->get_prazos()
 		 	);
 		 	$this->load->view("principal.php", $data);
 		} else {
