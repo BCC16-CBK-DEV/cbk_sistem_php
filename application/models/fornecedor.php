@@ -29,4 +29,32 @@ class fornecedor extends CI_Model
 		return $this->db->get()->result_array();
 	}
 
+	public function carregarFornecedor ($id) {
+		$this->db
+			->select('*')
+			->from('fornecedor')
+			->where('id_fornecedor',$id);
+
+		return $this->db->get();
+
+	}
+
+	public function alterar_fornecedor($id,$nome,$cnpj,$email,$telefone) {
+
+		$data = array(
+			"nome_fornecedor"=>$nome,
+			"cnpj_fornecedor"=>$cnpj,
+			"email_fornecedor"=>$email,
+			"telefone_fornecedor"=>$telefone
+		);
+		$this->db->where('id_fornecedor',$id);
+		$this->db->update("fornecedor", $data);
+	}
+
+	public function excluir_fornecedor($id) {
+
+		$this->db->where('id_fornecedor',$id);
+		$this->db->delete("fornecedor");
+	}
+
 }

@@ -69,6 +69,7 @@ $(function () {
 $(function () {
 
 		$("#form_alterar_ordem").submit(function() {
+
 			$.ajax({
 				type: "post",
 				url: BASE_URL + "OrdemServico/atualizarOrdem",
@@ -92,7 +93,62 @@ $(function () {
 			return false;
 		});
 
+		
+
+		$('#botaoPeca').click(function () {
+			var ordem = $('#id_ordem').val();
+			var option = $('#peca').find(":selected").text();
+			var idPeca = $('#peca').val();
+			var quantidade = $('#quantidade_peca_ordem').val();
+
+			/*var row = $("<tr>");
+
+			row.append($("<td>"+idPeca+"</td>"))
+				.append($("<td>"+option+"</td>"))
+				.append($("<td>"+quantidade+"</td>"))
+				.append($("<td><button onclick='removeLinha(this)'>Remover</button></td>"));
+
+			$("#tabela_peca tbody").append(row);*/
+
+			if (idPeca != 0 ) {
+				$.ajax({
+					type: "post",
+					url: BASE_URL + "OrdemServico/inserirPecaOrdem",
+					dataType: "json",
+					data: {idOrdem: ordem, idPeca: idPeca, quantidade: quantidade},
+					success: function (json) {
+						if (json["status"] == 1) {
+							//$('#msgOrdem').html('Ocorreu erro ao alterar ordem de serviço!');
+						} else {
+							//$('#msgOrdemCadastro').modal('show');
+							//$('#msgOrdem').html('Ordem de Serviço Alterada com Sucesso!');
+							window.location = window.location.href;
+						}
+					},
+					error: function (response) {
+						console.log(response);
+					}
+				})
+
+
+				$('#peca').val(0);
+				$('#quantidade_peca_ordem').val('');
+			} else {
+				alert('Selecionar Peça ou colocar quantidade!!');
+			}
+
+
+		})
+
 })
+
+function desbloquearCampoQtd() {
+	if($('#peca').val() != 0) {
+		document.getElementById('quantidade_peca_ordem').readOnly = false;
+	} else {
+		document.getElementById('quantidade_peca_ordem').readOnly = true;
+	}
+}
 
 
 

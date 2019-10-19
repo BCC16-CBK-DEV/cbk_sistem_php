@@ -4,11 +4,8 @@ include ('scripts.php');
 
 ?>
 
-<script src="<?php echo base_url(); ?>public/js/Cliente.js"></script>
-<script src="<?php echo base_url(); ?>public/js/util.js"></script>
-
 <div class="posicao_conteudo">
-	<h4 class="titulo_opcoes"><span class="fa fa-users"></span> Consultar Clientes</h4>
+	<h4 class="titulo_opcoes"><span class="fa fa-book"></span> Consultar Fornecedores</h4>
 	<hr class="linha_nova_ordem">
 	<div class="centraliza">
 		<div class="barra_pesquisa row">
@@ -25,50 +22,42 @@ include ('scripts.php');
 		<div class="collapse row" id="collapseFiltro">
 			<div class="card card-body">
 				<div class="linha_filtro row">
-					<div class="col-mb-2">
-						<label>Nº Ordem Inicial</label>
+					<div class="col-lg-6">
+						<label>Nome do Fornecedor</label>
 						<div class="input-group input-group-sm mb-3 ">
-							<input type="number" class="form-control" aria-label="Nº Ordem Inicial" aria-describedby="inputGroup-sizing-sm">
+							<input type="text" class="form-control" aria-label="Nome do Fornecedor" aria-describedby="inputGroup-sizing-sm">
 						</div>
 					</div>
-					<div class="col-mb-3">
-						<label>Nº Ordem Final</label>
+					<div class="col-mb-4">
+						<label>CNPJ</label>
 						<div class="input-group input-group-sm mb-3 ">
-							<input type="number" class="form-control" aria-label="Nº Ordem Final" aria-describedby="inputGroup-sizing-sm">
-						</div>
-					</div>
-					<div class="col-mb-2">
-						<label>Data Inicial</label>
-						<div class="input-group input-group-sm mb-3">
-							<input type="date" class="form-control" aria-label="Data Inicio" aria-describedby="inputGroup-sizing-sm">
-						</div>
-					</div>
-					<div class="col-mb-2">
-						<label>Data Final</label>
-						<div class="input-group input-group-sm mb-3">
-							<input type="date" class="form-control" aria-label="Data Fim" aria-describedby="inputGroup-sizing-sm">
+							<input type="text" class="form-control" aria-label="CNPJ" aria-describedby="inputGroup-sizing-sm">
 						</div>
 					</div>
 				</div>
 				<div class="linha_filtro row">
-					<div class="col-mb-5">
-						<label>Descrição do Produto</label>
+					<div class="col-lg-6">
+						<label>e-Mail</label>
 						<div class="input-group input-group-sm">
-							<input type="text" class="form-control" aria-label="Descrição Produto" aria-describedby="inputGroup-sizing-sm">
+							<input type="text" class="form-control" aria-label="e-Mail" aria-describedby="inputGroup-sizing-sm">
 						</div>
 					</div>
 					<div class="col-mb-7">
-						<label>Nota Fiscal</label>
+						<label>Telefone</label>
 						<div class="input-group input-group-sm">
-							<input type="text" class="form-control" aria-label="Nota Fiscal" aria-describedby="inputGroup-sizing-sm">
+							<input type="text" class="form-control" aria-label="Telefone" aria-describedby="inputGroup-sizing-sm">
 						</div>
 					</div>
-					<div class="col-mb-7">
-						<label>Código do Produto</label>
-						<div class="input-group input-group-sm">
-							<input type="text" class="form-control" aria-label="Código do Produto" aria-describedby="inputGroup-sizing-sm">
-						</div>
+					<div class="col-mb-3">
+						<label></label>
+						<button class="btn btn-dark botao_filtro" id="botaoFiltro_buscar" type="submit">
+							<span class="fa fa-search"></span> Buscar
+						</button>
+						<a class="btn btn-dark botao_filtro " href="<?php echo base_url(); ?>OrdemServico/os_abertas" id="botaoFiltro_limpar">
+							Limpar
+						</a>
 					</div>
+
 				</div>
 			</div>
 		</div>
@@ -93,11 +82,32 @@ include ('scripts.php');
 					echo '<td>'.$forn['cnpj_fornecedor'].'</td>';
 					echo '<td>'.$forn['email_fornecedor'].'</td>';
 					echo '<td>'.$forn['telefone_fornecedor'].'</td>';
-					echo '<td><a class="botaoAcoesTabela botaoEditar" href=""><span class="fa fa-pencil-square-o"></span></a>
-					<a class="botaoAcoesTabela botaoExcluir" href=""><span class="fa fa-trash-o"></span></a></td></tr>';
+					echo '<td><a class="botaoAcoesTabela botaoAlterarListagem" onclick="alterar_fornecedor('.$forn['id_fornecedor'].');"><span class="fa fa-pencil-square-o"></span></a>
+					<a class="botaoAcoesTabela botaoExcluirListagem" data-toggle="modal" data-target="#msgFornecedorExclusao" onclick="excluir_fornecedor('.$forn['id_fornecedor'].');"><span class="fa fa-trash-o"></span></a></td></tr>';
 				endforeach;?>
 				</tbody>
 			</table>
+		</div>
+	</div>
+
+	<!-- MENSAGEM EXCLUIR ORDEM -->
+	<div class="modal" tabindex="-1" role="dialog" id="msgFornecedorExclusao">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Excluir Fornecedor</h5>
+					<!--<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+						<span aria-hidden="true">&times;</span>
+					</button>-->
+				</div>
+				<div class="modal-body">
+					<p>Deseja realmente excluir o Fornecedor Selecionado?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="msgOkExclusao" class="btn btn-danger" >SIM</button>
+					<button type="button" id="" class="btn btn-primary" data-dismiss="modal">NÃO</button>
+				</div>
+			</div>
 		</div>
 	</div>
 

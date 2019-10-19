@@ -816,6 +816,43 @@ class Ordem_Servico extends CI_Model
 
 	}
 
+	public function carregarPecas() {
+		$this->db
+			->select('*')
+			->from('peca')
+			->where('quantidade_peca > 0');
+
+		return $this->db->get()->result_array();
+	}
+
+	public function carregarPecaItem ($idOrdem){
+		$this->db
+			->select('*')
+			->from('peca_ordem_item')
+			->join('peca','peca_ordem_item.id_peca = peca.id_peca')
+			->where('peca_ordem_item.id_ordem', $idOrdem);
+
+		return $this->db->get()->result_array();
+	}
+
+	public function subtraiEstoque($id_peca,$quantidade) {
+
+		$this->db->set(array('quantidade_peca'=>'quantidade_peca - '.$quantidade));
+		$this->db->where('id_peca',$id_peca);
+		$this->db->update('peca');
+	}
+
+	public function insertPecaOrdem ($id_ordem,$id_peca,$quantidade) {
+
+		$data = array(
+			'id_ordem'=>$id_ordem,
+			'id_peca'=>$id_peca,
+			'quantidade_peca_ordem'=>$quantidade
+		);
+
+		$this->db->insert('peca_ordem_item',$data);
+
+	}
 
 }
 ?>

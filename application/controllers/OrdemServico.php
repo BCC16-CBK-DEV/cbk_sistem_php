@@ -433,10 +433,39 @@ class OrdemServico extends CI_Controller {
 			"os"=>$this->ordem_servico->carregarOrdem($id_ordem)->result_array()[0],
 			"clientes"=>$this->ordem_servico->carregarCliente(),
 			"status"=>$this->ordem_servico->carregarStatus(),
-			"tecnicos"=>$this->ordem_servico->carregarTecnicos()
+			"tecnicos"=>$this->ordem_servico->carregarTecnicos(),
+			"pecas"=>$this->ordem_servico->carregarPecas(),
+			"peca_item"=>$this->ordem_servico->carregarPecaItem($id_ordem)
 		);
 
 		$this->load->view('alterar_ordem',$data);
+
+	}
+
+	public function inserirPecaOrdem () {
+		$json = array();
+		$json["status"] = 1;
+		$json["error_list"] = array();
+
+		$id_ordem = $this->input->post('idOrdem');
+		$id_peca = $this->input->post('idPeca');
+		$quantidade = $this->input->post('quantidade');
+
+		if (empty($id_ordem)) {
+			$json["status"] = 0;
+			$json["error_list"]["#id_ordem"] = "Id Vazio!";
+		} else {
+			$this->load->model("ordem_servico");
+			$result = $this->ordem_servico->insertPecaOrdem($id_ordem,$id_peca,$quantidade);
+			$this->ordem_servico->subtraiEstoque($id_peca,$quantidade);
+			if ($result) {
+				//echo '<script type="javascript">alert("Cadastrado com sucesso!!");</script>';
+			} else {
+				$json["status"] = 0;
+			}
+		}
+
+		echo json_encode($json);
 
 	}
 

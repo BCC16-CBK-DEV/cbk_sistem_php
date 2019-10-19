@@ -482,8 +482,14 @@ label {
 
 }
 
-#botaoNovaPeca {
-	color: white;
+#botaoAlterarOrdem:hover {
+	color: #2e8ece;
+	cursor: pointer;
+}
+
+#botaoExcluirOrdem:hover {
+	color: #a71d2a;
+	cursor: pointer;
 }
 
 .botao_filtro {
@@ -497,12 +503,13 @@ label {
 	align-content: center;
 }
 
-.botaoAcoesTabela:hover {
-	color: black;
-}
 
 .botaoExcluir {
 	color: red;
+}
+
+.botoesAcaoAlterar {
+	margin-bottom: 2%;
 }
 
 /*##############################################################################*/
@@ -516,6 +523,8 @@ label {
 	font-size: 20px;
 }
 
+/*##############################################################################*/
+
 /* ALTERAR ORDEM.PHP */
 
 /*##############################################################################*/
@@ -528,16 +537,38 @@ label {
 	margin-top: 1.5%;
 }
 
-.botoesAcaoAlterar {
-	margin-bottom: 2%;
+#botaoPeca {
+	margin-left: 1%;
+	font-size: 12px;
+	color: white;
+	height: 32px;
+	margin-top: 3.2%;
 }
 
-#botaoAlterarOrdem:hover {
+
+
+/*##############################################################################*/
+
+/* ESTOQUE.PHP */
+
+/*##############################################################################*/
+
+#botaoNovaPeca {
+	color: white;
+}
+
+/*##############################################################################*/
+
+/* LISTAGEM.PHP */
+
+/*##############################################################################*/
+
+.botaoAlterarListagem:hover {
 	color: #2e8ece;
 	cursor: pointer;
 }
 
-#botaoExcluirOrdem:hover {
+.botaoExcluirListagem:hover {
 	color: #a71d2a;
 	cursor: pointer;
 }
