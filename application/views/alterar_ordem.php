@@ -124,7 +124,7 @@ include ('scripts.php');
 					echo '<td>'.$item['descricao_peca'].'</td>';
 					echo '<td>'.$item['quantidade_peca_ordem'].'</td>';
 					echo '<td><a class="botaoAcoesTabela botaoEditar" id="botaoExcluirOrdem" 
-					data-toggle="modal" data-target="#msgOrdemExclusao" 
+					data-toggle="modal" data-target="#msgOrdemItemPecaExclusao" onclick="excluirItem('.$item['id_peca_ordem'].','.$item['id_peca'].','.$item['quantidade_peca_ordem'].');"
 					><span class="fa fa-trash-o"></span></a></td></tr>';
 
 				}
@@ -303,9 +303,26 @@ include ('scripts.php');
 		</div>
 	</div>
 
-	<script type="javascript">
-
-	</script>
+	<!-- MENSAGEM EXCLUIR PEÇA -->
+	<div class="modal" tabindex="-1" role="dialog" id="msgOrdemItemPecaExclusao">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Excluir Peça da Ordem de Serviço</h5>
+					<!--<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+						<span aria-hidden="true">&times;</span>
+					</button>-->
+				</div>
+				<div class="modal-body">
+					<p>Deseja realmente excluir a Peça Selecionada?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="msgOkExclusaoItem" class="btn btn-danger" >SIM</button>
+					<button type="button" id="" class="btn btn-primary" data-dismiss="modal">NÃO</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 	<?php include('modal_info_cliente.php');

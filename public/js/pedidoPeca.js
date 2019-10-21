@@ -1,4 +1,20 @@
 $(function () {
+	$('#botaoPeca').click(function () {
+		var option = $('#peca').find(":selected").text();
+		var idPeca = $('#peca').val();
+		var quantidade = $('#quantidade_peca_ordem').val();
+
+		var row = $("<tr>");
+
+		row.append($("<td>"+idPeca+"</td>"))
+			.append($("<td>"+option+"</td>"))
+			.append($("<td>"+quantidade+"</td>"))
+			.append($("<td><a class='botaoAcoesTabela botaoEditar' id='botaoExcluirOrdem'><span class='fa fa-trash-o'></span></a></td></tr></td>"));
+
+		$("#tabela_pedido_peca tbody").append(row);
+
+	});
+
 	$('#formulario_nova_peca').submit(function (e) {
 		e.preventDefault();
 
@@ -109,3 +125,11 @@ $(function () {
 		window.location.href=BASE_URL + "PedidoPeca/estoque";
 	});
 })
+
+function desbloquearCampoQtd() {
+	if($('#peca').val() != 0) {
+		document.getElementById('quantidade_peca_ordem').readOnly = false;
+	} else {
+		document.getElementById('quantidade_peca_ordem').readOnly = true;
+	}
+}

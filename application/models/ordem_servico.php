@@ -837,9 +837,20 @@ class Ordem_Servico extends CI_Model
 
 	public function subtraiEstoque($id_peca,$quantidade) {
 
-		$this->db->set(array('quantidade_peca'=>'quantidade_peca - '.$quantidade));
-		$this->db->where('id_peca',$id_peca);
-		$this->db->update('peca');
+		$query = $this->db->query('UPDATE peca SET quantidade_peca = quantidade_peca - '.$quantidade.'
+		WHERE id_peca = '.$id_peca);
+
+		return $query;
+	}
+
+	public function excluir_peca_ordem ($idPecaOrdem,$idPeca,$quantidade) {
+		$this->db->where('id_peca_ordem', $idPecaOrdem);
+		$this->db->delete('peca_ordem_item');
+
+		$query = $this->db->query('UPDATE peca SET quantidade_peca = quantidade_peca + '.$quantidade.'
+		WHERE id_peca = '.$idPeca);
+
+		return $query;
 	}
 
 	public function insertPecaOrdem ($id_ordem,$id_peca,$quantidade) {

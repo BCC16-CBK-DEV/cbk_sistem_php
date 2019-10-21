@@ -150,5 +150,23 @@ function desbloquearCampoQtd() {
 	}
 }
 
+function excluirItem(id_peca_ordem,id_peca,quantidade_peca_ordem) {
+
+	$("#msgOkExclusaoItem").click(function() {
+		$.ajax({
+			type: "post",
+			url: BASE_URL + "OrdemServico/excluirItemPecaOrdem",
+			data: {idPecaOrdem: id_peca_ordem, quantidadePecaOrdem: quantidade_peca_ordem, idpeca: id_peca},
+			done: (window.location.href=window.location.href),
+			error: function(response) {
+				console.log(response);
+			}
+		})
+
+		return false;
+	});
+
+}
+
 
 

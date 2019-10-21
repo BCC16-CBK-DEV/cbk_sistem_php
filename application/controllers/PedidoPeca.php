@@ -112,4 +112,18 @@ class PedidoPeca extends  CI_Controller
 		$this->pedido_peca->deletePeca($id_peca);
 	}
 
+	public function novo_pedido() {
+
+		$this->load->model("pedido_peca");
+		$data = array(
+			'scripts'=>array(
+				'util.js',
+				'pedidoPeca.js'
+			),
+			"pecas"=>$this->pedido_peca->pecas()
+		);
+
+		$this->load->view('novo_pedido',$data);
+	}
+
 }

@@ -510,6 +510,15 @@ class OrdemServico extends CI_Controller {
 		echo json_encode($json);
 	}
 
+	public function excluirItemPecaOrdem () {
+		$id_peca_ordem = $this->input->post('idPecaOrdem');
+		$quantidade = $this->input->post('quantidadePecaOrdem');
+		$id_peca = $this->input->post('idpeca');
+
+		$this->load->model('ordem_servico');
+		$this->ordem_servico->excluir_peca_ordem($id_peca_ordem,$id_peca,$quantidade);
+	}
+
 }
 
 ?>
