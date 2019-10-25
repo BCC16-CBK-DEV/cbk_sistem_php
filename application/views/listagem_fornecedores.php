@@ -8,16 +8,16 @@ include ('scripts.php');
 	<h4 class="titulo_opcoes"><span class="fa fa-book"></span> Consultar Fornecedores</h4>
 	<hr class="linha_nova_ordem">
 	<div class="centraliza">
-		<div class="barra_pesquisa row">
+		<!--<div class="barra_pesquisa row">
 			<button class="btn btn-dark botoesBarra" id="botaoFiltro" type="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseFiltro">
 				<span class="fa fa-search"></span> Filtros
-			</button>
+			</button>-->
 			<a class="btn btn-dark botoesBarra" id="botaoInicio" href="<?php echo base_url();?>Clientes/index">
 				<span class="fa fa-chevron-circle-left"></span> Voltar
 			</a>
-			<button class="btn btn-dark botoesBarra" id="botaoFiltro" type="button">
+			<!--<button class="btn btn-dark botoesBarra" id="botaoFiltro" type="button">
 				Relatório
-			</button>
+			</button>-->
 		</div>
 		<div class="collapse row" id="collapseFiltro">
 			<div class="card card-body">

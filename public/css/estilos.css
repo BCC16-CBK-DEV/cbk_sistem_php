@@ -170,6 +170,7 @@
 	margin-top: 2%;
 	height: 95vh;
 	width: 78%;
+	padding: 1.5%;
 }
 
 .image_empresa {
@@ -361,6 +362,7 @@ label {
 	width: 15%;
 	height: 5%;
 	font-size: 12px;
+	margin-bottom: 2%;
 }
 
 #AddCliente {
@@ -571,4 +573,41 @@ label {
 .botaoExcluirListagem:hover {
 	color: #a71d2a;
 	cursor: pointer;
+}
+
+/*##############################################################################*/
+
+/* PEDIDO PEÇA.PHP */
+
+/*##############################################################################*/
+
+.secao_pedido {
+	margin-left: 2%;
+}
+
+.linha_menu_pedido {
+	width: 70%;
+	background-color: #0f0f0f;
+	margin-right: 50%;
+}
+#botao_info_fornecedor {
+	color: white;
+	font-size: 12px;
+	padding: 5px;
+	height: 45px;
+	margin-left: 2%;
+	margin-top: 15%;
+	text-align: center;
+}
+
+.coluna_2_info {
+	margin-left: 4%;
+}
+
+#botaoPedidoPecaAlterar {
+	margin-left: 1%;
+	font-size: 12px;
+	color: white;
+	height: 32px;
+	margin-top: 4%;
 }

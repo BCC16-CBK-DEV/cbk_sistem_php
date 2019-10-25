@@ -1,28 +1,48 @@
 <?php
+
 include 'header.php';
 include 'scripts.php';
+
 ?>
 
 <div class="posicao_conteudo">
-	<h4 class="titulo_opcoes"><span class="fa fa-plus-circle"></span> Novo Pedido de Peça</h4>
+	<h4 class="titulo_opcoes"><span class="fa fa-cart-plus"></span> Alterar Pedido de Peça</h4>
 		<hr class="linha_menu_pedido">
 		<div class="row secao_pedido">
 			<div class="row">
 				<h5 class="">Informações do Pedido</h5>
 			</div>
 			<div class="row">
+				<input type="hidden" class="form-control" readonly="true" aria-label="Nº do pedido"  aria-describedby="inputGroup-sizing-sm"
+					   id="id_pedido" name="id_pedido" value="<?php echo $info_pedido['id_pedido_peca']; ?>">
+				<div class="col-sm-2">
+					<label>Nº do Pedido</label>
+					<div class="input-group input-group-sm mb-3">
+						<input type="text" class="form-control" readonly="true" aria-label="Nº do pedido"  aria-describedby="inputGroup-sizing-sm"
+							   id="numero_pedido" name="numero_pedido" value="<?php echo $info_pedido['num_pedido']; ?>">
+					</div>
+				</div>
+				<div class="col-mb-2">
+					<label>Situação do Pedido</label>
+					<div class="input-group input-group-sm mb-3">
+						<input type="text" class="form-control" readonly="true" aria-label="Situação do Pedido"  aria-describedby="inputGroup-sizing-sm"
+							   id="status_pedido" name="status_pedido" value="<?php echo $info_pedido['descricao_status_pedido']; ?>">
+					</div>
+				</div>
+			</div>
+			<div class="row">
 				<div class="col-lg-6">
 					<label>Assunto do Pedido</label>
 					<div class="input-group input-group-sm mb-">
 						<input type="text" class="form-control" aria-label="Número da Ordem"  aria-describedby="inputGroup-sizing-sm"
-							   id="assunto_pedido" name="assunto_pedido">
+							   id="assunto_pedido" name="assunto_pedido" value="<?php echo $info_pedido['assunto_pedido']; ?>">
 					</div>
 				</div>
 				<div class="col-mb-2">
 					<label>Data do Pedido</label>
 					<div class="input-group input-group-sm mb-3">
 						<input type="date" class="form-control" aria-label="Data de Abertura"  aria-describedby="inputGroup-sizing-sm"
-							   id="data_pedido" name="data_pedido">
+							   id="data_pedido" name="data_pedido" value="<?php echo $info_pedido['data_pedido']; ?>">
 					</div>
 				</div>
 			</div>
@@ -39,7 +59,7 @@ include 'scripts.php';
 						<option value="0">Selecionar Fornecedor</option>
 						<?php
 						foreach($fornecedores as $forn):
-							echo '<option value="'.$forn['id_fornecedor'].'">'.$forn['nome_fornecedor'].'</option>';
+							echo '<option value="'.$forn['id_fornecedor'].'" '.($forn['id_fornecedor'] == $info_pedido['id_fornecedor'] ? 'selected':'' ).'>'.$forn['nome_fornecedor'].'</option>';
 						endforeach;
 						?>
 					</select>
@@ -60,7 +80,7 @@ include 'scripts.php';
 				<div class="col-sm-3">
 					<label>Peça</label>
 					<select id="peca" name="peca" onchange="desbloquearCampoQtd();"  class="form-control form-control-sm ">
-						<option value="0">Selecionar Peça</option>
+						<option value="0" selected>Selecionar Peça</option>
 						<?php
 						foreach($pecas as $peca):
 							echo '<option value="'.$peca['id_peca'].'">'.$peca['descricao_peca'].'</option>';
@@ -72,10 +92,10 @@ include 'scripts.php';
 					<label>Quantidade</label>
 					<div class="input-group input-group-sm mb-">
 						<input type="number" class="form-control" aria-label="Quantidade Peça" readonly="true" aria-describedby="inputGroup-sizing-sm"
-							   id="quantidade_peca_ordem" name="quantidade_peca_ordem">
+							   id="quantidade_peca_pedido" name="quantidade_peca_pedido">
 					</div>
 				</div>
-				<a id="botaoPeca" class="btn btn-primary">Adicionar Peça</a>
+				<a id="botaoPedidoPecaAlterar" class="btn btn-primary">Adicionar Peça</a>
 			</div>
 
 			<div class="row">
@@ -90,6 +110,12 @@ include 'scripts.php';
 					</thead>
 					<tbody>
 					<?php
+					foreach ($pecas_pedido as $pecas):
+						echo '<tr><td>'.$pecas['id_peca'].'</td>';
+						echo '<td>'.$pecas['descricao_peca'].'</td>';
+						echo '<td>'.$pecas['qtd_peca_pedido'].'</td>';
+						echo '<td><a class="botaoAcoesTabela botaoExcluir" data-toggle="modal" data-target="#msgPecaPedido" onclick="excluir_peca_pedido('.$pecas['id_peca_item'].');"><span class="fa fa-trash-o"></span></a></td></tr>';
+					endforeach;
 					?>
 					</tbody>
 				</table>
@@ -97,7 +123,8 @@ include 'scripts.php';
 		</div>
 
 		<div class="row">
-			<button type="button" id="botaoGravarPedido" class="btn btn-primary botao_acao">GRAVAR</button>
+			<!--<a type="button" id="" class="btn btn-primary botao_acao" href="<?php echo base_url();?>EmailController/send">ENVIAR E-MAIL</a>-->
+			<button type="button" id="botaoAlterarPedido" class="btn btn-primary botao_acao">GRAVAR</button>
 			<a href="<?php echo base_url();?>PedidoPeca/index" class="btn btn-danger botao_acao" >CANCELAR</a>
 		</div>
 
@@ -123,4 +150,26 @@ include 'scripts.php';
 			</div>
 		</div>
 	</div>
+
+	<!-- MENSAGEM DE EXCLUSÃO DE PEÇA -->
+	<div class="modal" tabindex="-1" role="dialog" id="msgPecaPedido">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Peças</h5>
+					<!--<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+						<span aria-hidden="true">&times;</span>
+					</button>-->
+				</div>
+				<div class="modal-body">
+					<p id="msgNovoPedido">Deseja retirar a peça do pedido?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="msgOkExclusaoPecaPedido" class="btn btn-danger" >SIM</button>
+					<button type="button" id="" class="btn btn-primary" data-dismiss="modal">NÃO</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </div>
