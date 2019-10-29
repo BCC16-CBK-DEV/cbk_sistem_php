@@ -11,6 +11,7 @@ class Fornecedores extends CI_Controller
 	}
 
 	public function index(){
+		$this->load->view('header.php');
 		$this->load->view('fornecedores');
 	}
 
@@ -34,13 +35,14 @@ class Fornecedores extends CI_Controller
 		$cnpj = $this->input->post('cnpj_fornecedor');
 		$email = $this->input->post('email_fornecedor');
 		$telefone = $this->input->post('telefone_fornecedor');
+		$id_autorizada = $this->session->userdata('autorizada');
 
 		if (empty($nome)) {
 			$json["status"] = 0;
 			$json["error_list"]["#nome_fornecedor"] = "Nome está vazio!";
 		} else {
 			$this->load->model("fornecedor");
-			$result = $this->fornecedor->adicionar_fornecedor($nome,$cnpj,$email,$telefone);
+			$result = $this->fornecedor->adicionar_fornecedor($nome,$cnpj,$email,$telefone,$id_autorizada);
 			if ($result) {
 				//echo '<script type="javascript">alert("Cadastrado com sucesso!!");</script>';
 			} else {
@@ -54,12 +56,14 @@ class Fornecedores extends CI_Controller
 
 	public function listagem() {
 
+		$id_autorizada = $this->session->userdata('autorizada');
+
 		$this->load->model('fornecedor');
 		$data = array(
 			'scripts'=>array(
 				'fornecedor.js'
 			),
-			'fornecedores'=>$this->fornecedor->lista_fornecedores()
+			'fornecedores'=>$this->fornecedor->lista_fornecedores($id_autorizada)
 		);
 
 		$this->load->view('listagem_fornecedores',$data);

@@ -9,7 +9,7 @@ class Login_model extends CI_Model {
 	public function get_acesso_sistema($username){
 
 		$this->db
-			->select("id_usuario, nome_usuario, senha, nome_completo, id_departamento")
+			->select("*")
 			->from("usuario")
 			->where("nome_usuario", $username);
 
@@ -29,6 +29,16 @@ class Login_model extends CI_Model {
 			->select("*")
 			->from("usuario")
 			->where("nome_usuario", $user_id);
+
+		return $this->db->get();
+	}
+
+	public function info_autorizada($autorizada){
+
+		$this->db
+			->select("*")
+			->from("autorizada")
+			->where("id_autorizada", $autorizada);
 
 		return $this->db->get();
 	}

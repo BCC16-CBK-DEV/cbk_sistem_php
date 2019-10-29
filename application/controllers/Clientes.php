@@ -41,6 +41,7 @@ class Clientes extends CI_Controller
 		$complemento = $this->input->post('cliente_complemento');
 		$telefone = $this->input->post('cliente_telefone');
 		$celular = $this->input->post('cliente_celular');
+		$id_autorizada = $this->session->userdata('autorizada');
 
 		if (empty($nome)) {
 			$json["status"] = 0;
@@ -48,7 +49,7 @@ class Clientes extends CI_Controller
 		} else {
 			$this->load->model("cliente");
 			$result = $this->cliente->NovoCliente($nome,$cpf,$rg,$cep,$endereco,$bairro,$numero,$cidade,$email,
-			$uf,$complemento,$telefone,$celular);
+			$uf,$complemento,$telefone,$celular,$id_autorizada);
 			if ($result) {
 				//echo '<script type="javascript">alert("Cadastrado com sucesso!!");</script>';
 			} else {
@@ -62,10 +63,12 @@ class Clientes extends CI_Controller
 
 	public function listagem() {
 
+		$id_autorizada = $this->session->userdata('autorizada');
+
 		$this->load->model('cliente');
 
 		$data = array(
-			'clientes'=>$this->cliente->listaClientes()
+			'clientes'=>$this->cliente->listaClientes($id_autorizada)
 		);
 
 		$this->load->view('listagem_clientes', $data);

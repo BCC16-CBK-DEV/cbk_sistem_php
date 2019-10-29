@@ -6,10 +6,11 @@ class OrdemServico extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->library('session');
+		//include_once('Header_Controller/index');
 	}
 
 	public function index() {
-
+		$this->load->view('header.php');
 		$this->load->view('ordem_servico');
 	
 	}
@@ -18,7 +19,7 @@ class OrdemServico extends CI_Controller {
 
 		$this->load->model('ordem_servico');
 		$data = array(
-			'clientes'=>$this->ordem_servico->carregarCliente()
+			'clientes'=>$this->ordem_servico->carregarCliente($this->session->userdata('autorizada'))
 		);
 		$this->load->view('nova_ordem',$data);
 	}
@@ -32,13 +33,14 @@ class OrdemServico extends CI_Controller {
 		$nome = $this->input->post('nome_cliente');
 		$cpf = $this->input->post('cpf_cliente');
 		$celular = $this->input->post('celular_cliente');
+		$id_autorizada = $this->session->userdata('autorizada');
 
 		if (empty($nome)) {
 			$json["status"] = 0;
 			$json["error_list"]["#nome_cliente"] = "Nome está vazio!";
 		} else {
 			$this->load->model("ordem_servico");
-			$result = $this->ordem_servico->novo_cliente($nome,$cpf,$celular);
+			$result = $this->ordem_servico->novo_cliente($nome,$cpf,$celular,$id_autorizada);
 			if ($result) {
 				//echo '<script type="javascript">alert("Cadastrado com sucesso!!");</script>';
 			} else {
@@ -111,7 +113,7 @@ class OrdemServico extends CI_Controller {
 
 		$this->load->model('ordem_servico');
 		$data = array(
-			'os_abertas'=>$this->ordem_servico->os_abertas(),
+			'os_abertas'=>$this->ordem_servico->os_abertas($this->session->userdata('autorizada')),
 			"scripts"=>array(
 				"util.js"
 			)
@@ -125,7 +127,7 @@ class OrdemServico extends CI_Controller {
 
 		$this->load->model('ordem_servico');
 		$data = array(
-			'os_fechadas'=>$this->ordem_servico->os_fechadas()
+			'os_fechadas'=>$this->ordem_servico->os_fechadas($this->session->userdata('autorizada'))
 		);
 
 		$this->load->view('os_fechadas',$data);
@@ -146,6 +148,7 @@ class OrdemServico extends CI_Controller {
 		$voltagem = $this->input->post('voltagem_os');
 		$defeito_reclamado = $this->input->post('defeito_reclamado_os');
 		$idcliente = $this->input->post('os_cliente_id');
+		$id_autorizada = $this->session->userdata('autorizada');
 
 		if (empty($data_abertura)) {
 			$json["status"] = 0;
@@ -153,7 +156,7 @@ class OrdemServico extends CI_Controller {
 		} else {
 			$this->load->model("ordem_servico");
 			$result = $this->ordem_servico->novaOrdem($data_abertura,$nota_fiscal,$codigo_produto,$data_compra,$descricao_produto,$numero_serie,
-				$voltagem,$defeito_reclamado,$idcliente);
+				$voltagem,$defeito_reclamado,$idcliente,$id_autorizada);
 			if ($result) {
 				//echo '<script type="javascript">alert("Cadastrado com sucesso!!");</script>';
 			} else {
@@ -174,6 +177,7 @@ class OrdemServico extends CI_Controller {
 		$descricao = $this->input->post('filtro_descricao');
 		$nota_fiscal = $this->input->post('filtro_nota_fiscal');
 		$codigo_produto = $this->input->post('filtro_codigo_produto');
+		$id_autorizada = $this->session->userdata('autorizada');
 
 		if(empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial) && !empty($data_final)
 			&& !empty($descricao) && !empty($nota_fiscal) && !empty($codigo_produto)){
@@ -270,7 +274,7 @@ class OrdemServico extends CI_Controller {
 
 		$data = array(
 			'os_abertas'=>$this->ordem_servico->filtro_ordem_aberta($option,$numero_inicial,$numero_final,$data_inicial,$data_final,$descricao,
-				$nota_fiscal,$codigo_produto)
+				$nota_fiscal,$codigo_produto,$id_autorizada)
 		);
 
 		$this->load->view('os_abertas',$data);
@@ -286,6 +290,7 @@ class OrdemServico extends CI_Controller {
 		$descricao = $this->input->post('filtro_descricao');
 		$nota_fiscal = $this->input->post('filtro_nota_fiscal');
 		$codigo_produto = $this->input->post('filtro_codigo_produto');
+		$id_autorizada = $this->session->userdata('autorizada');
 
 		if(empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial) && !empty($data_final)
 			&& !empty($descricao) && !empty($nota_fiscal) && !empty($codigo_produto)){
@@ -382,7 +387,7 @@ class OrdemServico extends CI_Controller {
 
 		$data = array(
 			'os_abertas'=>$this->ordem_servico->filtro_ordem_fechada($option,$numero_inicial,$numero_final,$data_inicial,$data_final,$descricao,
-				$nota_fiscal,$codigo_produto)
+				$nota_fiscal,$codigo_produto,$id_autorizada)
 		);
 
 		$this->load->view('os_fechadas',$data);
@@ -429,12 +434,13 @@ class OrdemServico extends CI_Controller {
 	public function editarOrdem() {
 		$this->load->model('ordem_servico');
 		$id_ordem = $this->input->get("id");
+		$id_autorizada = $this->session->userdata('autorizada');
 		$data = array(
 			"os"=>$this->ordem_servico->carregarOrdem($id_ordem)->result_array()[0],
-			"clientes"=>$this->ordem_servico->carregarCliente(),
+			"clientes"=>$this->ordem_servico->carregarCliente($id_autorizada),
 			"status"=>$this->ordem_servico->carregarStatus(),
-			"tecnicos"=>$this->ordem_servico->carregarTecnicos(),
-			"pecas"=>$this->ordem_servico->carregarPecas(),
+			"tecnicos"=>$this->ordem_servico->carregarTecnicos($id_autorizada),
+			"pecas"=>$this->ordem_servico->carregarPecas($id_autorizada),
 			"peca_item"=>$this->ordem_servico->carregarPecaItem($id_ordem)
 		);
 

@@ -19,7 +19,7 @@
 				<label>Data de Abertura</label>
 				<div class="input-group input-group-sm mb-3 campo_data">
 					<input type="date" class="form-control" aria-label="Data de Abertura"  aria-describedby="inputGroup-sizing-sm"
-					id="data_abertura_os" name="data_abertura_os">
+					id="data_abertura_os" name="data_abertura_os" required>
 				</div>
 			</div>
 		</div>
@@ -30,7 +30,7 @@
 					<label>Nota Fiscal</label>
 					<div class="input-group input-group-sm mb-3 campo_tamanho1">
 						<input type="text" class="form-control" aria-label="Nota Fiscal" aria-describedby="inputGroup-sizing-sm"
-							   id="nota_fiscal_os" name="nota_fiscal_os">
+							   id="nota_fiscal_os" name="nota_fiscal_os" required>
 					</div>
 				</div>
 
@@ -38,7 +38,7 @@
 					<label>Código do Produto</label>
 					<div class="input-group input-group-sm mb-3 campo_tamanho1">
 						<input type="text" class="form-control" aria-label="Código do Produto" aria-describedby="inputGroup-sizing-sm"
-							   id="codigo_produto_os" name="codigo_produto_os">
+							   id="codigo_produto_os" name="codigo_produto_os" required>
 					</div>
 				</div>
 
@@ -46,7 +46,7 @@
 					<label>Data de Compra</label>
 					<div class="input-group input-group-sm mb-3 campo_data2">
 						<input type="date" class="form-control" aria-label="Data de Compra do Produto" aria-describedby="inputGroup-sizing-sm"
-							   id="data_compra_os" name="data_compra_os">
+							   id="data_compra_os" name="data_compra_os" required>
 					</div>
 				</div>
 			</div>
@@ -56,7 +56,7 @@
 					<label>Descrição do Produto</label>
 					<div class="input-group input-group-sm mb-3 campo_tamanho2">
 						<input type="text" class="form-control" aria-label="Descrição do Produto" aria-describedby="inputGroup-sizing-sm"
-							   id="descricao_produto_os" name="descricao_produto_os">
+							   id="descricao_produto_os" name="descricao_produto_os" required>
 					</div>
 				</div>
 

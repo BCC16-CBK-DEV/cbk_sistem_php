@@ -1,6 +1,6 @@
 <?php
 	
-	include ('header.php');
+	//include ('header.php');
 
 ?>
 <div class="posicao_conteudo">
@@ -48,7 +48,12 @@
 		echo '<td>'.date("d/m/Y", strtotime($prazos_os['prazo_ordem'])).'</td></tr>';
 	endforeach;?>
   </tbody>
-</table>
+</table
 
 </div>
+	<?php if(!empty($pecasEstoqueMinima)){ ?>
+	<div class="alert alert-warning" role="alert">
+		<span class="fa fa-warning"></span> ATENÇÃO: Estoque abaixo da quantidade mínima requerida. <a id="linkEstoque" href="<?php echo base_url(); ?>PedidoPeca/estoque">Clique aqui</a> para verificar!
+	</div>
+	<?php }	?>
 </div>

@@ -8,7 +8,7 @@ class Cliente extends CI_Model
 	}
 
 	public function NovoCliente($nome,$cpf,$rg,$cep,$endereco,$bairro,$numero,$cidade,$email,
-								$uf,$complemento,$telefone,$celular){
+								$uf,$complemento,$telefone,$celular,$id_autorizada){
 		$data = array(
 			'nome_cliente' => $nome,
 			'cpf' => $cpf,
@@ -22,16 +22,18 @@ class Cliente extends CI_Model
 			'telefone'=>$telefone,
 			'celular' => $celular,
 			'cidade'=>$cidade,
-			'uf'=>$uf);
+			'uf'=>$uf,
+			'id_autorizada'=>$id_autorizada);
 
 		$this->db->insert('cliente',$data);
 
 	}
 
-	public function listaClientes() {
+	public function listaClientes($id_autorizada) {
 		$this->db
 			->select('id_cliente,nome_cliente,cpf,email,celular')
-			->from('cliente');
+			->from('cliente')
+			->where('id_autorizada',$id_autorizada);
 
 		return $this->db->get()->result_array();
 	}

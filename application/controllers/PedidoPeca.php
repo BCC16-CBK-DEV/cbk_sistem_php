@@ -19,14 +19,14 @@ class PedidoPeca extends  CI_Controller
 
 	public function estoque()
 	{
-
+		$id_autorizada = $this->session->userdata('autorizada');
 		$this->load->model('pedido_peca');
 		$data = array(
 			'scripts'=>array(
 				//'util.js',
 				'pedidoPeca.js'
 			),
-			'pecas'=>$this->pedido_peca->pecas()
+			'pecas'=>$this->pedido_peca->pecas($id_autorizada)
 		);
 		$this->load->view('estoque',$data);
 
@@ -41,13 +41,14 @@ class PedidoPeca extends  CI_Controller
 		$codigo = $this->input->post('codigo_peca');
 		$valor_peca = $this->input->post('valor_peca');
 		$quantidade = $this->input->post('quantidade_peca');
+		$id_autorizada = $this->session->userdata('autorizada');
 
 		if (empty($descricao)) {
 			$json["status"] = 0;
 			$json["error_list"]["#descricao_peca"] = "Vazio!";
 		} else {
 			$this->load->model('pedido_peca');
-			$result = $this->pedido_peca->nova_peca($descricao,$codigo,$valor_peca,$quantidade);
+			$result = $this->pedido_peca->nova_peca($descricao,$codigo,$valor_peca,$quantidade,$id_autorizada);
 			if ($result) {
 				//echo '<script type="javascript">alert("Cadastrado com sucesso!!");</script>';
 			} else {
@@ -113,14 +114,14 @@ class PedidoPeca extends  CI_Controller
 	}
 
 	public function novo_pedido() {
-
+		$id_autorizada = $this->session->userdata('autorizada');
 		$this->load->model("pedido_peca");
 		$data = array(
 			'scripts'=>array(
 				'pedidoPeca.js'
 			),
-			"pecas"=>$this->pedido_peca->pecas(),
-			"fornecedores"=>$this->pedido_peca->fornecedores()
+			"pecas"=>$this->pedido_peca->pecas($id_autorizada),
+			"fornecedores"=>$this->pedido_peca->fornecedores($id_autorizada)
 		);
 
 		$this->load->view('novo_pedido',$data);
@@ -154,13 +155,14 @@ class PedidoPeca extends  CI_Controller
 		$fornecedor = $this->input->post('fornecedor');
 		$data = $this->input->post('data');
 		$array = $this->input->post('array');
+		$id_autorizada = $this->session->userdata('autorizada');
 
 		if (empty($assunto)) {
 			$json["status"] = 0;
 			$json["error_list"]["#assunto_pedido"] = "Vazio!";
 		} else {
 			$this->load->model('pedido_peca');
-			$result = $this->pedido_peca->adicionar_pedido($assunto, $data, $fornecedor, $array);
+			$result = $this->pedido_peca->adicionar_pedido($assunto, $data, $fornecedor, $array,$id_autorizada);
 			if ($result) {
 				//echo '<script type="javascript">alert("Cadastrado com sucesso!!");</script>';
 			} else {
@@ -173,10 +175,12 @@ class PedidoPeca extends  CI_Controller
 	}
 
 	public function pedidos () {
+		$id_autorizada = $this->session->userdata('autorizada');
+
 		$this->load->model('pedido_peca');
 		$data = array(
 			'scripts'=>array('pedidoPeca.js'),
-			'pedidos'=>$this->pedido_peca->pedidos()
+			'pedidos'=>$this->pedido_peca->pedidos($id_autorizada)
 		);
 
 		$this->load->view('listagem_pedidos',$data);

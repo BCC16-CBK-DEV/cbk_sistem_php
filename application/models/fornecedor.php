@@ -9,22 +9,24 @@ class fornecedor extends CI_Model
 		parent::__construct();
 	}
 
-	public function adicionar_fornecedor($nome,$cnpj,$telefone,$email) {
+	public function adicionar_fornecedor($nome,$cnpj,$telefone,$email,$id_autorizada) {
 
 		$data = array(
 			"nome_fornecedor"=>$nome,
 			"cnpj_fornecedor"=>$cnpj,
 			"email_fornecedor"=>$email,
-			"telefone_fornecedor"=>$telefone
+			"telefone_fornecedor"=>$telefone,
+			"id_autorizada"=>$id_autorizada
 		);
 
 		$this->db->insert("fornecedor", $data);
 	}
 
-	public function lista_fornecedores () {
+	public function lista_fornecedores ($id_autorizada) {
 		$this->db
 			->select('*')
-			->from('fornecedor');
+			->from('fornecedor')
+			->where('id_autorizada',$id_autorizada);
 
 		return $this->db->get()->result_array();
 	}

@@ -6,6 +6,10 @@ class Inicio extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->library('session');
+		$this->load->model("login_model");
+		$autorizada = $this->login_model->info_autorizada($this->session->userdata('autorizada'))->result_array()[0];
+
+		$this->session->set_userdata("nome_autorizada", $autorizada['nome_autorizada']);
 
 		// index();	
 	}
@@ -14,12 +18,16 @@ class Inicio extends CI_Controller {
 	public function index(){
 
 		$this->load->model('pagina_inicial');
-		$data = array(
-			'os_aberta'=>$this->pagina_inicial->get_os_abertas(),
-			'os_fechadas_ano'=>$this->pagina_inicial->get_os_fechadas_ano(),
-			'prazos'=>$this->pagina_inicial->get_prazos()
-		);
 
+		$id_autorizada = $this->session->userdata('autorizada');
+
+		$data = array(
+			'os_aberta'=>$this->pagina_inicial->get_os_abertas($id_autorizada),
+			'os_fechadas_ano'=>$this->pagina_inicial->get_os_fechadas_ano($id_autorizada),
+			'prazos'=>$this->pagina_inicial->get_prazos($id_autorizada),
+			'pecasEstoqueMinima'=>$this->pagina_inicial->peçasEstoqueQtd($id_autorizada)
+		);
+		$this->load->view('header.php');
 		$this->load->view('principal', $data);
 	}
 

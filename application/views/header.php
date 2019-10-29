@@ -52,7 +52,12 @@
 			<a id="logout_user" onclick="logout_usuario();"><span class="fa fa-power-off"> </span> Logout</a>
 		</div>
 		<div class="usuario_info">
-			<p id="txt_usuario"><i class="fa fa-user"> </i> <?php echo $this->session->userdata('user_id'); ?></p>
+			<p id="txt_usuario"><span class="fa fa-user"> </span> <?php echo $this->session->userdata('user_id'); ?></p>
+		</div>
+		<div class="usuario_info">
+			<p id="txt_usuario"><i class="fa fa-building"> </i> <?php
+					echo $this->session->userdata('nome_autorizada');
+				?></p>
 		</div>
 	</div>
 

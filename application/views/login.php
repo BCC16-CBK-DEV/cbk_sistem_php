@@ -49,14 +49,14 @@
 			
 		<form id="formulario_login" method="post">
 			<h2 id="titulo_login">LOGIN</h2>
-			<div class="input-group mb-3">
+			<div class="input-group input-group-sm mb-3">
 				  <div class="input-group-prepend">
 				    <span class="input-group-text" id="basic-addon1"><i class="fa fa-user" aria-hidden="true"></i></span>
 				 </div>
 				 <input type="text" name="username" id="username" class="form-control" placeholder="Usuário">
 			</div>
 
-			<div class="input-group mb-3">
+			<div class="input-group input-group-sm mb-3">
 				  <div class="input-group-prepend">
 				    <span class="input-group-text" id="basic-addon1"><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
 				 </div>

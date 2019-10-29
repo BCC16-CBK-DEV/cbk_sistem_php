@@ -124,7 +124,7 @@
 }
 
 .linha_vertical {
-  height: 600px;/*Altura da linha*/
+  height: 450px;/*Altura da linha*/
   border-left: 3px solid;/* Adiciona borda esquerda na div como ser fosse uma linha.*/
   float: left;
   margin-top: 60px;
@@ -326,7 +326,7 @@
 }
 
 .campo_data {
-	width: 16%;
+	width: 20%;
 }
 
 .campo_data2 {

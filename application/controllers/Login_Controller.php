@@ -10,30 +10,12 @@ class Login_Controller extends CI_Controller {
 
 	public function index()
 	{
-		if ($this->session->userdata("user_id")) {
+		$data = array(
+			"scripts" => array(
+				"util.js",
+				"login.js"));
 
-			$this->load->model('pagina_inicial');
-		 	$data = array(
-				"scripts" => array(
-		 			"util.js",
-					"login.js"
-		 		),
-		 		"user_id" => $this->session->userdata("user_id"),
-				'os_aberta'=>$this->pagina_inicial->get_os_abertas(),
-				'os_fechadas_ano'=>$this->pagina_inicial->get_os_fechadas_ano(),
-				'prazos'=>$this->pagina_inicial->get_prazos()
-		 	);
-		 	$this->load->view("principal.php", $data);
-		} else {
-			$data = array(
-				"scripts" => array(
-					"util.js",
-					"login.js" 
-				),
-			);
-			$this->load->view("login.php", $data);
-		}
-		//$this->load->view("login.php", $data);
+		$this->load->view("login.php", $data);
 	}
 
 	public function acesso(){
@@ -53,9 +35,11 @@ class Login_Controller extends CI_Controller {
 			$result = $this->login_model->get_acesso_sistema($username);
 			if ($result) {
 				$user_id = $result->nome_usuario;
+				$id_autorizada = $result->id_autorizada;
 				$password_hash = $result->senha;
 				if (password_verify($password, $password_hash)) {
 					$this->session->set_userdata("user_id", $user_id);
+					$this->session->set_userdata("autorizada",$id_autorizada);
 				} else {
 					$json["status"] = 0;
 				}
@@ -74,6 +58,8 @@ class Login_Controller extends CI_Controller {
 	public function logout(){
 
 		$this->session->unset_userdata("user_id");
+		$this->session->unset_userdata("autorizada");
+		$this->session->unset_userdata("nome_autorizada");
 		$this->index();
 	}
 

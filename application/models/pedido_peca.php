@@ -8,24 +8,26 @@ class pedido_peca extends CI_Model
 		parent::__construct();
 	}
 
-	public function nova_peca($descricao,$codigo,$valor,$quantidade) {
+	public function nova_peca($descricao,$codigo,$valor,$quantidade,$id_autorizada) {
 
 		$data = array(
 			'descricao_peca'=>$descricao,
 			'valor_peca_unidade'=>$valor,
 			'quantidade_peca'=>$quantidade,
-			'codigo_peca'=>$codigo
+			'codigo_peca'=>$codigo,
+			'id_autorizada'=>$id_autorizada
 		);
 
 		$this->db->insert('peca',$data);
 
 	}
 
-	public function pecas() {
+	public function pecas($id_autorizada) {
 
 		$this->db
 			->select('*')
-			->from('peca');
+			->from('peca')
+			->where('id_autorizada',$id_autorizada);
 
 		return $this->db->get()->result_array();
 
@@ -65,10 +67,11 @@ class pedido_peca extends CI_Model
 
 	}
 
-	public function fornecedores() {
+	public function fornecedores($id_autorizada) {
 		$this->db
 			->select("*")
-			->from("fornecedor");
+			->from("fornecedor")
+			->where('id_autorizada',$id_autorizada);
 
 		return $this->db->get()->result_array();
 	}
@@ -82,10 +85,11 @@ class pedido_peca extends CI_Model
 		return $this->db->get();
 	}
 
-	public function UltimoPedido() {
+	public function UltimoPedido($id_autorizada) {
 		$this->db
 			->select("num_pedido")
 			->from("pedido_peca")
+			->where("id_autorizada",$id_autorizada)
 			->order_by("num_pedido DESC")
 			->limit(1);
 
@@ -97,16 +101,16 @@ class pedido_peca extends CI_Model
 		return false;
 	}
 
-	public function adicionar_pedido($assunto,$data,$fornecedor,$array) {
-
-		$numero_pedido = (int)$this->UltimoPedido();
+	public function adicionar_pedido($assunto,$data,$fornecedor,$array,$id_autorizada) {
+		$numero_pedido = (int)$this->UltimoPedido($id_autorizada);
 		$numero_pedido++;
 
 		$data = array(
 			'num_pedido'=>$numero_pedido,
 			'assunto_pedido'=>$assunto,
 			'data_pedido'=>$data,
-			'id_fornecedor'=>$fornecedor
+			'id_fornecedor'=>$fornecedor,
+			'id_autorizada'=>$id_autorizada
 		);
 
 		$this->db->insert('pedido_peca',$data);
@@ -119,11 +123,13 @@ class pedido_peca extends CI_Model
 		}
 	}
 
-	public function pedidos () {
+	public function pedidos ($id_autorizada) {
+
 		$this->db
 			->select('*')
 			->from('pedido_peca')
-			->join('fornecedor','pedido_peca.id_fornecedor = fornecedor.id_fornecedor');
+			->join('fornecedor','pedido_peca.id_fornecedor = fornecedor.id_fornecedor')
+			->where('pedido_peca.id_autorizada',$id_autorizada);
 
 		return $this->db->get()->result_array();
 
@@ -170,7 +176,7 @@ class pedido_peca extends CI_Model
 		$data = array(
 			'id_pedido'=>$id_pedido,
 			'id_peca'=>$id_peca,
-			'qtd_peca_pedido'=>$quantidade
+			'qtd_peca_pedido'=>$quantidade,
 		);
 
 		$this->db->insert('pedido_peca_item',$data);

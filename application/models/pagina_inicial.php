@@ -7,12 +7,13 @@ class Pagina_Inicial extends CI_Model
 		parent::__construct();
 	}
 
-	public function get_os_abertas() {
+	public function get_os_abertas($id_autorizada) {
 
 		$this->db
-			->select("count(*)")
+			->select("count(*) as quantidade")
 			->from("ordem_servico")
-			->where("id_status", 1);
+			->where("id_status", 1)
+			->where('id_autorizada',$id_autorizada);
 
 		$result_count_aberta = $this->db->get();
 
@@ -23,13 +24,14 @@ class Pagina_Inicial extends CI_Model
 		}
 	}
 
-	public function get_os_fechadas_ano() {
+	public function get_os_fechadas_ano($id_autorizada) {
 
 		$this->db
-			->select("count(*)")
+			->select("count(*) as 'quantidade'")
 			->from("ordem_servico")
 			->where("YEAR(data_abertura)", DATE('Y'))
-			->where("id_status", 2);
+			->where("id_status", 2)
+			->where('id_autorizada',$id_autorizada);
 
 		$result_count_fechadas = $this->db->get();
 
@@ -40,7 +42,7 @@ class Pagina_Inicial extends CI_Model
 		}
 	}
 
-	public function get_prazos() {
+	public function get_prazos($id_autorizada) {
 		$this->db
 			->select('*')
 			->from('ordem_servico')
@@ -49,12 +51,26 @@ class Pagina_Inicial extends CI_Model
 			->where('ordem_servico.prazo_ordem <> "0000-00-00"')
 			->where('ordem_servico.prazo_ordem <> ""')
 			->where('ordem_servico.id_status', 1)
+			->where('ordem_servico.id_autorizada',$id_autorizada)
 			->order_by('prazo_ordem ASC')
 			->limit(5);
 
 		return $this->db->get()->result_array();
 
 	}
+
+	public function peçasEstoqueQtd($id_autorizada) {
+		$this->db
+			->select('*')
+			->from('peca')
+			->where('quantidade_peca < 10')
+			->where('id_autorizada',$id_autorizada);
+
+		$result =  $this->db->get()->result_array();
+
+		return $result;
+	}
+
 }
 
 ?>
