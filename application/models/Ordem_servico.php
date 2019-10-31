@@ -1,5 +1,5 @@
 <?php
-class Ordem_Servico extends CI_Model
+class Ordem_servico extends CI_Model
 {
 
 	public function __construct()

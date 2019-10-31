@@ -1,6 +1,6 @@
 <?php
 
-class Pagina_Inicial extends CI_Model
+class Pagina_inicial extends CI_Model
 {
 	
 	public function __construct() {

@@ -13,33 +13,28 @@ class Estatisticas extends CI_Controller
 	public function index()
 	{
 
-		$this->load->view('estatisticas');
+		$data = array(
+			'scripts'=>array(
+				'estatisticas.js'
+			)
+		);
+
+		$this->load->view('estatisticas',$data);
 
 	}
 
-	public function qtdOs_ano() {
+	public function graficos() {
 
 		$id_autorizada = $this->session->userdata('autorizada');
+		$id_grafico = $this->input->get('id');
 		$this->load->model('estatistica_model');
 
 		$data = array(
-			'qtdos_ano'=>$this->estatistica_model->est_qtdano($id_autorizada)->result_array()[0]
+			'grafico'=>$this->estatistica_model->graficos_link($id_autorizada,$id_grafico)->result_array()[0]
 		);
 
-		$this->load->view('est_qtdosano',$data);
+		$this->load->view('est_graficos',$data);
 	}
 
-	public function lucroAnualOS() {
-
-		$id_autorizada = $this->session->userdata('autorizada');
-
-		$this->load->model('estatistica_model');
-
-		$data = array(
-			'lucro_ano'=>$this->estatistica_model->lucro_ano($id_autorizada)->result_array()[0]
-		);
-
-		$this->load->view('est_lucroAnualOs',$data);
-	}
 
 }?>

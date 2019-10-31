@@ -123,7 +123,7 @@ include 'scripts.php';
 		</div>
 
 		<div class="row">
-			<!--<a type="button" id="" class="btn btn-primary botao_acao" href="<?php echo base_url();?>EmailController/send">ENVIAR E-MAIL</a>-->
+			<button type="button" id="botaoEmail" class="btn btn-primary botao_acao">ENVIAR E-MAIL</button>
 			<button type="button" id="botaoAlterarPedido" class="btn btn-primary botao_acao">GRAVAR</button>
 			<a href="<?php echo base_url();?>PedidoPeca/index" class="btn btn-danger botao_acao" >CANCELAR</a>
 		</div>

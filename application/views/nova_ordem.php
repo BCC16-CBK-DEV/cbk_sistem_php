@@ -4,10 +4,6 @@
 	include ('scripts.php');
 ?>
 
-<script src="<?php echo base_url(); ?>public/js/addClienteOrdemServico.js"></script>
-<script src="<?php echo base_url(); ?>public/js/util.js"></script>
-<script src="<?php echo base_url(); ?>public/js/ordemServico.js"></script>
-
 <div class="posicao_conteudo">
 
 	<h4 class="titulo_opcoes"><span class="fa fa-plus-circle"></span> Nova OS</h4>
@@ -42,7 +38,7 @@
 					</div>
 				</div>
 
-				<div class="col-sm-4">
+				<div class="col-mb-3">
 					<label>Data de Compra</label>
 					<div class="input-group input-group-sm mb-3 campo_data2">
 						<input type="date" class="form-control" aria-label="Data de Compra do Produto" aria-describedby="inputGroup-sizing-sm"
@@ -79,7 +75,7 @@
 				<label>Defeito Reclamado</label>
 				<div class="input-group input-group-sm mb-3 campo_tamanho4">
 					<input type="text" class="form-control" aria-label="Defeito Apresentado" aria-describedby="inputGroup-sizing-sm"
-						   id="defeito_reclamado_os" name="defeito_reclamado_os">
+						   id="defeito_reclamado_os" name="defeito_reclamado_os" required>
 				</div>
 			<hr class="linha_nova_ordem">
 
@@ -88,7 +84,7 @@
 				<input type="hidden" id="os_cliente_id" name="os_cliente_id">
 				<div class="input-group-sm mb-3 campo_tamanho3 cliente_selecao">
 					<input type="text" readonly=“true” name="os_cliente_nome" id="os_cliente_nome" class="form-control"
-						   aria-label="Nome do Cliente" aria-describedby="inputGroup-sizing-sm">
+						   aria-label="Nome do Cliente" aria-describedby="inputGroup-sizing-sm" required>
 				</div>
 				<a id="InfoCliente" class="btn btn-primary">Informações do Cliente</a>
 				<a id="SelecionarCliente" class="btn btn-primary botao_cliente">Selecionar Cliente</a>

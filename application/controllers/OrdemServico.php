@@ -19,7 +19,11 @@ class OrdemServico extends CI_Controller {
 
 		$this->load->model('ordem_servico');
 		$data = array(
-			'clientes'=>$this->ordem_servico->carregarCliente($this->session->userdata('autorizada'))
+			'clientes'=>$this->ordem_servico->carregarCliente($this->session->userdata('autorizada')),
+			'scripts'=>array(
+				'addClienteOrdemServico.js',
+				'ordemServico.js'
+			)
 		);
 		$this->load->view('nova_ordem',$data);
 	}

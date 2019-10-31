@@ -91,13 +91,17 @@ include "scripts.php";
 				<tbody>
 				<?php
 				foreach ($pecas as $peca):
-					echo '<tr><th scope="row">'.$peca['id_peca'].'</th>';
-					echo '<td>'.$peca['descricao_peca'].'</td>';
-					echo '<td>'.$peca['codigo_peca'].'</td>';
-					echo '<td>'.$peca['quantidade_peca'].'</td>';
-					echo '<td>R$ '.$peca['valor_peca_unidade'].'</td>';
-					echo '<td><a class="botaoAcoesTabela botaoEditar" id="botaoAlterarOrdem" onclick="alterar_peca('.$peca['id_peca'].');"><span class="fa fa-pencil-square-o"></span></a>
-					<a class="botaoAcoesTabela botaoEditar" id="botaoExcluirOrdem" data-toggle="modal" data-target="#msgPecaExclusao" onclick="excluir_peca('.$peca['id_peca'].');" ><span class="fa fa-trash-o"></span></a></td></tr>';
+						if($peca['quantidade_peca'] < 10) {
+							echo '<tr style="background-color: red; color: white;"><th scope="row">' . $peca['id_peca'] . '</th>';
+						} else {
+							echo '<tr><th scope="row">' . $peca['id_peca'] . '</th>';
+						}
+						echo '<td>'.$peca['descricao_peca'].'</td>';
+						echo '<td>'.$peca['codigo_peca'].'</td>';
+						echo '<td>'.$peca['quantidade_peca'].'</td>';
+						echo '<td>R$ '.$peca['valor_peca_unidade'].'</td>';
+						echo '<td><a class="botaoAcoesTabela botaoEditar" id="botaoAlterarOrdem" onclick="alterar_peca('.$peca['id_peca'].');"><span class="fa fa-pencil-square-o"></span></a>
+						<a class="botaoAcoesTabela botaoEditar" id="botaoExcluirOrdem" data-toggle="modal" data-target="#msgPecaExclusao" onclick="excluir_peca('.$peca['id_peca'].');" ><span class="fa fa-trash-o"></span></a></td></tr>';
 				endforeach;?>
 				</tbody>
 			</table>

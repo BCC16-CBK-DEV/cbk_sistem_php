@@ -330,7 +330,7 @@
 }
 
 .campo_data2 {
-	width: 53%;
+
 }
 
 .campo_tamanho2 {
@@ -610,4 +610,20 @@ label {
 	color: white;
 	height: 32px;
 	margin-top: 4%;
+}
+
+/*##############################################################################*/
+
+/* eSTATISTICAS.PHP */
+
+/*##############################################################################*/
+
+#botoesEstatistica:hover {
+	cursor: pointer;
+	color: white;
+}
+
+#botoesEstatistica1:hover {
+	cursor: pointer;
+	color: white;
 }

@@ -130,5 +130,50 @@ class Clientes extends CI_Controller
 		$this->load->model('cliente');
 		$this->cliente->deleteCliente($id_cliente);
 	}
+
+	public function filtroCliente() {
+
+		$nome = $this->input->post('filtro_cliente_nome');
+		$cpf = $this->input->post('filtro_cliente_cpf');
+		$email = $this->input->post('filtro_cliente_email');
+		$celular = $this->input->post('filtro_cliente_celular');
+		$id_autorizada = $this->session->userdata('autorizada');
+
+		if(!empty($nome) && empty($cpf) && empty($email) && empty($celular)){
+			$option = 1;
+		} else if (empty($nome) && !empty($cpf) && empty($email) && empty($celular)) {
+			$option = 2;
+		} else if (empty($nome) && empty($cpf) && !empty($email) && empty($celular)) {
+			$option = 3;
+		} else if (empty($nome) && empty($cpf) && empty($email) && !empty($celular)) {
+			$option = 4;
+		} else if (!empty($nome) && !empty($cpf) && empty($email) && empty($celular)) {
+			$option = 5;
+		} else if (!empty($nome) && empty($cpf) && !empty($email) && empty($celular)) {
+			$option = 6;
+		} else if (!empty($nome) && empty($cpf) && empty($email) && !empty($celular)) {
+			$option = 7;
+		} else if (!empty($nome) && !empty($cpf) && !empty($email) && empty($celular)) {
+			$option = 8;
+		} else if (!empty($nome) && !empty($cpf) && empty($email) && !empty($celular)) {
+			$option = 9;
+		} else if (!empty($nome) && !empty($cpf) && !empty($email) && !empty($celular)) {
+			$option = 10;
+		} else if (empty($nome) && !empty($cpf) && !empty($email) && empty($celular)) {
+			$option = 11;
+		} else if (empty($nome) && !empty($cpf) && empty($email) && !empty($celular)) {
+			$option = 12;
+		} else if (empty($nome) && !empty($cpf) && !empty($email) && !empty($celular)) {
+			$option = 13;
+		}
+
+		$this->load->model('cliente');
+		$data = array(
+			'clientes'=>$this->cliente->filtro_cliente($option,$id_autorizada,$nome,$cpf,$email,$celular)
+		);
+
+		$this->load->view('listagem_clientes',$data);
+
+	}
 }
 ?>

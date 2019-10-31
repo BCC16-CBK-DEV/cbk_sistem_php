@@ -4,6 +4,15 @@ $(function () {
 		$("#AdicionarCliente").modal('show');
 	});
 
+	$('#cliente_cpf').mask("999.999.999-99");
+	$('#filtro_cliente_cpf').mask("999.999.999-99");
+	$('#cliente_rg').mask("99.999.999-9");
+	$('#cliente_celular').mask("(99) 99999-9999");
+	$('#filtro_cliente_celular').mask("(99) 99999-9999");
+	$('#cliente_telefone').mask("(99) 9999-9999");
+	$('#cliente_cep').mask("99999-999");
+
+
 	$("#formulario_cliente").submit(function() {
 		$.ajax({
 			type: "post",

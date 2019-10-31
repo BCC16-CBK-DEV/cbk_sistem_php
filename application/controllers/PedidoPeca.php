@@ -189,13 +189,14 @@ class PedidoPeca extends  CI_Controller
 	public function alterarPedido() {
 
 		$id_pedido = $this->input->get("id");
+		$id_autorizada = $this->session->userdata("autorizada");
 		$this->load->model("pedido_peca");
 		$data = array(
-			'scripts'=>array(
-				'pedidoPeca.js'
+			"scripts"=>array(
+				"pedidoPeca.js"
 			),
-			"pecas"=>$this->pedido_peca->pecas(),
-			"fornecedores"=>$this->pedido_peca->fornecedores(),
+			"pecas"=>$this->pedido_peca->pecas($id_autorizada),
+			"fornecedores"=>$this->pedido_peca->fornecedores($id_autorizada),
 			"info_pedido"=>$this->pedido_peca->carregar_pedido($id_pedido)->result_array()[0],
 			"pecas_pedido"=>$this->pedido_peca->pecas_pedido($id_pedido)
 		);
@@ -271,5 +272,47 @@ class PedidoPeca extends  CI_Controller
 
 		$this->load->model('pedido_peca');
 		$this->pedido_peca->deletePedido($id_pedido);
+	}
+
+	public function enviarPedido() {
+
+		$id_pedido = $this->input->post('id_pedido');
+		$id_fornecedor = $this->input->post('fornecedor');
+		$assunto = $this->input->post('assunto');
+		$data_pedido = $this->input->post('data');
+
+		$this->load->model('pedido_peca');
+		$pedido_info = $this->pedido_peca->carregar_pedido($id_pedido)->result_array()[0];
+		$fornecedor_info = $this->pedido_peca->info_fornecedor($id_fornecedor)->result_array()[0];
+		$pecas_pedido = $this->pedido_peca->pecas_pedido($id_pedido);
+
+
+		$this->load->library('email');
+		$this->email->from('igor492@gmail.com');
+		$this->email->to($fornecedor_info['email_fornecedor']);
+		$this->email->subject($assunto);
+		$this->email->message(
+			'<h4>Pedido nº '.$pedido_info['num_pedido'].'</h4>'.
+			'<br>'.
+			'<p>Data do pedido: '.date("d/m/Y", strtotime($data_pedido)).'</p>'.
+			'<br>'.
+			'<p>Abaixo a lista de peças solicitadas: </p>'.
+			'<table id="tabela_pedido_peca" class="table tabela_os_abertas">'.
+					'<thead class="thead-dark">'.
+					'<tr>'.
+						'<th scope="col">Descrição Peça</th>'.
+						'<th scope="col">Código da Peça</th>'.
+						'<th scope="col">Quantidade</th>'.
+					'</tr>'.
+					'</thead>'.
+					'<tbody></tbody></table>');
+
+		if($this->email->send()){
+			return true;
+		} else {
+			return false;
+		}
+
+
 	}
 }

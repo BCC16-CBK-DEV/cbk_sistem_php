@@ -121,6 +121,51 @@ class Fornecedores extends CI_Controller
 
 	}
 
+	public function filtroFornecedor() {
+
+		$nome = $this->input->post('filtro_fornecedor_nome');
+		$cnpj = $this->input->post('filtro_fornecedor_cnpj');
+		$email = $this->input->post('filtro_fornecedor_email');
+		$telefone = $this->input->post('filtro_fornecedor_telefone');
+		$id_autorizada = $this->session->userdata('autorizada');
+
+		if(!empty($nome) && empty($cnpj) && empty($email) && empty($telefone)){
+			$option = 1;
+		} else if (empty($nome) && !empty($cnpj) && empty($email) && empty($telefone)) {
+			$option = 2;
+		} else if (empty($nome) && empty($cnpj) && !empty($email) && empty($telefone)) {
+			$option = 3;
+		} else if (empty($nome) && empty($cnpj) && empty($email) && !empty($telefone)) {
+			$option = 4;
+		} else if (!empty($nome) && !empty($cnpj) && empty($email) && empty($telefone)) {
+			$option = 5;
+		} else if (!empty($nome) && empty($cnpj) && !empty($email) && empty($telefone)) {
+			$option = 6;
+		} else if (!empty($nome) && empty($cnpj) && empty($email) && !empty($telefone)) {
+			$option = 7;
+		} else if (!empty($nome) && !empty($cnpj) && !empty($email) && empty($telefone)) {
+			$option = 8;
+		} else if (!empty($nome) && !empty($cnpj) && empty($email) && !empty($telefone)) {
+			$option = 9;
+		} else if (!empty($nome) && !empty($cnpj) && !empty($email) && !empty($telefone)) {
+			$option = 10;
+		} else if (empty($nome) && !empty($cnpj) && !empty($email) && empty($telefone)) {
+			$option = 11;
+		} else if (empty($nome) && !empty($cnpj) && empty($email) && !empty($telefone)) {
+			$option = 12;
+		} else if (empty($nome) && !empty($cnpj) && !empty($email) && !empty($telefone)) {
+			$option = 13;
+		}
+
+		$this->load->model('fornecedor');
+		$data = array(
+			'fornecedores'=>$this->fornecedor->filtro_fornecedor($option,$id_autorizada,$nome,$cnpj,$email,$telefone)
+		);
+
+		$this->load->view('listagem_fornecedores',$data);
+
+	}
+
 }
 
 ?>

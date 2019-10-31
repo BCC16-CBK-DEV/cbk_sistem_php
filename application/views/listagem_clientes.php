@@ -11,9 +11,9 @@
 	<hr class="linha_nova_ordem">
 	<div class="centraliza">
 		<div class="barra_pesquisa row">
-			<!--<button class="btn btn-dark botoesBarra" id="botaoFiltro" type="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseFiltro">
+			<button class="btn btn-dark botoesBarra" id="botaoFiltro" type="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseFiltro">
 				<span class="fa fa-search"></span> Filtros
-			</button>-->
+			</button>
 			<a class="btn btn-dark botoesBarra" id="botaoInicio" href="<?php echo base_url();?>Clientes/index">
 				<span class="fa fa-chevron-circle-left"></span> Voltar
 			</a>
@@ -23,52 +23,49 @@
 		</div>
 		<div class="collapse row" id="collapseFiltro">
 			<div class="card card-body">
+				<form id="form_filtro_cliente" method="post" action="<?php echo base_url();?>Clientes/filtroCliente">
 				<div class="linha_filtro row">
-					<div class="col-mb-2">
-						<label>Nº Ordem Inicial</label>
+					<div class="col-lg-6">
+						<label>Nome</label>
 						<div class="input-group input-group-sm mb-3 ">
-							<input type="number" class="form-control" aria-label="Nº Ordem Inicial" aria-describedby="inputGroup-sizing-sm">
+							<input type="text" class="form-control" aria-label="Nome do Cliente" aria-describedby="inputGroup-sizing-sm"
+							id="filtro_cliente_nome" name="filtro_cliente_nome" value="<?php echo $this->input->get_post('filtro_cliente_nome'); ?>">
 						</div>
 					</div>
 					<div class="col-mb-3">
-						<label>Nº Ordem Final</label>
+						<label>CPF</label>
 						<div class="input-group input-group-sm mb-3 ">
-							<input type="number" class="form-control" aria-label="Nº Ordem Final" aria-describedby="inputGroup-sizing-sm">
-						</div>
-					</div>
-					<div class="col-mb-2">
-						<label>Data Inicial</label>
-						<div class="input-group input-group-sm mb-3">
-							<input type="date" class="form-control" aria-label="Data Inicio" aria-describedby="inputGroup-sizing-sm">
-						</div>
-					</div>
-					<div class="col-mb-2">
-						<label>Data Final</label>
-						<div class="input-group input-group-sm mb-3">
-							<input type="date" class="form-control" aria-label="Data Fim" aria-describedby="inputGroup-sizing-sm">
+							<input type="text" class="form-control" aria-label="CPF do Cliente" aria-describedby="inputGroup-sizing-sm"
+								   id="filtro_cliente_cpf" name="filtro_cliente_cpf" value="<?php echo $this->input->get_post('filtro_cliente_cpf'); ?>">
 						</div>
 					</div>
 				</div>
 				<div class="linha_filtro row">
-					<div class="col-mb-5">
-						<label>Descrição do Produto</label>
+					<div class="col-lg-6">
+						<label>e-Mail</label>
 						<div class="input-group input-group-sm">
-							<input type="text" class="form-control" aria-label="Descrição Produto" aria-describedby="inputGroup-sizing-sm">
+							<input type="text" class="form-control" aria-label="e-Mail do Cliente" aria-describedby="inputGroup-sizing-sm"
+								   id="filtro_cliente_email" name="filtro_cliente_email" value="<?php echo $this->input->get_post('filtro_cliente_email'); ?>">
 						</div>
 					</div>
 					<div class="col-mb-7">
-						<label>Nota Fiscal</label>
+						<label>Celular</label>
 						<div class="input-group input-group-sm">
-							<input type="text" class="form-control" aria-label="Nota Fiscal" aria-describedby="inputGroup-sizing-sm">
+							<input type="text" class="form-control" aria-label="Celular do cliente" aria-describedby="inputGroup-sizing-sm"
+							   id="filtro_cliente_celular" name="filtro_cliente_celular" value="<?php echo $this->input->get_post('filtro_cliente_celular'); ?>">
 						</div>
 					</div>
-					<div class="col-mb-7">
-						<label>Código do Produto</label>
-						<div class="input-group input-group-sm">
-							<input type="text" class="form-control" aria-label="Código do Produto" aria-describedby="inputGroup-sizing-sm">
-						</div>
+					<div class="col-mb-3">
+						<label></label>
+						<button class="btn btn-dark botao_filtro" id="botaoFiltro_buscar" type="submit">
+							<span class="fa fa-search"></span> Buscar
+						</button>
+						<a class="btn btn-dark botao_filtro " href="<?php echo base_url(); ?>Clientes/listagem" id="botaoFiltro_limpar">
+							Limpar
+						</a>
 					</div>
 				</div>
+				</form>
 			</div>
 		</div>
 

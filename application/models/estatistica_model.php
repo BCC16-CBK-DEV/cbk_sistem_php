@@ -8,28 +8,17 @@ class estatistica_model extends CI_Model
 		parent::__construct();
 	}
 
-	public function est_qtdano($id_autorizada) {
+	public function graficos_link($id_autorizada,$id_grafico) {
 
 		$this->db
 			->select('*')
 			->from('estatistica_autorizada')
-			->where('id_estatistica_grafico',1)
+			->where('id_estatistica_grafico',$id_grafico)
 			->where('id_autorizada',$id_autorizada);
 
 		return $this->db->get();
 
 	}
 
-	public function lucro_ano($id_autorizada) {
-
-		$this->db
-			->select('*')
-			->from('estatistica_autorizada')
-			->where('id_estatistica_grafico',2)
-			->where('id_autorizada',$id_autorizada);
-
-		return $this->db->get();
-
-	}
 
 }

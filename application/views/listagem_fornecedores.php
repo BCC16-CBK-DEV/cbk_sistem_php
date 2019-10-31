@@ -8,10 +8,10 @@ include ('scripts.php');
 	<h4 class="titulo_opcoes"><span class="fa fa-book"></span> Consultar Fornecedores</h4>
 	<hr class="linha_nova_ordem">
 	<div class="centraliza">
-		<!--<div class="barra_pesquisa row">
+		<div class="barra_pesquisa row">
 			<button class="btn btn-dark botoesBarra" id="botaoFiltro" type="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseFiltro">
 				<span class="fa fa-search"></span> Filtros
-			</button>-->
+			</button>
 			<a class="btn btn-dark botoesBarra" id="botaoInicio" href="<?php echo base_url();?>Clientes/index">
 				<span class="fa fa-chevron-circle-left"></span> Voltar
 			</a>
@@ -21,17 +21,20 @@ include ('scripts.php');
 		</div>
 		<div class="collapse row" id="collapseFiltro">
 			<div class="card card-body">
+				<form method="post" action="<?php echo base_url(); ?>Fornecedores/filtroFornecedor">
 				<div class="linha_filtro row">
 					<div class="col-lg-6">
 						<label>Nome do Fornecedor</label>
 						<div class="input-group input-group-sm mb-3 ">
-							<input type="text" class="form-control" aria-label="Nome do Fornecedor" aria-describedby="inputGroup-sizing-sm">
+							<input type="text" class="form-control" aria-label="Nome do Fornecedor" aria-describedby="inputGroup-sizing-sm"
+							id="filtro_fornecedor_nome" name="filtro_fornecedor_nome" value="<?php echo $this->input->get_post('filtro_fornecedor_nome'); ?>">
 						</div>
 					</div>
 					<div class="col-mb-4">
 						<label>CNPJ</label>
 						<div class="input-group input-group-sm mb-3 ">
-							<input type="text" class="form-control" aria-label="CNPJ" aria-describedby="inputGroup-sizing-sm">
+							<input type="text" class="form-control" aria-label="CNPJ" aria-describedby="inputGroup-sizing-sm"
+							id="filtro_fornecedor_cnpj" name="filtro_fornecedor_cnpj" value="<?php echo $this->input->get_post('filtro_fornecedor_cnpj'); ?>">
 						</div>
 					</div>
 				</div>
@@ -39,13 +42,15 @@ include ('scripts.php');
 					<div class="col-lg-6">
 						<label>e-Mail</label>
 						<div class="input-group input-group-sm">
-							<input type="text" class="form-control" aria-label="e-Mail" aria-describedby="inputGroup-sizing-sm">
+							<input type="text" class="form-control" aria-label="e-Mail" aria-describedby="inputGroup-sizing-sm"
+							id="filtro_fornecedor_email" name="filtro_fornecedor_email" value="<?php echo $this->input->get_post('filtro_fornecedor_email'); ?>">
 						</div>
 					</div>
 					<div class="col-mb-7">
 						<label>Telefone</label>
 						<div class="input-group input-group-sm">
-							<input type="text" class="form-control" aria-label="Telefone" aria-describedby="inputGroup-sizing-sm">
+							<input type="text" class="form-control" aria-label="Telefone" aria-describedby="inputGroup-sizing-sm"
+							id="filtro_fornecedor_telefone" name="filtro_fornecedor_telefone" value="<?php echo $this->input->get_post('filtro_fornecedor_telefone'); ?>">
 						</div>
 					</div>
 					<div class="col-mb-3">
@@ -59,6 +64,7 @@ include ('scripts.php');
 					</div>
 
 				</div>
+				</form>
 			</div>
 		</div>
 

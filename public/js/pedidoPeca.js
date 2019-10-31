@@ -263,6 +263,35 @@ $(function () {
 		return false;
 	});
 
+	$('#botaoEmail').click(function () {
+		id_pedido = $('#id_pedido').val();
+		fornecedor = $('#fornecedor_pedido').val();
+		assunto = $('#assunto_pedido').val();
+		data = $('#data_pedido').val();
+
+		console.log(id_pedido);
+
+		$.ajax({
+			type: "post",
+			url: BASE_URL + "PedidoPeca/enviarPedido",
+			dataType: "json",
+			data: {id_pedido: id_pedido, fornecedor: fornecedor, assunto: assunto, data: data},
+			success: function(json) {
+				if (json["status"] == 1) {
+
+				} else {
+					alert('Enviado');
+				}
+			},
+			error: function(response) {
+				console.log(response);
+			}
+		})
+
+
+
+	});
+
 })
 
 function desbloquearCampoQtd() {

@@ -73,9 +73,6 @@
 			<!--<li><a href=""><i class="fa fa-cog" aria-hidden="true"></i> Configurações</a></li>-->
 		</ul>
 
-		<div class="versao">
-			<p id="txt_versao"><span class="fa fa-microchip"></span> <?php echo $versao_sistema['versao_num']; ?></p>
-		</div>
 	</div>
 
 </body>

@@ -11,9 +11,9 @@
 
 	<div class="botao_ordem">
 		<hr class="linha_menu">
-		<a class="ordem_link nova_ordem" href="<?php echo base_url(); ?>Estatisticas/qtdOs_ano"><span class="fa fa-line-chart"></span> Quantidade de OS/Ano</a>
+		<a class="ordem_link" id="botoesEstatistica" onclick="grafico(1);"><span class="fa fa-line-chart"></span> Quantidade de OS/Ano</a>
 		<hr class="linha_menu">
-		<a class="ordem_link nova_ordem" href="<?php echo base_url(); ?>Estatisticas/lucroAnualOS"><span class="fa fa-line-chart"></span> Lucro de OS/Ano</a>
+		<a class="ordem_link" id="botoesEstatistica1" onclick="grafico(2);"><span class="fa fa-line-chart"></span> Lucro de OS/Ano</a>
 		<hr class="linha_menu">
 
 	</diV>

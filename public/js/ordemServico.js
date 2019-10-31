@@ -1,3 +1,5 @@
+
+
 function alterar_ordem(id_ordem,status) {
 	location.href = BASE_URL + "OrdemServico/editarOrdem?id="+id_ordem+'&status='+status;
 
@@ -36,25 +38,29 @@ $(function () {
 $(function () {
 
 	$("#form_nova_ordem").submit(function() {
-		$.ajax({
-			type: "post",
-			url: BASE_URL + "OrdemServico/novaOrdem",
-			dataType: "json",
-			data: $(this).serialize(),
-			success: function(json) {
-				if (json["status"] == 1) {
-					$('#msgOrdem').html('Ocorreu erro ao cadastrar nova ordem de serviço!');
-				} else {
-					$('#msgOrdemCadastro').modal('show');
-					$('#msgOrdem').html('Ordem de Serviço Cadastrada com Sucesso!');
 
+		if($('#data_abertura_os').val() > $('#data_compra_os').val()) {
+			$.ajax({
+				type: "post",
+				url: BASE_URL + "OrdemServico/novaOrdem",
+				dataType: "json",
+				data: $(this).serialize(),
+				success: function (json) {
+					if (json["status"] == 1) {
+						$('#msgOrdem').html('Ocorreu erro ao cadastrar nova ordem de serviço!');
+					} else {
+						$('#msgOrdemCadastro').modal('show');
+						$('#msgOrdem').html('Ordem de Serviço Cadastrada com Sucesso!');
+
+					}
+				},
+				error: function (response) {
+					console.log(response);
 				}
-			},
-			error: function(response) {
-				console.log(response);
-			}
-		})
-
+			})
+		} else {
+			alert('A data de abertura da Ordem de Serviço não pode ser menor que data de compra do Produto!')
+		}
 
 		return false;
 	});
@@ -93,22 +99,12 @@ $(function () {
 			return false;
 		});
 
-		
-
 		$('#botaoPeca').click(function () {
 			var ordem = $('#id_ordem').val();
 			var option = $('#peca').find(":selected").text();
 			var idPeca = $('#peca').val();
 			var quantidade = $('#quantidade_peca_ordem').val();
 
-			/*var row = $("<tr>");
-
-			row.append($("<td>"+idPeca+"</td>"))
-				.append($("<td>"+option+"</td>"))
-				.append($("<td>"+quantidade+"</td>"))
-				.append($("<td><button onclick='removeLinha(this)'>Remover</button></td>"));
-
-			$("#tabela_peca tbody").append(row);*/
 
 			if (idPeca != 0 ) {
 				$.ajax({
@@ -118,10 +114,7 @@ $(function () {
 					data: {idOrdem: ordem, idPeca: idPeca, quantidade: quantidade},
 					success: function (json) {
 						if (json["status"] == 1) {
-							//$('#msgOrdem').html('Ocorreu erro ao alterar ordem de serviço!');
 						} else {
-							//$('#msgOrdemCadastro').modal('show');
-							//$('#msgOrdem').html('Ordem de Serviço Alterada com Sucesso!');
 							window.location = window.location.href;
 						}
 					},

@@ -7,6 +7,11 @@ $(function () {
 		}
 	});
 
+	$("#cnpj_fornecedor").mask("99.999.999/9999-99");
+	$("#cnpj_fornecedor_alterar").mask("99.999.999/9999-99");
+	$("#telefone_fornecedor").mask("(99) 9999-9999");
+	$("#telefone_fornecedor_alterar").mask("(99) 9999-9999");
+
 	$("#formulario_fornecedor").submit(function() {
 		$.ajax({
 			type: "post",
