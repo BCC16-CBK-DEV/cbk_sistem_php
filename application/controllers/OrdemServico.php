@@ -37,6 +37,16 @@ class OrdemServico extends CI_Controller {
 		$nome = $this->input->post('nome_cliente');
 		$cpf = $this->input->post('cpf_cliente');
 		$celular = $this->input->post('celular_cliente');
+		$rg = $this->input->post('cliente_rg');
+		$cep = $this->input->post('cliente_cep');
+		$endereco = $this->input->post('cliente_endereco');
+		$bairro = $this->input->post('cliente_bairro');
+		$numero = $this->input->post('cliente_numero');
+		$cidade = $this->input->post('cliente_cidade');
+		$email = $this->input->post('cliente_email');
+		$uf = $this->input->post('cliente_uf');
+		$complemento = $this->input->post('cliente_complemento');
+		$telefone = $this->input->post('cliente_telefone');
 		$id_autorizada = $this->session->userdata('autorizada');
 
 		if (empty($nome)) {
@@ -44,7 +54,8 @@ class OrdemServico extends CI_Controller {
 			$json["error_list"]["#nome_cliente"] = "Nome está vazio!";
 		} else {
 			$this->load->model("ordem_servico");
-			$result = $this->ordem_servico->novo_cliente($nome,$cpf,$celular,$id_autorizada);
+			$result = $this->ordem_servico->novo_cliente($nome,$cpf,$rg,$cep,$endereco,$bairro,$numero,$cidade,$email,
+				$uf,$complemento,$telefone,$celular,$id_autorizada);
 			if ($result) {
 				//echo '<script type="javascript">alert("Cadastrado com sucesso!!");</script>';
 			} else {

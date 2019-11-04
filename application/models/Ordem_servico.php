@@ -36,12 +36,23 @@ class Ordem_servico extends CI_Model
 		return $this->db->get();
 	}
 
-	public function novo_cliente($nome,$cpf,$celular,$id_autorizada){
+	public function novo_cliente($nome,$cpf,$rg,$cep,$endereco,$bairro,$numero,$cidade,$email,
+								 $uf,$complemento,$telefone,$celular,$id_autorizada){
 		$data = array(
-		'nome_cliente' => $nome,
-		'cpf' => $cpf,
-		'celular' => $celular,
-		'id_autorizada'=>$id_autorizada);
+			'nome_cliente' => $nome,
+			'cpf' => $cpf,
+			'rg'=>$rg,
+			'cep'=>$cep,
+			'endereco'=>$endereco,
+			'bairro'=>$bairro,
+			'numero'=>$numero,
+			'complemento'=>$complemento,
+			'email'=>$email,
+			'telefone'=>$telefone,
+			'celular' => $celular,
+			'cidade'=>$cidade,
+			'uf'=>$uf,
+			'id_autorizada'=>$id_autorizada);
 
 		$this->db->insert('cliente',$data);
 

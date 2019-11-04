@@ -123,7 +123,7 @@ include 'scripts.php';
 		</div>
 
 		<div class="row">
-			<button type="button" id="botaoEmail" class="btn btn-primary botao_acao">ENVIAR E-MAIL</button>
+			<button type="button" id="botaoEmail" class="btn btn-primary botao_acao"<?php echo $info_pedido['id_status_pedido'] == 2 ? 'disabled':''; ?> >ENVIAR E-MAIL</button>
 			<button type="button" id="botaoAlterarPedido" class="btn btn-primary botao_acao">GRAVAR</button>
 			<a href="<?php echo base_url();?>PedidoPeca/index" class="btn btn-danger botao_acao" >CANCELAR</a>
 		</div>
@@ -171,5 +171,7 @@ include 'scripts.php';
 			</div>
 		</div>
 	</div>
+
+	<div class="load"> <img src="<?php base_url();?>public/images/806.gif"> </div>
 
 </div>

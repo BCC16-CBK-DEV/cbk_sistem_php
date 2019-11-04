@@ -5,8 +5,9 @@ $(function() {
 	});
 
 	$("#cpf_cliente").mask("999.999.999-99");
-	$("#celular_cliente").mask("(99) 99999-9999");
-
+	$("#telefone_cliente").mask("(99) 9999-9999");
+	$("#rg_cliente").mask("99.999.999-9");
+	$("#cep_cliente").mask("99999-999");
 
 	$("#formulario_cliente_os").submit(function() {
 		$.ajax({

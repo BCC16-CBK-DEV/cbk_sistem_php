@@ -274,14 +274,14 @@ $(function () {
 		$.ajax({
 			type: "post",
 			url: BASE_URL + "PedidoPeca/enviarPedido",
-			dataType: "json",
+			dataType: "html",
 			data: {id_pedido: id_pedido, fornecedor: fornecedor, assunto: assunto, data: data},
-			success: function(json) {
-				if (json["status"] == 1) {
-
-				} else {
-					alert('Enviado');
-				}
+			beforeSend: function() {
+				$('.load').show();
+			},
+			success: function(response) {
+				alert('Enviado');
+				$('.load').hide();
 			},
 			error: function(response) {
 				console.log(response);

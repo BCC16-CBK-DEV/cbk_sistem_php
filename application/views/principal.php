@@ -33,6 +33,7 @@
 <table class="table tabela_prazos">
   <thead class="thead-dark">
     <tr>
+      <th scope="col">Número da O.S.</th>
       <th scope="col">Descrição do Produto</th>
       <th scope="col">Cliente</th>
       <th scope="col">Data de abertura</th>
@@ -42,7 +43,8 @@
   <tbody>
     <?php
    	foreach ($prazos as $prazos_os):
-		echo '<tr><th scope="row">'.$prazos_os['descricao_produto'].'</th>';
+		echo '<tr><th scope="row">'.$prazos_os['numero_ordem'].'</th>';
+		echo '<th scope="row">'.$prazos_os['descricao_produto'].'</th>';
 		echo '<td>'.$prazos_os['nome_cliente'].'</td>';
 		echo '<td>'.date("d/m/Y", strtotime($prazos_os['data_abertura'])).'</td>';
 		echo '<td>'.date("d/m/Y", strtotime($prazos_os['prazo_ordem'])).'</td></tr>';
@@ -52,7 +54,7 @@
 
 </div>
 	<?php if(!empty($pecasEstoqueMinima)){ ?>
-	<div class="alert alert-warning" role="alert">
+	<div class="alert alert-warning" id="aviso_peca" role="alert">
 		<span class="fa fa-warning"></span> ATENÇÃO: Estoque abaixo da quantidade mínima requerida. <a id="linkEstoque" href="<?php echo base_url(); ?>PedidoPeca/estoque">Clique aqui</a> para verificar!
 	</div>
 	<?php }	?>

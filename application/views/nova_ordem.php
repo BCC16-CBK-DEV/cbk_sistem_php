@@ -67,7 +67,7 @@
 				<div class="col-3">
 					<label>Voltagem</label>
 					<div class="input-group input-group-sm mb-3 campo_tamanho3">
-						<input type="number" class="form-control" aria-label="Voltagem" aria-describedby="inputGroup-sizing-sm"
+						<input type="text" class="form-control" aria-label="Voltagem" aria-describedby="inputGroup-sizing-sm"
 							   id="voltagem_os" name="voltagem_os">
 					</div>
 				</div>
@@ -98,64 +98,30 @@
 
 		</form>
 
+		<?php include('modal_info_cliente.php');
+		include('modal_selecionar_cliente.php');
+		include('modal_adicionar_cliente.php');
+		?>
 
-
-
-		<!-- MODAL PARA ADICIONAR O CLIENTE -->
-		<div class="modal fade" id="AdicionarCliente"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Novo Cliente</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-
-					<div class="modal-body">
-						<form id="formulario_cliente_os" method="post" action="">
-							<label for="nome_cliente" class="col-form-label">Nome do Cliente</label>
-							<input type="text" class="form-control input-group-sm" id="nome_cliente" name="nome_cliente" required>
-
-							<label for="cpf" class="col-form-label">CPF:</label>
-							<input type="text" class="form-control input-group-sm" id="cpf_cliente" name="cpf_cliente" required>
-
-							<label for="celular" class="col-form-label">Celular:</label>
-							<input type="text" class="form-control input-group-sm" id="celular_cliente" name="celular_cliente">
-
-							<hr>
-							<button type="button" class="btn btn-secondary" data-dismiss="modal" id="botaoCancelar">Cancelar</button>
-							<button type="submit" class="btn btn-success" id="botaoCadastrar">Cadastrar</button>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<p class="help-block"></p>
-
-					</div>
-
+	<!-- MENSAGEM DE CLIENTE CADASTRADO -->
+	<div class="modal" tabindex="-1" role="dialog" id="msgClienteCadastro">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Novo Cliente</h5>
+					<!--<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+						<span aria-hidden="true">&times;</span>
+					</button>-->
+				</div>
+				<div class="modal-body">
+					<p id="msgCliente"></p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="msgOK" class="btn btn-primary" data-dismiss="modal">OK</button>
 				</div>
 			</div>
 		</div>
-
-		<!-- MENSAGEM DE CLIENTE CADASTRADO -->
-		<div class="modal" tabindex="-1" role="dialog" id="msgClienteCadastro">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title">Novo Cliente</h5>
-						<!--<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-							<span aria-hidden="true">&times;</span>
-						</button>-->
-					</div>
-					<div class="modal-body">
-						<p id="msgCliente"></p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" id="msgOK" class="btn btn-primary" data-dismiss="modal">OK</button>
-					</div>
-				</div>
-			</div>
-		</div>
+	</div>
 
 	<!-- MENSAGEM DE ORDEM SERVICO -->
 	<div class="modal" tabindex="-1" role="dialog" id="msgOrdemCadastro">
@@ -176,15 +142,5 @@
 			</div>
 		</div>
 	</div>
-
-		<script type="javascript">
-
-		</script>
-
-
-		<?php include('modal_info_cliente.php');
-		include('modal_selecionar_cliente.php');
-		?>
-
 
 </div>

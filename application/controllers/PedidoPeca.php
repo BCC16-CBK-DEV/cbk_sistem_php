@@ -280,34 +280,29 @@ class PedidoPeca extends  CI_Controller
 		$id_fornecedor = $this->input->post('fornecedor');
 		$assunto = $this->input->post('assunto');
 		$data_pedido = $this->input->post('data');
+		$id_autorizada = $this->session->userdata('autorizada');
 
 		$this->load->model('pedido_peca');
-		$pedido_info = $this->pedido_peca->carregar_pedido($id_pedido)->result_array()[0];
 		$fornecedor_info = $this->pedido_peca->info_fornecedor($id_fornecedor)->result_array()[0];
-		$pecas_pedido = $this->pedido_peca->pecas_pedido($id_pedido);
+		$data = array(
+			'data_pedido'=>$data_pedido,
+			'pedido_info'=> $this->pedido_peca->carregar_pedido($id_pedido)->result_array()[0],
+			'pecas_pedido'=>$this->pedido_peca->pecas_pedido($id_pedido),
+			'autorizada'=>$this->pedido_peca->info_autorizada($id_autorizada)->result_array()[0]);
 
+		$body = $this->load->view('corpo_email',$data,true);
 
 		$this->load->library('email');
 		$this->email->from('igor492@gmail.com');
 		$this->email->to($fornecedor_info['email_fornecedor']);
 		$this->email->subject($assunto);
-		$this->email->message(
-			'<h4>Pedido nº '.$pedido_info['num_pedido'].'</h4>'.
-			'<br>'.
-			'<p>Data do pedido: '.date("d/m/Y", strtotime($data_pedido)).'</p>'.
-			'<br>'.
-			'<p>Abaixo a lista de peças solicitadas: </p>'.
-			'<table id="tabela_pedido_peca" class="table tabela_os_abertas">'.
-					'<thead class="thead-dark">'.
-					'<tr>'.
-						'<th scope="col">Descrição Peça</th>'.
-						'<th scope="col">Código da Peça</th>'.
-						'<th scope="col">Quantidade</th>'.
-					'</tr>'.
-					'</thead>'.
-					'<tbody></tbody></table>');
+		$this->email->message($body);
+
+		echo $this->email->print_debugger();
+
 
 		if($this->email->send()){
+			$this->pedido_peca->updateSituacaoPedido($id_pedido);
 			return true;
 		} else {
 			return false;

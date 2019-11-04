@@ -197,6 +197,20 @@ class Pedido_peca extends CI_Model
 
 	}
 
+	public function info_autorizada($id_autorizada) {
+		$this->db
+			->select('*')
+			->from('autorizada')
+			->where('id_autorizada',$id_autorizada);
 
+		return $this->db->get();
+
+	}
+
+	public function updateSituacaoPedido($id_pedido) {
+		$this->db->set('id_status_pedido',2);
+		$this->db->where('id_pedido_peca',$id_pedido);
+		$this->db->update('pedido_peca');
+	}
 
 }
