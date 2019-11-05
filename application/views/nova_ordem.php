@@ -30,19 +30,19 @@
 					</div>
 				</div>
 
-				<div class="col-sm-4">
-					<label>Código do Produto</label>
-					<div class="input-group input-group-sm mb-3 campo_tamanho1">
-						<input type="text" class="form-control" aria-label="Código do Produto" aria-describedby="inputGroup-sizing-sm"
-							   id="codigo_produto_os" name="codigo_produto_os" required>
-					</div>
-				</div>
-
 				<div class="col-mb-3">
 					<label>Data de Compra</label>
 					<div class="input-group input-group-sm mb-3 campo_data2">
 						<input type="date" class="form-control" aria-label="Data de Compra do Produto" aria-describedby="inputGroup-sizing-sm"
 							   id="data_compra_os" name="data_compra_os" required>
+					</div>
+				</div>
+
+				<div class="col-sm-4 espaco">
+					<label>Código do Produto</label>
+					<div class="input-group input-group-sm mb-3 campo_tamanho1">
+						<input type="text" class="form-control" aria-label="Código do Produto" aria-describedby="inputGroup-sizing-sm"
+							   id="codigo_produto_os" name="codigo_produto_os" required>
 					</div>
 				</div>
 			</div>

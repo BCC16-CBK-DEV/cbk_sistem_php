@@ -6,6 +6,8 @@ $(function() {
 
 	$("#cpf_cliente").mask("999.999.999-99");
 	$("#telefone_cliente").mask("(99) 9999-9999");
+	$("#celular_cliente").mask("(99) 99999-9999");
+	$("#cliente_telefone").mask("(99) 9999-9999");
 	$("#rg_cliente").mask("99.999.999-9");
 	$("#cep_cliente").mask("99999-999");
 

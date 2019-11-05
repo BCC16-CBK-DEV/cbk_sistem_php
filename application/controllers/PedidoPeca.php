@@ -292,8 +292,17 @@ class PedidoPeca extends  CI_Controller
 
 		$body = $this->load->view('corpo_email',$data,true);
 
+		$this->load->model('configuracoes_model');
+
+		$result = $this->configuracoes_model->autorizada($id_autorizada)->result_array()[0];
+
 		$this->load->library('email');
-		$this->email->from('igor492@gmail.com');
+		$this->email->set_smtp_host($result['smtp_host_autorizada']);
+		$this->email->set_smtp_port($result['smtp_porta_autorizada']);
+		$this->email->set_protocol($result['protocolo_email_autorizada']);
+		$this->email->set_smtp_user($result['email_autorizada']);
+		$this->email->set_smtp_pass($result['senha_email_autorizada']);
+		$this->email->from($result['email_autorizada']);
 		$this->email->to($fornecedor_info['email_fornecedor']);
 		$this->email->subject($assunto);
 		$this->email->message($body);
