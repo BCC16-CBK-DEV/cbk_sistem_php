@@ -89,9 +89,12 @@
 					echo '<td>'.$cliente['cpf'].'</td>';
 					echo '<td>'.$cliente['email'].'</td>';
 					echo '<td>'.$cliente['celular'].'</td>';
-					echo '<td><a class="botaoAcoesTabela botaoEditar" onclick="alterar_cliente('.$cliente['id_cliente'].');"><span class="fa fa-pencil-square-o"></span></a>
-					<a class="botaoAcoesTabela botaoExcluir"  data-toggle="modal" data-target="#msgClienteExclusao" onclick="excluir_cliente('.$cliente['id_cliente'].');" ><span class="fa fa-trash-o"></span></a></td></tr>';
-				endforeach;?>
+					echo '<td><a class="botaoAcoesTabela botaoEditar" onclick="alterar_cliente('.$cliente['id_cliente'].');"><span class="fa fa-pencil-square-o"></span></a>';
+					if ($this->session->userdata('departamento') == 1) {
+						echo '<a class="botaoAcoesTabela botaoExcluir"  data-toggle="modal" data-target="#msgClienteExclusao" onclick="excluir_cliente(' . $cliente['id_cliente'] . ');" ><span class="fa fa-trash-o"></span></a>';
+					}
+					echo '</td></tr>';
+					endforeach;?>
 				</tbody>
 			</table>
 		</div>

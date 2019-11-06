@@ -182,7 +182,7 @@ include ('scripts.php');
 			<div class="col-3">
 				<label>Voltagem</label>
 				<div class="input-group input-group-sm mb-3 campo_tamanho3">
-					<input type="number" class="form-control" aria-label="Voltagem" aria-describedby="inputGroup-sizing-sm"
+					<input type="text" class="form-control" aria-label="Voltagem" aria-describedby="inputGroup-sizing-sm"
 						   id="voltagem_os" name="voltagem_os" value="<?php echo $os['voltagem']; ?>">
 				</div>
 			</div>

@@ -3,9 +3,6 @@ include "header.php";
 include "scripts.php";
 ?>
 
-<!--<script src="<?php //echo base_url(); ?>public/js/util.js"></script>-->
-
-
 <div class="posicao_conteudo">
 	<h4 class="titulo_opcoes"><span class="fa fa-tasks"></span> Estoque de Peças</h4>
 	<hr class="linha_nova_ordem">
@@ -20,9 +17,9 @@ include "scripts.php";
 			<a class="btn btn-dark botoesBarra" id="botaoInicio" href="<?php echo base_url();?>PedidoPeca/index">
 				<span class="fa fa-chevron-circle-left"></span> Voltar
 			</a>
-			<!--<button class="btn btn-dark botoesBarra" id="botaoFiltro" type="button">
+			<button class="btn btn-dark botoesBarra" id="botaoFiltro" type="button">
 				Relatório
-			</button>-->
+			</button>
 		</div>
 		<div class="collapse row" id="collapseFiltro">
 			<div class="card card-body">
@@ -100,8 +97,12 @@ include "scripts.php";
 						echo '<td>'.$peca['codigo_peca'].'</td>';
 						echo '<td>'.$peca['quantidade_peca'].'</td>';
 						echo '<td>R$ '.$peca['valor_peca_unidade'].'</td>';
-						echo '<td><a class="botaoAcoesTabela botaoEditar" id="botaoAlterarOrdem" onclick="alterar_peca('.$peca['id_peca'].');"><span class="fa fa-pencil-square-o"></span></a>
-						<a class="botaoAcoesTabela botaoEditar" id="botaoExcluirOrdem" data-toggle="modal" data-target="#msgPecaExclusao" onclick="excluir_peca('.$peca['id_peca'].');" ><span class="fa fa-trash-o"></span></a></td></tr>';
+
+						echo '<td><a class="botaoAcoesTabela botaoEditar" id="botaoAlterarOrdem" onclick="alterar_peca('.$peca['id_peca'].');"><span class="fa fa-pencil-square-o"></span></a>';
+						if ($this->session->userdata('departamento') == 1) {
+							echo '<a class="botaoAcoesTabela botaoEditar" id="botaoExcluirOrdem" data-toggle="modal" data-target="#msgPecaExclusao" onclick="excluir_peca(' . $peca['id_peca'] . ');" ><span class="fa fa-trash-o"></span></a>';
+						}
+						echo '</td></tr>';
 				endforeach;?>
 				</tbody>
 			</table>

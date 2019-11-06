@@ -20,11 +20,12 @@ class Inicio extends CI_Controller {
 		$this->load->model('pagina_inicial');
 
 		$id_autorizada = $this->session->userdata('autorizada');
+		$id_usuario = $this->session->userdata('id_usuario');
 
 		$data = array(
 			'os_aberta'=>$this->pagina_inicial->get_os_abertas($id_autorizada),
 			'os_fechadas_ano'=>$this->pagina_inicial->get_os_fechadas_ano($id_autorizada),
-			'prazos'=>$this->pagina_inicial->get_prazos($id_autorizada),
+			'prazos'=>$this->pagina_inicial->get_prazos($id_autorizada,$id_usuario),
 			'pecasEstoqueMinima'=>$this->pagina_inicial->peçasEstoqueQtd($id_autorizada)
 		);
 		$this->load->view('header.php');

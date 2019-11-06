@@ -810,8 +810,7 @@ class Ordem_servico extends CI_Model
 			->select('id_usuario,nome_completo')
 			->from('usuario')
 			->where('id_autorizada',$id_autorizada)
-			->where('id_departamento',2)
-			->or_where('id_departamento',1);
+			->where('id_departamento < 3');
 
 		return $this->db->get()->result_array();;
 

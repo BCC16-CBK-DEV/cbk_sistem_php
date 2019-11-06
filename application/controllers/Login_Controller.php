@@ -35,11 +35,15 @@ class Login_Controller extends CI_Controller {
 			$result = $this->login_model->get_acesso_sistema($username);
 			if ($result) {
 				$user_id = $result->nome_usuario;
+				$id_usuario = $result->id_usuario;
 				$id_autorizada = $result->id_autorizada;
+				$departamento = $result->id_departamento;
 				$password_hash = $result->senha;
 				if (password_verify($password, $password_hash)) {
 					$this->session->set_userdata("user_id", $user_id);
+					$this->session->set_userdata("id_usuario", $id_usuario);
 					$this->session->set_userdata("autorizada",$id_autorizada);
+					$this->session->set_userdata("departamento",$departamento);
 				} else {
 					$json["status"] = 0;
 				}

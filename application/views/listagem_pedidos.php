@@ -8,9 +8,9 @@ include 'scripts.php';
 	<hr class="linha_nova_ordem">
 	<div class="centraliza">
 		<div class="barra_pesquisa row">
-			<!--<button class="btn btn-dark botoesBarra" id="botaoFiltro" type="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseFiltro">
+			<button class="btn btn-dark botoesBarra" id="botaoFiltroPedido" type="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseFiltro">
 				<span class="fa fa-search"></span> Filtros
-			</button>-->
+			</button>
 			<a class="btn btn-dark botoesBarra" id="botaoInicio" href="<?php echo base_url();?>PedidoPeca/index">
 				<span class="fa fa-chevron-circle-left"></span> Voltar
 			</a>
@@ -20,26 +20,29 @@ include 'scripts.php';
 		</div>
 		<div class="collapse row" id="collapseFiltro">
 			<div class="card card-body">
+				<form method="post" id="formulario_pedido_filtro" action="<?php echo base_url(); ?>PedidoPeca/filtro_pedido">
 				<div class="linha_filtro row">
-					<div class="col-mb-2">
-						<label>Nº Ordem Inicial</label>
+					<div class="col-lg-3">
+						<label>Nº Pedido Inicial</label>
 						<div class="input-group input-group-sm mb-3 ">
-							<input type="number" class="form-control" aria-label="Nº Ordem Inicial" aria-describedby="inputGroup-sizing-sm">
+							<input type="number" class="form-control" aria-label="Nº Pedido Inicial" aria-describedby="inputGroup-sizing-sm"
+								   id="filtro_numero_pedido_inicial" name="filtro_numero_pedido_inicial">
 						</div>
 					</div>
-					<div class="col-mb-3">
-						<label>Nº Ordem Final</label>
+					<div class="col-lg-3">
+						<label>Nº Pedido Final</label>
 						<div class="input-group input-group-sm mb-3 ">
-							<input type="number" class="form-control" aria-label="Nº Ordem Final" aria-describedby="inputGroup-sizing-sm">
+							<input type="number" class="form-control" aria-label="Nº Pedido Final" aria-describedby="inputGroup-sizing-sm"
+							id="filtro_numero_pedido_final" name="filtro_numero_pedido_final">
 						</div>
 					</div>
-					<div class="col-mb-2">
+					<div class="col-lg-3">
 						<label>Data Inicial</label>
 						<div class="input-group input-group-sm mb-3">
 							<input type="date" class="form-control" aria-label="Data Inicio" aria-describedby="inputGroup-sizing-sm">
 						</div>
 					</div>
-					<div class="col-mb-2">
+					<div class="col-lg-3">
 						<label>Data Final</label>
 						<div class="input-group input-group-sm mb-3">
 							<input type="date" class="form-control" aria-label="Data Fim" aria-describedby="inputGroup-sizing-sm">
@@ -47,25 +50,36 @@ include 'scripts.php';
 					</div>
 				</div>
 				<div class="linha_filtro row">
-					<div class="col-mb-5">
-						<label>Descrição do Produto</label>
+					<div class="col-lg-5">
+						<label>Assunto</label>
 						<div class="input-group input-group-sm">
-							<input type="text" class="form-control" aria-label="Descrição Produto" aria-describedby="inputGroup-sizing-sm">
+							<input type="text" class="form-control" aria-label="Assunto" aria-describedby="inputGroup-sizing-sm">
 						</div>
 					</div>
-					<div class="col-mb-7">
-						<label>Nota Fiscal</label>
+					<div class="col-lg-4">
+						<label>Fornecedor</label>
 						<div class="input-group input-group-sm">
-							<input type="text" class="form-control" aria-label="Nota Fiscal" aria-describedby="inputGroup-sizing-sm">
+							<select id="fornecedor_pedido" name="fornecedor_pedido" class="form-control form-control-sm ">
+								<option value="0">Selecionar Fornecedor</option>
+								<?php
+								foreach($fornecedores as $forn):
+									echo '<option value="'.$forn['id_fornecedor'].'">'.$forn['nome_fornecedor'].'</option>';
+								endforeach;
+								?>
+							</select>
 						</div>
 					</div>
-					<div class="col-mb-7">
-						<label>Código do Produto</label>
-						<div class="input-group input-group-sm">
-							<input type="text" class="form-control" aria-label="Código do Produto" aria-describedby="inputGroup-sizing-sm">
-						</div>
+					<div class="col-mb-3">
+						<label></label>
+						<button class="btn btn-dark botao_filtro" id="botaoFiltro_buscar" type="submit">
+							<span class="fa fa-search"></span> Buscar
+						</button>
+						<a class="btn btn-dark botao_filtro " href="<?php echo base_url(); ?>Clientes/listagem" id="botaoFiltro_limpar">
+							Limpar
+						</a>
 					</div>
 				</div>
+				</form>
 			</div>
 		</div>
 
@@ -87,8 +101,11 @@ include 'scripts.php';
 					echo '<td>'.$ped['assunto_pedido'].'</td>';
 					echo '<td>'.date("d/m/Y", strtotime($ped['data_pedido'])).'</td>';
 					echo '<td>'.$ped['nome_fornecedor'].'</td>';
-					echo '<td><a class="botaoAcoesTabela botaoEditar" onclick="alterar_pedido('.$ped['id_pedido_peca'].');"><span class="fa fa-pencil-square-o"></span></a>
-					<a class="botaoAcoesTabela botaoExcluir"  data-toggle="modal" data-target="#msgPedidoExclusao" onclick="excluir_pedido('.$ped['id_pedido_peca'].');"><span class="fa fa-trash-o"></span></a></td></tr>';
+					echo '<td><a class="botaoAcoesTabela botaoEditar" onclick="alterar_pedido('.$ped['id_pedido_peca'].');"><span class="fa fa-pencil-square-o"></span></a>';
+					if($this->session->userdata('departamento') == 1) {
+						echo '<a class="botaoAcoesTabela botaoExcluir"  data-toggle="modal" data-target="#msgPedidoExclusao" onclick="excluir_pedido(' . $ped['id_pedido_peca'] . ');"><span class="fa fa-trash-o"></span></a>';
+					}
+					echo '</td></tr>';
 				endforeach;?>
 				</tbody>
 			</table>

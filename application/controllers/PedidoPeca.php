@@ -180,7 +180,8 @@ class PedidoPeca extends  CI_Controller
 		$this->load->model('pedido_peca');
 		$data = array(
 			'scripts'=>array('pedidoPeca.js'),
-			'pedidos'=>$this->pedido_peca->pedidos($id_autorizada)
+			'pedidos'=>$this->pedido_peca->pedidos($id_autorizada),
+			'fornecedores'=>$this->pedido_peca->fornecedores($id_autorizada)
 		);
 
 		$this->load->view('listagem_pedidos',$data);

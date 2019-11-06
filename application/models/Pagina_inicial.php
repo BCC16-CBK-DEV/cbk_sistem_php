@@ -42,7 +42,7 @@ class Pagina_inicial extends CI_Model
 		}
 	}
 
-	public function get_prazos($id_autorizada) {
+	public function get_prazos($id_autorizada,$id_tecnico) {
 		$this->db
 			->select('*')
 			->from('ordem_servico')
@@ -51,6 +51,7 @@ class Pagina_inicial extends CI_Model
 			->where('ordem_servico.prazo_ordem <> "0000-00-00"')
 			->where('ordem_servico.prazo_ordem <> ""')
 			->where('ordem_servico.id_status', 1)
+			->where('ordem_servico.id_tecnico',$id_tecnico)
 			->where('ordem_servico.id_autorizada',$id_autorizada)
 			->order_by('prazo_ordem ASC')
 			->limit(5);

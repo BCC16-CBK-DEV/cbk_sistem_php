@@ -70,7 +70,9 @@
 			<li><a href="<?php echo base_url();?>Clientes/index"><i class="fa fa-users" aria-hidden="true"></i> Clientes</a></li>
 			<li><a href="<?php echo base_url();?>Fornecedores/index"><i class="fa fa-book" aria-hidden="true"></i> Fornecedores</a></li>
 			<li><a href="<?php echo base_url(); ?>Estatisticas/index"><i class="fa fa-line-chart"></i> Estatísticas</a></li>
-			<li><a href="<?php echo base_url(); ?>Configuracoes/index"><i class="fa fa-cog" aria-hidden="true"></i> Configurações</a></li>
+			<?php if($this->session->userdata('departamento') == 1){ ?>
+				<li><a href="<?php echo base_url(); ?>Configuracoes/index"><i class="fa fa-cog" aria-hidden="true"></i> Configurações</a></li>
+			<?php } ?>
 		</ul>
 
 	</div>

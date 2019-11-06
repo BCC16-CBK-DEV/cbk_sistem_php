@@ -88,9 +88,11 @@ include ('scripts.php');
 					echo '<td>'.$forn['cnpj_fornecedor'].'</td>';
 					echo '<td>'.$forn['email_fornecedor'].'</td>';
 					echo '<td>'.$forn['telefone_fornecedor'].'</td>';
-					echo '<td><a class="botaoAcoesTabela botaoAlterarListagem" onclick="alterar_fornecedor('.$forn['id_fornecedor'].');"><span class="fa fa-pencil-square-o"></span></a>
-					<a class="botaoAcoesTabela botaoExcluirListagem" data-toggle="modal" data-target="#msgFornecedorExclusao" onclick="excluir_fornecedor('.$forn['id_fornecedor'].');"><span class="fa fa-trash-o"></span></a></td></tr>';
-				endforeach;?>
+					echo '<td><a class="botaoAcoesTabela botaoAlterarListagem" onclick="alterar_fornecedor('.$forn['id_fornecedor'].');"><span class="fa fa-pencil-square-o"></span></a>';
+					if($this->session->userdata('departamento') == 1) {
+						echo '<a class="botaoAcoesTabela botaoExcluirListagem" data-toggle="modal" data-target="#msgFornecedorExclusao" onclick="excluir_fornecedor(' . $forn['id_fornecedor'] . ');"><span class="fa fa-trash-o"></span></a>';
+					}
+					endforeach;?>
 				</tbody>
 			</table>
 		</div>

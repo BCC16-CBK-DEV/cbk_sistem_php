@@ -3,7 +3,6 @@ include ('header.php');
 include ('scripts.php');
 ?>
 <script src="<?php echo base_url(); ?>public/js/ordemServico.js"></script>
-<<!--script src="<?php// echo base_url(); ?>public/js/util.js"></script>-->
 
 <div class="posicao_conteudo">
 
@@ -113,8 +112,11 @@ include ('scripts.php');
 					echo '<td>'.$os['descricao_produto'].'</td>';
 					echo '<td>'.$os['nota_fiscal'].'</td>';
 					echo '<td>'.$os['codigo_produto'].'</td>';
-					echo '<td><a class="botaoAcoesTabela botaoEditar" id="botaoAlterarOrdem" onclick="alterar_ordem('.$os['id_ordem'].',\''.$status.'\');"><span class="fa fa-pencil-square-o"></span></a>
-					<a class="botaoAcoesTabela botaoEditar" id="botaoExcluirOrdem" data-toggle="modal" data-target="#msgOrdemExclusao" onclick="excluir_ordem('.$os['id_ordem'].',\''.$status.'\');"><span class="fa fa-trash-o"></span></a></td></tr>';
+					echo '<td><a class="botaoAcoesTabela botaoEditar" id="botaoAlterarOrdem" onclick="alterar_ordem('.$os['id_ordem'].',\''.$status.'\');"><span class="fa fa-pencil-square-o"></span></a>';
+					if($this->session->userdata('departamento') == 1){
+						echo '<a class="botaoAcoesTabela botaoEditar" id="botaoExcluirOrdem" data-toggle="modal" data-target="#msgOrdemExclusao" onclick="excluir_ordem('.$os['id_ordem'].',\''.$status.'\');"><span class="fa fa-trash-o"></span></a>';
+					}
+					echo '</td></tr>';
 				endforeach;?>
 				</tbody>
 			</table>

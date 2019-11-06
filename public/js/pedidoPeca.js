@@ -19,6 +19,14 @@ $(function () {
 
 	});
 
+	$('#botaoFiltroPedido').click(function () {
+		if($('#collapseFiltro').hasClass('show')){
+			$('#collapseFiltro').collapse('hide');
+		} else {
+			$('#collapseFiltro').collapse('show');
+		}
+	});
+
 	$('#botaoGravarPedido').click(function () {
 		fornecedor = $('#fornecedor_pedido').val();
 		assunto = $('#assunto_pedido').val();
