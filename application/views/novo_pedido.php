@@ -4,7 +4,7 @@ include 'scripts.php';
 ?>
 
 <div class="posicao_conteudo">
-	<h4 class="titulo_opcoes"><span class="fa fa-plus-circle"></span> Novo Pedido de Peça</h4>
+	<h4 class="titulo_opcoes"><span class="fa fa-plus-circle"></span> Cadastro de Pedido de Peça</h4>
 		<hr class="linha_menu_pedido">
 		<div class="row secao_pedido">
 			<div class="row">
@@ -72,7 +72,7 @@ include 'scripts.php';
 					<label>Quantidade</label>
 					<div class="input-group input-group-sm mb-">
 						<input type="number" class="form-control" aria-label="Quantidade Peça" readonly="true" aria-describedby="inputGroup-sizing-sm"
-							   id="quantidade_peca_ordem" name="quantidade_peca_ordem">
+							   id="quantidade_peca_pedido" name="quantidade_peca_pedido">
 					</div>
 				</div>
 				<a id="botaoPeca" class="btn btn-primary">Adicionar Peça</a>
