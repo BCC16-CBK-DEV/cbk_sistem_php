@@ -11,7 +11,7 @@ include ('scripts.php');
 
 	<div class="botao_ordem">
 		<hr class="linha_menu">
-		<a class="ordem_link nova_ordem" href="<?php echo base_url(); ?>Fornecedores/novo_fornecedor"><span class="fa fa-user-plus"></span> Novo Fornecedor</a>
+		<a class="ordem_link nova_ordem" href="<?php echo base_url(); ?>Fornecedores/novo_fornecedor"><span class="fa fa-user-plus"></span> Cadastro de Fornecedor</a>
 		<hr class="linha_menu">
 		<a class="ordem_link" href="<?php echo base_url(); ?>Fornecedores/listagem"><span class="fa fa-book"></span>
 			Consultar Fornecedores</a>

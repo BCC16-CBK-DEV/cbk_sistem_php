@@ -11,7 +11,7 @@
 
 	<div class="botao_ordem">
 		<hr class="linha_menu">
-		<a class="ordem_link nova_ordem" href="<?php echo base_url(); ?>Clientes/novo_cliente"><span class="fa fa-user-plus"></span> Novo Cliente</a>
+		<a class="ordem_link nova_ordem" href="<?php echo base_url(); ?>Clientes/novo_cliente"><span class="fa fa-user-plus"></span> Cadastro de Cliente</a>
 		<hr class="linha_menu">
 		<a class="ordem_link" href="<?php echo base_url(); ?>Clientes/listagem"><span class="fa fa-users"></span>
 			Consultar Clientes</a>

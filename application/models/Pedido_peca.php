@@ -76,6 +76,18 @@ class Pedido_peca extends CI_Model
 		return $this->db->get()->result_array();
 	}
 
+	public function pedidos ($id_autorizada) {
+
+		$this->db
+			->select('*')
+			->from('pedido_peca')
+			->join('fornecedor','pedido_peca.id_fornecedor = fornecedor.id_fornecedor')
+			->where('pedido_peca.id_autorizada',$id_autorizada);
+
+		return $this->db->get()->result_array();
+
+	}
+
 	public function info_fornecedor($id_fornecedor) {
 		$this->db
 			->select("*")
@@ -101,116 +113,554 @@ class Pedido_peca extends CI_Model
 		return false;
 	}
 
-	public function adicionar_pedido($assunto,$data,$fornecedor,$array,$id_autorizada) {
-		$numero_pedido = (int)$this->UltimoPedido($id_autorizada);
-		$numero_pedido++;
+	public function filtro_pedido ($option,$numero_inicial,$numero_final,$data_inicial,$data_final,$assunto,
+								   $fornecedor,$id_autorizada) {
 
-		$data = array(
-			'num_pedido'=>$numero_pedido,
-			'assunto_pedido'=>$assunto,
-			'data_pedido'=>$data,
-			'id_fornecedor'=>$fornecedor,
-			'id_autorizada'=>$id_autorizada
-		);
+		switch ($option) {
+			case '1':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND num_pedido >='.$numero_inicial);
 
-		$this->db->insert('pedido_peca',$data);
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
 
-		for($i = 0; $i < count($array); $i++) {
-			$query = $this->db->query('INSERT INTO pedido_peca_item (id_peca,id_pedido,qtd_peca_pedido) VALUES (
-			'.$array[$i][0].',(SELECT MAX(id_pedido_peca) FROM pedido_peca),'.$array[$i][1].');');
+			case '2':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND num_pedido >='.$numero_final);
 
-			//return $query;
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '3':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND data_pedido <= "'.$data_inicial.'"');
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '4':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND data_pedido <= "'.$data_final.'"');
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '5':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND assunto_pedido LIKE "%'.$assunto.'%"');
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '6':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND pedido_peca.id_fornecedor = '.$fornecedor);
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '7':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND num_pedido >='.$numero_inicial.' AND num_pedido <= '.$numero_final);
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '8':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND num_pedido >='.$numero_inicial.' AND num_pedido <= '.$numero_final.' AND data_pedido >= "'.$data_inicial.'"');
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+
+			case '9':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND num_pedido >='.$numero_inicial.' AND num_pedido <= '.$numero_final.' AND data_pedido >= "'.$data_inicial.'" AND data_pedido <= "'.$data_final.'"');
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '10':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND num_pedido >='.$numero_inicial.' AND num_pedido <= '.$numero_final.' AND data_pedido >= "'.$data_inicial.'" AND data_pedido <= "'.$data_final.'" AND assunto_pedido LIKE "%'.$assunto.'%"');
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '11':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND num_pedido >='.$numero_inicial.' AND num_pedido <= '.$numero_final.' AND data_pedido >= "'.$data_inicial.'" AND data_pedido <= "'.$data_final.'" AND assunto_pedido LIKE "%'.$assunto.'%" AND pedido_peca.id_fornecedor = '.$fornecedor);
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '12':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND num_pedido >='.$numero_inicial.' AND data_pedido >= "'.$data_inicial.'"');
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '13':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND num_pedido >='.$numero_inicial.' AND data_pedido >= "'.$data_inicial.'" AND data_pedido <= "'.$data_final.'"');
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '14':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND num_pedido >='.$numero_inicial.' AND data_pedido >= "'.$data_inicial.'" AND data_pedido <= "'.$data_final.'" AND assunto_pedido LIKE "%'.$assunto.'%"');
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '15':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND num_pedido >='.$numero_inicial.' AND data_pedido >= "'.$data_inicial.'" 
+				AND data_pedido <= "'.$data_final.'" AND assunto_pedido LIKE "%'.$assunto.'%" AND pedido_peca.id_fornecedor = '.$fornecedor);
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '16':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND num_pedido >='.$numero_inicial.' AND data_pedido <= "'.$data_final.'"');
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '17':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND num_pedido >='.$numero_inicial.' AND data_pedido <= "'.$data_final.'" 
+				AND assunto_pedido LIKE "%'.$assunto.'%"');
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '18':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND num_pedido >='.$numero_inicial.'  AND data_pedido <= "'.$data_final.'" 
+				AND assunto_pedido LIKE "%'.$assunto.'%" AND pedido_peca.id_fornecedor = '.$fornecedor);
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '19':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND num_pedido >='.$numero_inicial.' AND assunto_pedido LIKE "%'.$assunto.'%"');
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '20':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND num_pedido >='.$numero_inicial.' AND assunto_pedido LIKE "%'.$assunto.'%" AND pedido_peca.id_fornecedor = '.$fornecedor);
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '21':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND num_pedido >='.$numero_inicial.' AND pedido_peca.id_fornecedor = '.$fornecedor);
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '22':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND num_pedido <='.$numero_final.'  AND data_pedido >= "'.$data_inicial.'"');
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '23':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND num_pedido <='.$numero_final.'  AND data_pedido >= "'.$data_inicial.'"
+				AND data_pedido <= "'.$data_final.'"');
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '24':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND num_pedido <='.$numero_final.'  AND data_pedido >= "'.$data_inicial.'"
+				AND data_pedido <= "'.$data_final.'" AND assunto_pedido LIKE "%'.$assunto.'%"');
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '25':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND num_pedido <='.$numero_final.'  AND data_pedido >= "'.$data_inicial.'"
+				AND data_pedido <= "'.$data_final.'" AND assunto_pedido LIKE "%'.$assunto.'%" AND pedido_peca.id_fornecedor ='.$fornecedor);
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '26':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND data_pedido >= "'.$data_inicial.'" AND data_pedido <= "'.$data_final.'"');
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '27':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND data_pedido >= "'.$data_inicial.'" AND data_pedido <= "'.$data_final.'"
+				AND assunto_pedido LIKE "%'.$assunto.'%"');
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '28':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND data_pedido >= "'.$data_inicial.'" AND data_pedido <= "'.$data_final.'"
+				AND assunto_pedido LIKE "%'.$assunto.'%" AND pedido_peca.id_fornecedor = '.$fornecedor);
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '29':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND data_pedido <= "'.$data_final.'" AND assunto_pedido LIKE "%'.$assunto.'%"');
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '30':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND data_pedido <= "'.$data_final.'" AND assunto_pedido LIKE "%'.$assunto.'%"
+				AND pedido_peca.id_fornecedor = '.$id_fornecedor);
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '31':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND assunto_pedido LIKE "%'.$assunto.'%" AND pedido_peca.id_fornecedor = '.$fornecedor);
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '32':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND num_pedido >='.$numero_inicial.' AND data_pedido <= "'.$data_final.'"');
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '33':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND num_pedido >='.$numero_inicial.' AND assunto_pedido LIKE "%'.$assunto.'%"');
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '34':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND num_pedido >='.$numero_inicial.' AND pedido_peca.id_fornecedor ='.$fornecedor);
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '35':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND num_pedido <='.$numero_final.' AND data_pedido <= "'.$data_final.'"');
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '36':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND num_pedido <='.$numero_final.' AND assunto_pedido LIKE "%'.$assunto.'%"');
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '37':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND num_pedido <='.$numero_final.' AND pedido_peca.id_fornecedor ='.$fornecedor);
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '38':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND data_pedido >= "'.$data_inicial.'" AND assunto_pedido LIKE "%'.$assunto.'%"');
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '39':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND data_pedido >= "'.$data_inicial.'" AND pedido_peca.id_fornecedor ='.$fornecedor);
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			case '40':
+				$where = ('pedido_peca.id_autorizada = '.$id_autorizada.' AND data_pedido <= "'.$data_final.'" AND pedido_peca.id_fornecedor ='.$fornecedor);
+
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where($where);
+				break;
+
+			default:
+				$this->db
+					->select("*")
+					->from("pedido_peca")
+					->join("fornecedor","pedido_peca.id_fornecedor = fornecedor.id_fornecedor")
+					->where("id_status", 1);
+				break;
+
 		}
-	}
 
-	public function pedidos ($id_autorizada) {
+		$result = $this->db->get()->result_array();
 
-		$this->db
-			->select('*')
-			->from('pedido_peca')
-			->join('fornecedor','pedido_peca.id_fornecedor = fornecedor.id_fornecedor')
-			->where('pedido_peca.id_autorizada',$id_autorizada);
 
-		return $this->db->get()->result_array();
+		return $result;
 
 	}
 
+	public function filtro_estoque($option,$descricao,$codigo,$quantidade,$valor,$id_autorizada) {
 
-	public function pecas_pedido ($id_pedido) {
-		$this->db
-			->select('*')
-			->from('pedido_peca_item')
-			->join('peca','pedido_peca_item.id_peca = peca.id_peca')
-			->where('id_pedido',$id_pedido);
+		switch ($option) {
+			case '1':
+				$where = ('id_autorizada = '.$id_autorizada.' AND descricao_peca LIKE "%'.$descricao.'%"');
 
-		return $this->db->get()->result_array();
+				$this->db
+					->select("*")
+					->from("peca")
+					->where($where);
+				break;
 
-	}
+			case '2':
+				$where = ('id_autorizada = '.$id_autorizada.' AND codigo_peca LIKE "%'.$codigo.'%"');
 
-	public function carregar_pedido ($id_pedido) {
-		$this->db
-			->select('*')
-			->from('pedido_peca')
-			->join('status_pedido','status_pedido.id_status_pedido = pedido_peca.id_status_pedido')
-			->where('id_pedido_peca',$id_pedido);
+				$this->db
+					->select("*")
+					->from("peca")
+					->where($where);
+				break;
 
-		return $this->db->get();
+			case '3':
+				$where = ('id_autorizada = '.$id_autorizada.' AND quantidade_peca ='.$quantidade);
 
-	}
+				$this->db
+					->select("*")
+					->from("peca")
+					->where($where);
+				break;
 
-	public function updatePedido($id_pedido,$assunto,$data,$id_fornecedor) {
+			case '4':
+				$where = ('id_autorizada = '.$id_autorizada.' AND valor_peca_unidade ='.$valor);
 
-		$data = array(
-			'assunto_pedido'=>$assunto,
-			'data_pedido' => $data,
-			'id_fornecedor' => $id_fornecedor
-		);
+				$this->db
+					->select("*")
+					->from("peca")
+					->where($where);
+				break;
 
-		$this->db->where('id_pedido_peca', $id_pedido);
-		$this->db->update('pedido_peca', $data);
+			case '5':
+				$where = ('id_autorizada = '.$id_autorizada.' AND descricao_peca LIKE "%'.$descricao.'%" AND codigo_peca LIKE "%'.$codigo.'%"');
 
-	}
+				$this->db
+					->select("*")
+					->from("peca")
+					->where($where);
+				break;
 
-	public function insertPecaPedido($id_pedido,$id_peca,$quantidade) {
+			case '6':
+				$where = ('id_autorizada = '.$id_autorizada.' AND descricao_peca LIKE "%'.$descricao.'%" AND quantidade_peca ='.$quantidade);
 
-		$data = array(
-			'id_pedido'=>$id_pedido,
-			'id_peca'=>$id_peca,
-			'qtd_peca_pedido'=>$quantidade,
-		);
+				$this->db
+					->select("*")
+					->from("peca")
+					->where($where);
+				break;
 
-		$this->db->insert('pedido_peca_item',$data);
+			case '7':
+				$where = ('id_autorizada = '.$id_autorizada.' AND descricao_peca LIKE "%'.$descricao.'%" AND valor_peca_unidade ='.$valor);
 
-	}
+				$this->db
+					->select("*")
+					->from("peca")
+					->where($where);
+				break;
 
-	public function deletePecaPedido($id_peca_item) {
+			case '8':
+				$where = ('id_autorizada = '.$id_autorizada.' AND codigo_peca LIKE "%'.$codigo.'%" AND quantidade_peca ='.$quantidade);
 
-		$this->db->where('id_peca_item',$id_peca_item);
-		$this->db->delete('pedido_peca_item');
+				$this->db
+					->select("*")
+					->from("peca")
+					->where($where);
+				break;
 
-	}
+			case '9':
+				$where = ('id_autorizada = '.$id_autorizada.' AND codigo_peca LIKE "%'.$codigo.'%" AND valor_peca_unidade ='.$valor);
 
-	public function deletePedido($id_pedido) {
+				$this->db
+					->select("*")
+					->from("peca")
+					->where($where);
+				break;
 
-		$this->db->where('id_pedido_peca',$id_pedido);
-		$this->db->delete('pedido_peca');
+			case '10':
+				$where = ('id_autorizada = '.$id_autorizada.' AND quantidade_peca ='.$quantidade.' AND valor_peca_unidade ='.$valor);
 
-	}
+				$this->db
+					->select("*")
+					->from("peca")
+					->where($where);
+				break;
 
-	public function info_autorizada($id_autorizada) {
-		$this->db
-			->select('*')
-			->from('autorizada')
-			->where('id_autorizada',$id_autorizada);
+			case '11':
+				$where = ('id_autorizada = '.$id_autorizada.' AND descricao_peca LIKE "%'.$descricao.'%" AND codigo_peca LIKE "%'.$codigo.'%" AND quantidade_peca ='.$quantidade.' AND valor_peca_unidade ='.$valor);
 
-		return $this->db->get();
+				$this->db
+					->select("*")
+					->from("peca")
+					->where($where);
+				break;
 
-	}
+			default:
+				$this->db
+					->select("*")
+					->from("peca")
+					->where("id_autorizada", $id_autorizada);
+				break;
 
-	public function updateSituacaoPedido($id_pedido) {
-		$this->db->set('id_status_pedido',2);
-		$this->db->where('id_pedido_peca',$id_pedido);
-		$this->db->update('pedido_peca');
+		}
+
+		$result = $this->db->get()->result_array();
+
+
+		return $result;
+
+
 	}
 
 }

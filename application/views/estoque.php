@@ -8,9 +8,9 @@ include "scripts.php";
 	<hr class="linha_nova_ordem">
 	<div class="centraliza">
 		<div class="barra_pesquisa row">
-			<!--<button class="btn btn-dark botoesBarra" id="botaoFiltro" type="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseFiltro">
+			<button class="btn btn-dark botoesBarra" id="botaoFiltroEstoque" type="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseFiltro">
 				<span class="fa fa-search"></span> Filtros
-			</button>-->
+			</button>
 			<a class="btn btn-dark botoesBarra2" id="botaoNovaPeca" >
 				<span class="fa fa-plus-circle"></span> Nova Peça
 			</a>
@@ -23,52 +23,49 @@ include "scripts.php";
 		</div>
 		<div class="collapse row" id="collapseFiltro">
 			<div class="card card-body">
+				<form method="post" action="<?php echo base_url(); ?>PedidoPeca/filtroEstoque">
 				<div class="linha_filtro row">
-					<div class="col-mb-2">
-						<label>Nº Ordem Inicial</label>
+					<div class="col-lg-4">
+						<label>Descrição da Peça</label>
 						<div class="input-group input-group-sm mb-3 ">
-							<input type="number" class="form-control" aria-label="Nº Ordem Inicial" aria-describedby="inputGroup-sizing-sm">
+							<input type="text" class="form-control" aria-label="Descrição da Peça" aria-describedby="inputGroup-sizing-sm"
+							id="filtro_descricao_peca" name="filtro_descricao_peca" value="<?php echo $this->input->get_post('filtro_descricao_peca'); ?>">
 						</div>
 					</div>
-					<div class="col-mb-3">
-						<label>Nº Ordem Final</label>
+					<div class="col-lg-3">
+						<label>Código da Peça</label>
 						<div class="input-group input-group-sm mb-3 ">
-							<input type="number" class="form-control" aria-label="Nº Ordem Final" aria-describedby="inputGroup-sizing-sm">
+							<input type="text" class="form-control" aria-label="Código da Peça" aria-describedby="inputGroup-sizing-sm"
+								   id="filtro_codigo_peca" name="filtro_codigo_peca" value="<?php echo $this->input->get_post('filtro_codigo_peca'); ?>">
 						</div>
 					</div>
-					<div class="col-mb-2">
-						<label>Data Inicial</label>
-						<div class="input-group input-group-sm mb-3">
-							<input type="date" class="form-control" aria-label="Data Inicio" aria-describedby="inputGroup-sizing-sm">
+					<div class="col-lg-2">
+						<label>Quantidade</label>
+						<div class="input-group input-group-sm">
+							<input type="number" class="form-control" aria-label="Quantidade" aria-describedby="inputGroup-sizing-sm"
+								   id="filtro_quantidade_peca" name="filtro_quantidade_peca" value="<?php echo $this->input->get_post('filtro_quantidade_peca'); ?>">
 						</div>
 					</div>
-					<div class="col-mb-2">
-						<label>Data Final</label>
-						<div class="input-group input-group-sm mb-3">
-							<input type="date" class="form-control" aria-label="Data Fim" aria-describedby="inputGroup-sizing-sm">
+					<div class="col-lg-2">
+						<label>Valor Peça/Un.</label>
+						<div class="input-group input-group-sm">
+							<input type="text" class="form-control" aria-label="Valor da Peça" aria-describedby="inputGroup-sizing-sm"
+								   id="filtro_valor_peca" name="filtro_valor_peca" value="<?php echo $this->input->get_post('filtro_valor_peca'); ?>">
 						</div>
 					</div>
 				</div>
 				<div class="linha_filtro row">
-					<div class="col-mb-5">
-						<label>Descrição do Produto</label>
-						<div class="input-group input-group-sm">
-							<input type="text" class="form-control" aria-label="Descrição Produto" aria-describedby="inputGroup-sizing-sm">
-						</div>
-					</div>
-					<div class="col-mb-7">
-						<label>Nota Fiscal</label>
-						<div class="input-group input-group-sm">
-							<input type="text" class="form-control" aria-label="Nota Fiscal" aria-describedby="inputGroup-sizing-sm">
-						</div>
-					</div>
-					<div class="col-mb-7">
-						<label>Código do Produto</label>
-						<div class="input-group input-group-sm">
-							<input type="text" class="form-control" aria-label="Código do Produto" aria-describedby="inputGroup-sizing-sm">
-						</div>
+					<div class="col-lg-3">
+						<label></label>
+						<button class="btn btn-dark botao_filtro" id="botaoFiltro_buscar" type="submit">
+							<span class="fa fa-search"></span> Buscar
+						</button>
+						<a class="btn btn-dark botao_filtro " href="<?php echo base_url(); ?>PedidoPeca/pedidos" id="botaoFiltro_limpar">
+							Limpar
+						</a>
 					</div>
 				</div>
+				</form>
 			</div>
 		</div>
 

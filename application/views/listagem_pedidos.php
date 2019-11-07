@@ -20,32 +20,34 @@ include 'scripts.php';
 		</div>
 		<div class="collapse row" id="collapseFiltro">
 			<div class="card card-body">
-				<form method="post" id="formulario_pedido_filtro" action="<?php echo base_url(); ?>PedidoPeca/filtro_pedido">
+				<form method="post" id="formulario_pedido_filtro" action="<?php echo base_url(); ?>PedidoPeca/filtroPedido">
 				<div class="linha_filtro row">
 					<div class="col-lg-3">
 						<label>Nº Pedido Inicial</label>
 						<div class="input-group input-group-sm mb-3 ">
 							<input type="number" class="form-control" aria-label="Nº Pedido Inicial" aria-describedby="inputGroup-sizing-sm"
-								   id="filtro_numero_pedido_inicial" name="filtro_numero_pedido_inicial">
+								   id="filtro_numero_inicial" name="filtro_numero_inicial" value="<?php echo $this->input->get_post('filtro_numero_inicial'); ?>">
 						</div>
 					</div>
 					<div class="col-lg-3">
 						<label>Nº Pedido Final</label>
 						<div class="input-group input-group-sm mb-3 ">
 							<input type="number" class="form-control" aria-label="Nº Pedido Final" aria-describedby="inputGroup-sizing-sm"
-							id="filtro_numero_pedido_final" name="filtro_numero_pedido_final">
+							id="filtro_numero_final" name="filtro_numero_final" value="<?php echo $this->input->get_post('filtro_numero_final'); ?>">
 						</div>
 					</div>
 					<div class="col-lg-3">
 						<label>Data Inicial</label>
 						<div class="input-group input-group-sm mb-3">
-							<input type="date" class="form-control" aria-label="Data Inicio" aria-describedby="inputGroup-sizing-sm">
+							<input type="date" class="form-control" aria-label="Data Inicio" aria-describedby="inputGroup-sizing-sm"
+							id="filtro_data_inicial" name="filtro_data_inicial" value="<?php echo $this->input->get_post('filtro_data_inicial'); ?>">
 						</div>
 					</div>
 					<div class="col-lg-3">
 						<label>Data Final</label>
 						<div class="input-group input-group-sm mb-3">
-							<input type="date" class="form-control" aria-label="Data Fim" aria-describedby="inputGroup-sizing-sm">
+							<input type="date" class="form-control" aria-label="Data Fim" aria-describedby="inputGroup-sizing-sm"
+							id="filtro_data_final" name="filtro_data_final" value="<?php echo $this->input->get_post('filtro_data_final'); ?>">
 						</div>
 					</div>
 				</div>
@@ -53,7 +55,8 @@ include 'scripts.php';
 					<div class="col-lg-5">
 						<label>Assunto</label>
 						<div class="input-group input-group-sm">
-							<input type="text" class="form-control" aria-label="Assunto" aria-describedby="inputGroup-sizing-sm">
+							<input type="text" class="form-control" aria-label="Assunto" aria-describedby="inputGroup-sizing-sm"
+							id="filtro_assunto" name="filtro_assunto" value="<?php echo $this->input->get_post('filtro_assunto'); ?>">
 						</div>
 					</div>
 					<div class="col-lg-4">
@@ -63,7 +66,7 @@ include 'scripts.php';
 								<option value="0">Selecionar Fornecedor</option>
 								<?php
 								foreach($fornecedores as $forn):
-									echo '<option value="'.$forn['id_fornecedor'].'">'.$forn['nome_fornecedor'].'</option>';
+									echo '<option value="'.$forn['id_fornecedor'].'" '.($forn['id_fornecedor'] == $this->input->get_post('fornecedor_pedido') ? 'selected':'' ).'>'.$forn['nome_fornecedor'].'</option>';
 								endforeach;
 								?>
 							</select>
@@ -74,7 +77,7 @@ include 'scripts.php';
 						<button class="btn btn-dark botao_filtro" id="botaoFiltro_buscar" type="submit">
 							<span class="fa fa-search"></span> Buscar
 						</button>
-						<a class="btn btn-dark botao_filtro " href="<?php echo base_url(); ?>Clientes/listagem" id="botaoFiltro_limpar">
+						<a class="btn btn-dark botao_filtro " href="<?php echo base_url(); ?>PedidoPeca/pedidos" id="botaoFiltro_limpar">
 							Limpar
 						</a>
 					</div>
