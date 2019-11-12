@@ -68,6 +68,15 @@ $(function () {
 		return false;
 	});
 
+	$('#botaoRelatorioFornecedor').click(function () {
+		nome = $('#filtro_fornecedor_nome').val();
+		cnpj = $('#filtro_fornecedor_cnpj').val();
+		email = $('#filtro_fornecedor_email').val();
+		telefone = $('#filtro_fornecedor_telefone').val();
+
+		window.open(BASE_URL + "Fornecedores/relatorio_fornecedor?nome="+nome+"&cnpj="+cnpj+"&email="+email+"&telefone="+telefone);
+	});
+
 })
 
 function alterar_fornecedor(id_fornecedor) {

@@ -30,7 +30,7 @@
 				<label>CPF *</label>
 				<div class="input-group input-group-sm mb-3">
 					<input type="text"  name="cliente_cpf" id="cliente_cpf" class="form-control"
-						   aria-label="CPF do Cliente" aria-describedby="inputGroup-sizing-sm"  value="<?php echo $cliente['cpf']; ?>" required>
+						   aria-label="CPF do Cliente" aria-describedby="inputGroup-sizing-sm"  value="<?php echo $cliente['cpf']; ?>" onBlur="ValidarCPF(formulario_alterar_cliente.cliente_cpf);" required>
 				</div>
 			</div>
 

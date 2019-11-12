@@ -647,3 +647,65 @@ label {
 	color: white;
 }
 
+/*##############################################################################*/
+
+/* RELATÓRIO.PHP */
+
+/*##############################################################################*/
+
+.titulo_relatorio {
+	text-align: center;
+	margin-top: 10px;
+}
+
+.tabela_relatorio {
+	font-size: 12px;
+	margin-left: 5%;
+}
+
+
+.topo_escuro tr{
+	background: black;
+	height: 20%;
+}
+
+.topo_escuro th{
+	color: white;
+
+}
+
+#data_relatorio {
+	margin-left: 35px;
+}
+
+tbody {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+}
+
+.pecaFaltando {
+	color: white;
+}
+
+#botaoRelatorioEstoque {
+	color: white;
+}
+
+#botaoRelatorioPedido {
+	color: white;
+}
+
+#botaoRelatorioCliente {
+	color: white;
+}
+
+#botaoRelatorioFornecedor {
+	color: white;
+}
+
+#botaoRelatorioOSAberta {
+	color: white;
+}
+
+#botaoRelatorioOSFechada {
+	color: white;
+}

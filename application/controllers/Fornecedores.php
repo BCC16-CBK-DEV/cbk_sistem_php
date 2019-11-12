@@ -166,6 +166,69 @@ class Fornecedores extends CI_Controller
 
 	}
 
+	public function relatorio_fornecedor() {
+
+		$nome = $this->input->get('nome');
+		$cnpj = $this->input->get('cnpj');
+		$email = $this->input->get('email');
+		$telefone = $this->input->get('telefone');
+		$id_autorizada = $this->session->userdata('autorizada');
+
+		if(!empty($nome) && empty($cnpj) && empty($email) && empty($telefone)){
+			$option = 1;
+		} else if (empty($nome) && !empty($cnpj) && empty($email) && empty($telefone)) {
+			$option = 2;
+		} else if (empty($nome) && empty($cnpj) && !empty($email) && empty($telefone)) {
+			$option = 3;
+		} else if (empty($nome) && empty($cnpj) && empty($email) && !empty($telefone)) {
+			$option = 4;
+		} else if (!empty($nome) && !empty($cnpj) && empty($email) && empty($telefone)) {
+			$option = 5;
+		} else if (!empty($nome) && empty($cnpj) && !empty($email) && empty($telefone)) {
+			$option = 6;
+		} else if (!empty($nome) && empty($cnpj) && empty($email) && !empty($telefone)) {
+			$option = 7;
+		} else if (!empty($nome) && !empty($cnpj) && !empty($email) && empty($telefone)) {
+			$option = 8;
+		} else if (!empty($nome) && !empty($cnpj) && empty($email) && !empty($telefone)) {
+			$option = 9;
+		} else if (!empty($nome) && !empty($cnpj) && !empty($email) && !empty($telefone)) {
+			$option = 10;
+		} else if (empty($nome) && !empty($cnpj) && !empty($email) && empty($telefone)) {
+			$option = 11;
+		} else if (empty($nome) && !empty($cnpj) && empty($email) && !empty($telefone)) {
+			$option = 12;
+		} else if (empty($nome) && !empty($cnpj) && !empty($email) && !empty($telefone)) {
+			$option = 13;
+		} else  {
+			$option = 0;
+		}
+
+		$this->load->model('fornecedor');
+		if ($option == 0) {
+			$data = array(
+				'scripts'=>array(
+					'fornecedor.js'
+				),
+				'fornecedores'=>$this->fornecedor->lista_fornecedores($id_autorizada)
+			);
+		} else {
+			$data = array(
+				'scripts'=>array(
+					'fornecedor.js'
+				),
+				'fornecedores' => $this->fornecedor->filtro_fornecedor($option, $id_autorizada, $nome, $cnpj, $email, $telefone)
+			);
+		}
+
+		$html = $this->load->view('relatorio_fornecedor', $data, true);
+		$mpdf = new \Mpdf\Mpdf();
+		$stylesheet = file_get_contents(base_url().'public/css/estilos.css');
+		$mpdf->WriteHTML($stylesheet,1);
+		$mpdf->WriteHTML($html,2);
+		$mpdf->Output('example1.pdf', 'I');
+	}
+
 }
 
 ?>

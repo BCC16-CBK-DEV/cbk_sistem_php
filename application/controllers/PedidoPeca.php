@@ -510,4 +510,226 @@ class PedidoPeca extends  CI_Controller
 
 		$this->load->view('estoque',$data);
 	}
+
+	public function relatorio_pedido()
+	{
+		$id_autorizada = $this->session->userdata('autorizada');
+		$numero_inicial = $this->input->get('numero_inicial');
+		$numero_final = $this->input->get('numero_final');
+		$data_inicial = $this->input->get('data_inicial');
+		$data_final = $this->input->get('data_final');
+		$assunto = $this->input->get('assunto');
+		$fornecedor = $this->input->get('fornecedor');
+
+		if(!empty($numero_inicial) && empty($numero_final) && empty($data_inicial) && empty($data_final)
+			&& empty($assunto) && $fornecedor == 0){
+			$option = 1;
+		} else if (empty($numero_inicial) && !empty($numero_final) && empty($data_inicial) && empty($data_final)
+			&& empty($assunto) && $fornecedor == 0) {
+			$option = 2;
+		} else if (empty($numero_inicial) && empty($numero_final) && !empty($data_inicial) && empty($data_final)
+			&& empty($assunto) && $fornecedor == 0) {
+			$option = 3;
+		} else if (empty($numero_inicial) && empty($numero_final) && empty($data_inicial) && !empty($data_final)
+			&& empty($assunto) && $fornecedor == 0) {
+			$option = 4;
+		} else if (empty($numero_inicial) && empty($numero_final) && empty($data_inicial) && empty($data_final)
+			&& !empty($assunto) && $fornecedor == 0) {
+			$option = 5;
+		} else if (empty($numero_inicial) && empty($numero_final) && empty($data_inicial) && empty($data_final)
+			&& empty($assunto) && $fornecedor != 0) {
+			$option = 6;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && empty($data_inicial) && empty($data_final)
+			&& empty($assunto) && $fornecedor == 0) {
+			$option = 7;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial) && empty($data_final)
+			&& empty($assunto) && $fornecedor == 0) {
+			$option = 8;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial) && !empty($data_final)
+			&& empty($assunto) && $fornecedor == 0) {
+			$option = 9;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial) && !empty($data_final)
+			&& !empty($assunto) && $fornecedor == 0) {
+			$option = 10;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial) && !empty($data_final)
+			&& !empty($assunto) && $fornecedor != 0) {
+			$option = 11;
+		} else if (!empty($numero_inicial) && empty($numero_final) && !empty($data_inicial) && empty($data_final)
+			&& empty($assunto) && $fornecedor == 0) {
+			$option = 12;
+		} else if (!empty($numero_inicial) && empty($numero_final) && !empty($data_inicial) && !empty($data_final)
+			&& empty($assunto) && $fornecedor == 0) {
+			$option = 13;
+		} else if (!empty($numero_inicial) && empty($numero_final) && !empty($data_inicial) && !empty($data_final)
+			&& !empty($assunto) && $fornecedor == 0) {
+			$option = 14;
+		} else if (!empty($numero_inicial) && empty($numero_final) && !empty($data_inicial) && !empty($data_final)
+			&& !empty($assunto) && $fornecedor != 0) {
+			$option = 15;
+		} else if (!empty($numero_inicial) && empty($numero_final) && empty($data_inicial) && !empty($data_final)
+			&& empty($assunto) && $fornecedor == 0) {
+			$option = 16;
+		} else if (!empty($numero_inicial) && empty($numero_final) && empty($data_inicial) && !empty($data_final)
+			&& !empty($assunto) && $fornecedor == 0) {
+			$option = 17;
+		} else if (!empty($numero_inicial) && empty($numero_final) && empty($data_inicial) && !empty($data_final)
+			&& !empty($assunto) && $fornecedor != 0) {
+			$option = 18;
+		} else if (!empty($numero_inicial) && empty($numero_final) && empty($data_inicial) && empty($data_final)
+			&& !empty($assunto) && $fornecedor == 0) {
+			$option = 19;
+		} else if (!empty($numero_inicial) && empty($numero_final) && empty($data_inicial) && empty($data_final)
+			&& !empty($assunto) && $fornecedor != 0) {
+			$option = 20;
+		} else if (!empty($numero_inicial) && empty($numero_final) && empty($data_inicial) && empty($data_final)
+			&& empty($assunto) && $fornecedor != 0) {
+			$option = 21;
+		} else if (empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial) && empty($data_final)
+			&& empty($assunto) && $fornecedor == 0) {
+			$option = 22;
+		} else if (empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial) && !empty($data_final)
+			&& empty($assunto) && $fornecedor == 0) {
+			$option = 23;
+		} else if (empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial) && !empty($data_final)
+			&& !empty($assunto) && $fornecedor == 0) {
+			$option = 24;
+		} else if (empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial) && !empty($data_final)
+			&& !empty($assunto) && $fornecedor != 0) {
+			$option = 25;
+		} else if (empty($numero_inicial) && empty($numero_final) && !empty($data_inicial) && !empty($data_final)
+			&& empty($assunto) && $fornecedor == 0) {
+			$option = 26;
+		} else if (empty($numero_inicial) && empty($numero_final) && !empty($data_inicial) && !empty($data_final)
+			&& !empty($assunto) && $fornecedor == 0) {
+			$option = 27;
+		} else if (empty($numero_inicial) && empty($numero_final) && !empty($data_inicial) && !empty($data_final)
+			&& !empty($assunto) && $fornecedor != 0) {
+			$option = 28;
+		} else if (empty($numero_inicial) && empty($numero_final) && empty($data_inicial) && !empty($data_final)
+			&& !empty($assunto) && $fornecedor == 0) {
+			$option = 29;
+		} else if (empty($numero_inicial) && empty($numero_final) && empty($data_inicial) && empty($data_final)
+			&& !empty($assunto) && $fornecedor != 0) {
+			$option = 30;
+		} else if (!empty($numero_inicial) && empty($numero_final) && !empty($data_inicial) && empty($data_final)
+			&& empty($assunto) && $fornecedor == 0) {
+			$option = 31;
+		} else if (!empty($numero_inicial) && empty($numero_final) && empty($data_inicial) && !empty($data_final)
+			&& empty($assunto) && $fornecedor == 0) {
+			$option = 32;
+		} else if (!empty($numero_inicial) && empty($numero_final) && empty($data_inicial) && empty($data_final)
+			&& !empty($assunto) && $fornecedor == 0) {
+			$option = 33;
+		} else if (!empty($numero_inicial) && empty($numero_final) && empty($data_inicial) && empty($data_final)
+			&& empty($assunto) && $fornecedor != 0) {
+			$option = 34;
+		} else if (empty($numero_inicial) && !empty($numero_final) && empty($data_inicial) && !empty($data_final)
+			&& empty($assunto) && $fornecedor == 0) {
+			$option = 35;
+		} else if (empty($numero_inicial) && !empty($numero_final) && empty($data_inicial) && empty($data_final)
+			&& !empty($assunto) && $fornecedor == 0) {
+			$option = 36;
+		} else if (empty($numero_inicial) && !empty($numero_final) && empty($data_inicial) && empty($data_final)
+			&& empty($assunto) && $fornecedor != 0) {
+			$option = 37;
+		} else if (empty($numero_inicial) && empty($numero_final) && !empty($data_inicial) && empty($data_final)
+			&& !empty($assunto) && $fornecedor == 0) {
+			$option = 38;
+		} else if (empty($numero_inicial) && empty($numero_final) && !empty($data_inicial) && empty($data_final)
+			&& empty($assunto) && $fornecedor != 0) {
+			$option = 39;
+		} else if (empty($numero_inicial) && empty($numero_final) && empty($data_inicial) && !empty($data_final)
+			&& empty($assunto) && $fornecedor != 0) {
+			$option = 40;
+		} else {
+			$option = 0;
+		}
+
+		$this->load->model('pedido_peca');
+
+		if ($option == 0) {
+			$data = array(
+				'scripts' => array('pedidoPeca.js'),
+				'pedidos' => $this->pedido_peca->pedidos($id_autorizada),
+				'fornecedores' => $this->pedido_peca->fornecedores($id_autorizada)
+			);
+		} else {
+			$data = array(
+				'scripts' => array('pedidoPeca.js'),
+				'pedidos'=>$this->pedido_peca->filtro_pedido($option,$numero_inicial,$numero_final,$data_inicial,$data_final,$assunto,
+					$fornecedor,$id_autorizada),
+				'fornecedores' => $this->pedido_peca->fornecedores($id_autorizada)
+			);
+		}
+
+		$html = $this->load->view('relatorio_pedido', $data, true);
+		$mpdf = new \Mpdf\Mpdf();
+		$stylesheet = file_get_contents(base_url().'public/css/estilos.css');
+		$mpdf->WriteHTML($stylesheet,1);
+		$mpdf->WriteHTML($html,2);
+		$mpdf->Output('example1.pdf', 'I');
+	}
+
+	public function relatorio_estoque()
+	{
+		$id_autorizada = $this->session->userdata('autorizada');
+
+		$descricao = $this->input->get('descricao');
+		$codigo = $this->input->get('codigo_peca');
+		$quantidade = $this->input->get('quantidade');
+		$valor = $this->input->get('valor');
+
+		print_r($quantidade);
+
+		if(!empty($descricao) && empty($codigo) && empty($quantidade) && empty($valor)){
+			$option = 1;
+		} else if(empty($descricao) && !empty($codigo) && empty($quantidade) && empty($valor)) {
+			$option = 2;
+		} else if(empty($descricao) && empty($codigo) && !empty($quantidade) && empty($valor)) {
+			$option = 3;
+		} else if(empty($descricao) && empty($codigo) && empty($quantidade) && !empty($valor)) {
+			$option = 4;
+		} else if(!empty($descricao) && !empty($codigo) && empty($quantidade) && empty($valor)) {
+			$option = 5;
+		} else if(!empty($descricao) && empty($codigo) && !empty($quantidade) && empty($valor)) {
+			$option = 6;
+		} else if(!empty($descricao) && empty($codigo) && empty($quantidade) && !empty($valor)) {
+			$option = 7;
+		} else if(empty($descricao) && !empty($codigo) && !empty($quantidade) && empty($valor)) {
+			$option = 8;
+		} else if(empty($descricao) && !empty($codigo) && empty($quantidade) && !empty($valor)) {
+			$option = 9;
+		} else if(empty($descricao) && empty($codigo) && !empty($quantidade) && !empty($valor)) {
+			$option = 10;
+		} else if(!empty($descricao) && !empty($codigo) && !empty($quantidade) && !empty($valor)) {
+			$option = 11;
+		} else {
+			$option = 0;
+		}
+
+		$this->load->model('pedido_peca');
+
+		if ($option == 0) {
+			$data = array(
+				'scripts'=>array(
+					'pedidoPeca.js'
+				),
+				'pecas'=>$this->pedido_peca->pecas($id_autorizada)
+			);
+		} else {
+			$data = array(
+				'scripts'=>array (
+					'pedidoPeca.js'
+				),
+				'pecas'=>$this->pedido_peca->filtro_estoque($option,$descricao,$codigo,$quantidade,$valor,$id_autorizada)
+			);
+		}
+
+		$html = $this->load->view('relatorio_estoque', $data, true);
+		$mpdf = new \Mpdf\Mpdf();
+		$stylesheet = file_get_contents(base_url().'public/css/estilos.css');
+		$mpdf->WriteHTML($stylesheet,1);
+		$mpdf->WriteHTML($html,2);
+		$mpdf->Output('example1.pdf', 'I');
+	}
 }

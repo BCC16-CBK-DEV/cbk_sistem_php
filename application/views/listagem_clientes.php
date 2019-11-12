@@ -17,9 +17,9 @@
 			<a class="btn btn-dark botoesBarra" id="botaoInicio" href="<?php echo base_url();?>Clientes/index">
 				<span class="fa fa-chevron-circle-left"></span> Voltar
 			</a>
-			<button class="btn btn-dark botoesBarra" id="botaoFiltro" type="button">
+			<a class="btn btn-dark botoesBarra" id="botaoRelatorioCliente" >
 				Relatório
-			</button>
+			</a>
 		</div>
 		<div class="collapse row" id="collapseFiltro">
 			<div class="card card-body">

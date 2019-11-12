@@ -303,12 +303,31 @@ $(function () {
 				console.log(response);
 			}
 		})
-
-
-
 	});
 
+	$('#botaoRelatorioPedido').click(function() {
+		numero_inicial = $('#filtro_numero_inicial').val();
+		numero_final = $('#filtro_numero_final').val();
+		data_inicial = $('#filtro_data_inicial').val();
+		data_final = $('#filtro_data_final').val();
+		assunto = $('#filtro_assunto').val();
+		fornecedor = $('#fornecedor_pedido').val();
+
+		window.open(BASE_URL + "PedidoPeca/relatorio_pedido?numero_inicial="+numero_inicial+"&numero_final="+numero_final+"&data_inicial="+data_inicial+"&data_final="+data_final+"&assunto="+assunto+"&fornecedor="+fornecedor);
+	});
+
+	$('#botaoRelatorioEstoque').click(function() {
+		descricao = $('#filtro_descricao_peca').val();
+		codigo_peca = $('#filtro_codigo_peca').val();
+		quantidade = $('#filtro_quantidade_peca').val();
+		valor = $('#filtro_valor_peca').val();
+
+		window.open(BASE_URL + "PedidoPeca/relatorio_estoque?descricao="+descricao+"&codigo_peca="+codigo_peca+"&quantidade="+quantidade+"&valor="+valor);
+	})
+
 })
+
+
 
 function desbloquearCampoQtd() {
 

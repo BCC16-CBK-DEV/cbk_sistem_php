@@ -133,10 +133,55 @@ class Clientes extends CI_Controller
 
 	public function filtroCliente() {
 
-		$nome = $this->input->post('filtro_cliente_nome');
-		$cpf = $this->input->post('filtro_cliente_cpf');
-		$email = $this->input->post('filtro_cliente_email');
-		$celular = $this->input->post('filtro_cliente_celular');
+	$nome = $this->input->post('filtro_cliente_nome');
+	$cpf = $this->input->post('filtro_cliente_cpf');
+	$email = $this->input->post('filtro_cliente_email');
+	$celular = $this->input->post('filtro_cliente_celular');
+	$id_autorizada = $this->session->userdata('autorizada');
+
+	if(!empty($nome) && empty($cpf) && empty($email) && empty($celular)){
+		$option = 1;
+	} else if (empty($nome) && !empty($cpf) && empty($email) && empty($celular)) {
+		$option = 2;
+	} else if (empty($nome) && empty($cpf) && !empty($email) && empty($celular)) {
+		$option = 3;
+	} else if (empty($nome) && empty($cpf) && empty($email) && !empty($celular)) {
+		$option = 4;
+	} else if (!empty($nome) && !empty($cpf) && empty($email) && empty($celular)) {
+		$option = 5;
+	} else if (!empty($nome) && empty($cpf) && !empty($email) && empty($celular)) {
+		$option = 6;
+	} else if (!empty($nome) && empty($cpf) && empty($email) && !empty($celular)) {
+		$option = 7;
+	} else if (!empty($nome) && !empty($cpf) && !empty($email) && empty($celular)) {
+		$option = 8;
+	} else if (!empty($nome) && !empty($cpf) && empty($email) && !empty($celular)) {
+		$option = 9;
+	} else if (!empty($nome) && !empty($cpf) && !empty($email) && !empty($celular)) {
+		$option = 10;
+	} else if (empty($nome) && !empty($cpf) && !empty($email) && empty($celular)) {
+		$option = 11;
+	} else if (empty($nome) && !empty($cpf) && empty($email) && !empty($celular)) {
+		$option = 12;
+	} else if (empty($nome) && !empty($cpf) && !empty($email) && !empty($celular)) {
+		$option = 13;
+	}
+
+	$this->load->model('cliente');
+	$data = array(
+		'clientes'=>$this->cliente->filtro_cliente($option,$id_autorizada,$nome,$cpf,$email,$celular)
+	);
+
+	$this->load->view('listagem_clientes',$data);
+
+}
+
+	public function relatorio_cliente() {
+
+		$nome = $this->input->get('nome');
+		$cpf = $this->input->post('cpf');
+		$email = $this->input->post('email');
+		$celular = $this->input->post('celular');
 		$id_autorizada = $this->session->userdata('autorizada');
 
 		if(!empty($nome) && empty($cpf) && empty($email) && empty($celular)){
@@ -165,14 +210,29 @@ class Clientes extends CI_Controller
 			$option = 12;
 		} else if (empty($nome) && !empty($cpf) && !empty($email) && !empty($celular)) {
 			$option = 13;
+		} else {
+			$option = 0;
 		}
 
 		$this->load->model('cliente');
-		$data = array(
-			'clientes'=>$this->cliente->filtro_cliente($option,$id_autorizada,$nome,$cpf,$email,$celular)
-		);
+		if($option == 0){
+			$data = array(
+				'clientes'=>$this->cliente->listaClientes($id_autorizada)
+			);
+		} else {
+			$data = array(
+				'clientes' => $this->cliente->filtro_cliente($option, $id_autorizada, $nome, $cpf, $email, $celular)
+			);
+		}
 
-		$this->load->view('listagem_clientes',$data);
+		$html = $this->load->view('relatorio_cliente', $data, true);
+		$mpdf = new \Mpdf\Mpdf();
+		$stylesheet = file_get_contents(base_url().'public/css/estilos.css');
+		$mpdf->WriteHTML($stylesheet,1);
+		$mpdf->WriteHTML($html,2);
+		$mpdf->Output('example1.pdf', 'I');
+
+
 
 	}
 }

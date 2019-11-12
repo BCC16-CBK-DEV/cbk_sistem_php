@@ -133,6 +133,30 @@ $(function () {
 
 		})
 
+	$('#botaoRelatorioOSAberta').click(function () {
+		numero_inicial = $('#filtro_numero_inicial').val();
+		numero_final = $('#filtro_numero_final').val();
+		data_inicial = $('#filtro_data_inicial').val();
+		data_final = $('#filtro_data_final').val();
+		descricao = $('#filtro_descricao').val();
+		nota_fiscal = $('#filtro_nota_fiscal').val();
+		codigo_produto = $('#filtro_codigo_produto').val();
+
+		window.open(BASE_URL+"OrdemServico/relatorio_os_aberta?numero_inicial="+numero_inicial+"&numero_final="+numero_final+"&data_inicial="+data_inicial+"&data_final="+data_final+"&descricao="+descricao+"&nota_fiscal="+nota_fiscal+"&codigo_produto="+codigo_produto);
+	});
+
+	$('#botaoRelatorioOSFechada').click(function () {
+		numero_inicial = $('#filtro_numero_inicial').val();
+		numero_final = $('#filtro_numero_final').val();
+		data_inicial = $('#filtro_data_inicial').val();
+		data_final = $('#filtro_data_final').val();
+		descricao = $('#filtro_descricao').val();
+		nota_fiscal = $('#filtro_nota_fiscal').val();
+		codigo_produto = $('#filtro_codigo_produto').val();
+
+		window.open(BASE_URL+"OrdemServico/relatorio_os_fechadas?numero_inicial="+numero_inicial+"&numero_final="+numero_final+"&data_inicial="+data_inicial+"&data_final="+data_final+"&descricao="+descricao+"&nota_fiscal="+nota_fiscal+"&codigo_produto="+codigo_produto);
+	});
+
 })
 
 function desbloquearCampoQtd() {

@@ -26,7 +26,7 @@
 							<label>CPF*:</label>
 							<div class="input-group input-group-sm mb-3">
 								<input type="text" id="cpf_cliente" name="cpf_cliente" class="form-control"
-								aria-label="CPF do Cliente" aria-describedby="inputGroup-sizing-sm" required>
+								aria-label="CPF do Cliente" aria-describedby="inputGroup-sizing-sm" onBlur="ValidarCPF(formulario_cliente_os.cpf_cliente);" required>
 							</div>
 						</div>
 
@@ -127,6 +127,7 @@
 					</div>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal" id="botaoCancelar">Cancelar</button>
 					<button type="submit" class="btn btn-primary">GRAVAR</button>
+					<button type="button" class="btn btn-dark" id="botaoValidar">Validar CPF</button>
 				</form>
 			</div>
 		</div>

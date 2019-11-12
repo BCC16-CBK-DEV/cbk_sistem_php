@@ -10,7 +10,7 @@ include ("scripts.php");
 
 <div class="posicao_conteudo">
 
-	<h4 class="titulo_opcoes"><span class="fa fa-archive"></span> Consultar OS Fechadas</h4>
+	<h4 class="titulo_opcoes"><span class="fa fa-archive"></span> Consultar OS Finalizadas</h4>
 	<hr class="linha_nova_ordem">
 	<div class="centraliza">
 		<div class="barra_pesquisa row">
@@ -20,9 +20,9 @@ include ("scripts.php");
 			<a class="btn btn-dark botoesBarra" id="botaoInicio" href="<?php echo base_url();?>OrdemServico/index">
 				<span class="fa fa-chevron-circle-left"></span> Voltar
 			</a>
-			<button class="btn btn-dark botoesBarra" id="botaoFiltro" type="button">
+			<a class="btn btn-dark botoesBarra" id="botaoRelatorioOSFechada">
 				Relatório
-			</button>
+			</a>
 		</div>
 		<!-- COLLAPSE DO FILTRO -->
 		<div class="collapse row" id="collapseFiltro">

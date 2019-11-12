@@ -401,7 +401,7 @@ class OrdemServico extends CI_Controller {
 		$this->load->model('ordem_servico');
 
 		$data = array(
-			'os_abertas'=>$this->ordem_servico->filtro_ordem_fechada($option,$numero_inicial,$numero_final,$data_inicial,$data_final,$descricao,
+			'os_fechadas'=>$this->ordem_servico->filtro_ordem_fechada($option,$numero_inicial,$numero_final,$data_inicial,$data_final,$descricao,
 				$nota_fiscal,$codigo_produto,$id_autorizada)
 		);
 
@@ -538,6 +538,266 @@ class OrdemServico extends CI_Controller {
 
 		$this->load->model('ordem_servico');
 		$this->ordem_servico->excluir_peca_ordem($id_peca_ordem,$id_peca,$quantidade);
+	}
+
+	public function relatorio_os_aberta () {
+
+		$numero_inicial = $this->input->get('numero_inicial');
+		$numero_final = $this->input->get('numero_final');
+		$data_inicial = $this->input->get('data_inicial');
+		$data_final = $this->input->get('data_final');
+		$descricao = $this->input->get('descricao');
+		$nota_fiscal = $this->input->get('nota_fiscal');
+		$codigo_produto = $this->input->get('codigo_produto');
+		$id_autorizada = $this->session->userdata('autorizada');
+
+		if(empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial) && !empty($data_final)
+			&& !empty($descricao) && !empty($nota_fiscal) && !empty($codigo_produto)){
+			$option = 1;
+		} else if(!empty($numero_inicial) && empty($numero_final) && !empty($data_inicial) && !empty($data_final)
+			&& !empty($descricao) && !empty($nota_fiscal) && !empty($codigo_produto)){
+			$option = 2;
+		} else if (empty($numero_inicial) && !empty($numero_final) && empty($data_inicial)
+			&& !empty($data_final) && !empty($descricao) && !empty($nota_fiscal) && !empty($codigo_produto)){
+			$option = 3;
+		} else if (!empty($numero_inicial) && empty($numero_final) && !empty($data_inicial)
+			&& empty($data_final) && !empty($descricao) && !empty($nota_fiscal) && !empty($codigo_produto)){
+			$option = 4;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && empty($data_inicial)
+			&& !empty($data_final) && !empty($descricao) && !empty($nota_fiscal) && !empty($codigo_produto)) {
+			$option = 5;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial)
+			&& empty($data_final) && !empty($descricao) && !empty($nota_fiscal) && !empty($codigo_produto)){
+			$option = 6;
+		} else if (empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && !empty($descricao) && !empty($nota_fiscal) && !empty($codigo_produto)) {
+			$option = 7;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial)
+			&& !empty($data_final) && empty($descricao) && !empty($nota_fiscal) && !empty($codigo_produto)) {
+			$option = 8;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial)
+			&& !empty($data_final) && empty($descricao) && empty($nota_fiscal) && !empty($codigo_produto)) {
+			$option = 9;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial)
+			&& !empty($data_final) && empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 10;
+		} else if (!empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && !empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 11;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && !empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 12;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial)
+			&& empty($data_final) && !empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 13;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial)
+			&& !empty($data_final) && !empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 14;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial)
+			&& !empty($data_final) && !empty($descricao) && !empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 15;
+		} else if (!empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && !empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 16;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && !empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 17;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && !empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 18;
+		} else if (!empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && empty($nota_fiscal) && !empty($codigo_produto)) {
+			$option = 19;
+		} else if (!empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && !empty($descricao) && empty($nota_fiscal) && !empty($codigo_produto)) {
+			$option = 20;
+		} else if (empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && !empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 21;
+		} else if (empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && !empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 22;
+		} else if (empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && empty($nota_fiscal) && !empty($codigo_produto)) {
+			$option = 23;
+		} else if (!empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 24;
+		} else if (empty($numero_inicial) && !empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 25;
+		} else if (empty($numero_inicial) && empty($numero_final) && !empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 26;
+		} else if (empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& !empty($data_final) && empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 27;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 28;
+		} else if (empty($numero_inicial) && empty($numero_final) && !empty($data_inicial)
+			&& !empty($data_final) && empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 29;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial)
+			&& !empty($data_final) && !empty($descricao) && !empty($nota_fiscal) && !empty($codigo_produto)) {
+			$option = 30;
+		} else {
+			$option = 0;
+		}
+
+		$this->load->model('ordem_servico');
+
+		if ($option == 0) {
+			$data = array(
+				'os_abertas'=>$this->ordem_servico->os_abertas($this->session->userdata('autorizada')),
+				"scripts"=>array(
+					"util.js"
+				)
+			);
+		} else {
+			$data = array(
+				'os_abertas' => $this->ordem_servico->filtro_ordem_aberta($option, $numero_inicial, $numero_final, $data_inicial, $data_final, $descricao,
+					$nota_fiscal, $codigo_produto, $id_autorizada)
+			);
+		}
+
+		$html = $this->load->view('relatorio_os_aberta', $data, true);
+		$mpdf = new \Mpdf\Mpdf();
+		$stylesheet = file_get_contents(base_url().'public/css/estilos.css');
+		$mpdf->WriteHTML($stylesheet,1);
+		$mpdf->WriteHTML($html,2);
+		$mpdf->Output('example1.pdf', 'I');
+
+	}
+
+	public function relatorio_os_fechadas () {
+
+		$numero_inicial = $this->input->get('numero_inicial');
+		$numero_final = $this->input->get('numero_final');
+		$data_inicial = $this->input->get('data_inicial');
+		$data_final = $this->input->get('data_final');
+		$descricao = $this->input->get('descricao');
+		$nota_fiscal = $this->input->get('nota_fiscal');
+		$codigo_produto = $this->input->get('codigo_produto');
+		$id_autorizada = $this->session->userdata('autorizada');
+
+		if(empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial) && !empty($data_final)
+			&& !empty($descricao) && !empty($nota_fiscal) && !empty($codigo_produto)){
+			$option = 1;
+		} else if(!empty($numero_inicial) && empty($numero_final) && !empty($data_inicial) && !empty($data_final)
+			&& !empty($descricao) && !empty($nota_fiscal) && !empty($codigo_produto)){
+			$option = 2;
+		} else if (empty($numero_inicial) && !empty($numero_final) && empty($data_inicial)
+			&& !empty($data_final) && !empty($descricao) && !empty($nota_fiscal) && !empty($codigo_produto)){
+			$option = 3;
+		} else if (!empty($numero_inicial) && empty($numero_final) && !empty($data_inicial)
+			&& empty($data_final) && !empty($descricao) && !empty($nota_fiscal) && !empty($codigo_produto)){
+			$option = 4;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && empty($data_inicial)
+			&& !empty($data_final) && !empty($descricao) && !empty($nota_fiscal) && !empty($codigo_produto)) {
+			$option = 5;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial)
+			&& empty($data_final) && !empty($descricao) && !empty($nota_fiscal) && !empty($codigo_produto)){
+			$option = 6;
+		} else if (empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && !empty($descricao) && !empty($nota_fiscal) && !empty($codigo_produto)) {
+			$option = 7;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial)
+			&& !empty($data_final) && empty($descricao) && !empty($nota_fiscal) && !empty($codigo_produto)) {
+			$option = 8;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial)
+			&& !empty($data_final) && empty($descricao) && empty($nota_fiscal) && !empty($codigo_produto)) {
+			$option = 9;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial)
+			&& !empty($data_final) && empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 10;
+		} else if (!empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && !empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 11;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && !empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 12;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial)
+			&& empty($data_final) && !empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 13;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial)
+			&& !empty($data_final) && !empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 14;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial)
+			&& !empty($data_final) && !empty($descricao) && !empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 15;
+		} else if (!empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && !empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 16;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && !empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 17;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && !empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 18;
+		} else if (!empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && empty($nota_fiscal) && !empty($codigo_produto)) {
+			$option = 19;
+		} else if (!empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && !empty($descricao) && empty($nota_fiscal) && !empty($codigo_produto)) {
+			$option = 20;
+		} else if (empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && !empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 21;
+		} else if (empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && !empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 22;
+		} else if (empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && empty($nota_fiscal) && !empty($codigo_produto)) {
+			$option = 23;
+		} else if (!empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 24;
+		} else if (empty($numero_inicial) && !empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 25;
+		} else if (empty($numero_inicial) && empty($numero_final) && !empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 26;
+		} else if (empty($numero_inicial) && empty($numero_final) && empty($data_inicial)
+			&& !empty($data_final) && empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 27;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && empty($data_inicial)
+			&& empty($data_final) && empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 28;
+		} else if (empty($numero_inicial) && empty($numero_final) && !empty($data_inicial)
+			&& !empty($data_final) && empty($descricao) && empty($nota_fiscal) && empty($codigo_produto)) {
+			$option = 29;
+		} else if (!empty($numero_inicial) && !empty($numero_final) && !empty($data_inicial)
+			&& !empty($data_final) && !empty($descricao) && !empty($nota_fiscal) && !empty($codigo_produto)) {
+			$option = 30;
+		} else {
+			$option = 0;
+		}
+
+		$this->load->model('ordem_servico');
+
+		if ($option == 0) {
+			$data = array(
+				'os_fechadas'=>$this->ordem_servico->os_fechadas($this->session->userdata('autorizada')),
+				"scripts"=>array(
+					"util.js"
+				)
+			);
+		} else {
+			$data = array(
+				'os_fechadas' => $this->ordem_servico->filtro_ordem_fechada($option, $numero_inicial, $numero_final, $data_inicial, $data_final, $descricao,
+					$nota_fiscal, $codigo_produto, $id_autorizada)
+			);
+		}
+
+		$html = $this->load->view('relatorio_os_fechada', $data, true);
+		$mpdf = new \Mpdf\Mpdf();
+		$stylesheet = file_get_contents(base_url().'public/css/estilos.css');
+		$mpdf->WriteHTML($stylesheet,1);
+		$mpdf->WriteHTML($html,2);
+		$mpdf->Output('example1.pdf', 'I');
+
 	}
 
 }
