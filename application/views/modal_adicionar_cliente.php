@@ -127,7 +127,6 @@
 					</div>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal" id="botaoCancelar">Cancelar</button>
 					<button type="submit" class="btn btn-primary">GRAVAR</button>
-					<button type="button" class="btn btn-dark" id="botaoValidar">Validar CPF</button>
 				</form>
 			</div>
 		</div>
